@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kelsey Sackett</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;500&family=Major+Mono+Display&family=Zen+Dots&display=swap"
+      rel="stylesheet"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
+    <nav class="orbital-nav">
+        
+        <div class="sun">
+            <img src="" alt="" class="sun-logo">
+          </div>
+          
+            <a href="#about" class="planet planet1"><i class="fas fa-moon"></i></a>
+            <a href="#skills" class="planet planet2"><i class="fas fa-wand-magic-sparkles"></i></a>
+            <a href="#projects" class="planet planet3"><i class="fas fa-code"></i></a>
+            <a href="#contact" class="planet planet4"><i class="fas fa-satellite-dish"></i></a>
+          </nav>
+          
+    </nav>
+    <h1 class="main-title">Welcome to My Orbit</h1>
+    
+      <h1 class="section-title">I'm Kelsey.</h1>
+      <p class="funky-flair">✨Frontend Sorceress in Training✨</p>
+   
+
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <p>
+        I’m a former executive housekeeper turned aspiring frontend dev with a
+        thing for clean design and cosmic energy. I build with love, learn with
+        curiosity, and style with a little sass.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <ul>
+        <li class="bubble-label">HTML</li>
+        <li class="bubble-label">CSS</li>
+        <li class="bubble-label">JavaScript (soon to be fluent 👩‍🚀)</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">My Starry Projects</h2>
+      <p>Coming soon to a galaxy near you…</p>
+    </section>
+
+    <footer class="site-footer">
+      <div class="floating-icons">
+        <span>🌙</span>
+        <span>🚀</span>
+        <span>🐧</span>
+        <span>✨</span>
+      </div>
+      <p class="footer-quote">Stay chill. Stay cosmic.</p>
+    </footer>
+    
+    <div class="penguin-fixed">
+      <img src="penguin.png" alt="Chatty Penguin" class="penguin">
+      <div class="chat-bubble">Talk to me</div>
+    </div>
+    <div class="penguin-fixed" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">
+
+  </body>
+</html>
+
