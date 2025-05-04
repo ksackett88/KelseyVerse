@@ -7,8 +7,6 @@ html, body {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(180deg, #2b164d, #4d2c91, #fbc2eb);
-    color: #fff;
     margin: 0;
     padding: 0;
     min-height: 100vh;
