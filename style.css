@@ -1,3 +1,10 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(180deg, #2b164d, #4d2c91, #fbc2eb) !important;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(180deg, #2b164d, #4d2c91, #fbc2eb);
