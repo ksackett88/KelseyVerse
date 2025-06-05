@@ -61,20 +61,78 @@ window.addEventListener('click', function(e) {
   });
 });
 
+/*gossip*/
+console.log("✨ Gossip button clicked!");
 function submitGossip() {
   const input = document.getElementById("gossip-input");
   const gossip = input.value.trim();
 
   if (gossip) {
     const feed = document.getElementById("gossip-feed");
+
+   
+    const safeGossip = gossip
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+   
     const entry = document.createElement("div");
-    entry.className = "gossip-entry";
-    entry.innerHTML = `<span class="gossip-author">👀 Anonymous:</span>
-                       <span class="gossip-quote">“${gossip}”</span>`;
-    feed.prepend(entry); // Adds to top of feed
+    entry.className = "gossip-entry gossip-fade";
+
+    
+    const reactions = [
+      "Crumbz giggled ominously.",
+      "Stackie sighed aggressively.",
+      "Echo logged this to a private folder.",
+      "Kevin pretended not to see it.",
+      "Nova immediately forwarded this to HR.",
+      "Orbit whispered a soft 'yikes.'"
+    ];
+    const reaction = reactions[Math.floor(Math.random() * reactions.length)];
+
+    entry.innerHTML = `
+      <span class="gossip-author">👀 Anonymous:</span>
+      <span class="gossip-quote">“${safeGossip}”</span>
+      <div class="gossip-reaction">💬 ${reaction}</div>
+    `;
+
+  
+    feed.prepend(entry);
     input.value = "";
+
+    
+let allGossip = JSON.parse(localStorage.getItem("crewGossip")) || [];
+allGossip.unshift({
+  text: safeGossip,
+  reaction: reaction
+});
+localStorage.setItem("crewGossip", JSON.stringify(allGossip));
+
+    
+    setTimeout(() => entry.classList.remove("gossip-fade"), 1000);
+  } else {
+    alert("✨ Gossip cannot be blank, darling.");
   }
 }
+
+window.submitGossip = submitGossip;
+
+window.addEventListener("DOMContentLoaded", () => {
+  const feed = document.getElementById("gossip-feed");
+  const storedGossip = JSON.parse(localStorage.getItem("crewGossip")) || [];
+
+  storedGossip.forEach(entry => {
+    const div = document.createElement("div");
+    div.className = "gossip-entry";
+    div.innerHTML = `
+      <span class="gossip-author">👀 Anonymous:</span>
+      <span class="gossip-quote">“${entry.text}”</span>
+      <div class="gossip-reaction">💬 ${entry.reaction}</div>
+    `;
+    feed.appendChild(div);
+  });
+});
 
 
   /*** PENGUIN CONTACT POPUP ***/
@@ -112,3 +170,4 @@ function submitGossip() {
   }
   setInterval(createFallingStar, 400);
 });
+

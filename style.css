@@ -646,7 +646,27 @@ button {
   font-style: italic;
 }
 
+.gossip-fade {
+  animation: sparkleDrop 0.7s ease;
+}
 
+@keyframes sparkleDrop {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.gossip-reaction {
+  font-size: 0.9rem;
+  color: #a38cc6;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
   /* Penguin Contact Button */
 .penguin-fixed {
   position: fixed;
