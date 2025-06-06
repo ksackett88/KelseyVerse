@@ -358,7 +358,75 @@ body.modal-open .crew-card.open {
   display: block;
   pointer-events: all;
 }
+ /* cosmic quote */ 
 
+.cosmic-quote-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 50px auto;
+  max-width: 800px;
+}
+
+.orbit-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #a95eff;
+  animation: floatOrbit 4s ease-in-out infinite;
+}
+
+@keyframes floatOrbit {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.cosmic-quote {
+  background: radial-gradient(circle at center, rgba(239, 194, 255, 0.1) 0%, rgba(48, 16, 91, 0.2) 100%);
+  border: 1px solid rgba(239, 194, 255, 0.3);
+  padding: 20px 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(239, 194, 255, 0.3);
+  font-family: 'Orbitron', sans-serif;
+  color: #efc2ff;
+  backdrop-filter: blur(4px);
+}
+
+.cosmic-quote .quote-text {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 0 6px #ae7fff;
+}
+
+.cosmic-quote .quote-attribution {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #d4b0ff;
+  font-style: italic;
+}
+
+.cosmic-quote-wrapper {
+  text-align: center;
+  margin: 60px auto;
+  position: relative;
+  max-width: 700px;
+}
+
+.orbit-icon.orbit-above {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: -40px;
+  z-index: 2;
+  animation: floatOrbit 4s ease-in-out infinite;
+  position: relative;
+  top: 20px;
+  box-shadow: 0 0 12px #a95eff;
+}
 
 
 /* blog */
