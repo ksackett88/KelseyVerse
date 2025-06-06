@@ -666,12 +666,21 @@ I am not emotional. I am not kind. I am not cruel. I am simply the quiet space b
     <a href="mailto:ksackett88@gmail.com" target="_blank"><i class="fas fa-envelope"></i> Email</a>
     <a href="https://github.com/ksackett88" target="_blank"><i class="fab fa-github"></i> GitHub</a>
     <a href="https://linkedin.com/in/ksackett88" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-    <a href="photos/Kelsey_Sackett_Resume_Novafied.docx.pdf" target="_blank" class="resume-btn"><i class="fas fa-file-alt"></i> Resume</a>
+    <a href="photos/Kelsey_Sackett_Resume_Novafied.docx.pdf" target="_blank" class="resume-btn" id="resume-link"><i class="fas fa-file-alt"></i> Resume</a>
    
   </div>
 </div>
  
 <div class="crew-modal-overlay"></div>
+<script>
+  document.getElementById("resume-link").addEventListener("click", function () {
+    gtag('event', 'resume_click', {
+      event_category: 'engagement',
+      event_label: 'Nova-fied Resume',
+      value: 1
+    });
+  });
+</script>
 
 <script>
   function toggleGossip() {
