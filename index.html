@@ -1,750 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kelseyverse™</title>
-    <link rel="stylesheet" href="./style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@300;500&family=Major+Mono+Display&family=Zen+Dots&display=swap"
-      rel="stylesheet"/>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ4YNLZRE6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelseyverse™ — Welcome to My Orbit</title>
+  <meta name="description" content="Plant mom. Dog mom. Real mom. Big boss. Certified chaos. Welcome to the Kelseyverse — a personal blog about life in my orbit." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-  gtag('config', 'G-VZ4YNLZRE6');
-</script>
-  </head>
-  <body>
-    <div class="stars-container"></div>
-    <nav class="orbital-nav">
-        
-        <div class="sun">
-            <img src="" alt="" class="sun-logo">
-          </div>
-          
-            <a href="#about" class="planet planet1"><i class="fas fa-moon"></i></a>
-            <a href="#skills" class="planet planet2"><i class="fas fa-wand-magic-sparkles"></i></a>
-            <a href="#projects" class="planet planet3"><i class="fas fa-code"></i></a>
-            <a href="#contact" class="planet planet4"><i class="fas fa-satellite-dish"></i></a>
-          </nav>
-          
-    </nav>
-    <h1 class="main-title">Welcome to My Orbit</h1>
-    
-      <h1 class="section-title">I'm Kelsey.</h1>
-      <p class="funky-flair">✨Frontend Sorceress in Training✨</p>
-   
+  <!-- STAR FIELD BACKGROUND -->
+  <canvas id="stars"></canvas>
 
-    <section id="about">
-      <h2 class="section-title">About Me</h2>
-      <p>
-  This was supposed to be a portfolio.<br><br>
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">kelsey<span>verse</span>™</a>
+    <div class="nav-links">
+      <a href="#posts">posts</a>
+      <a href="#crew">the crew</a>
+      <a href="#about">about</a>
+    </div>
+    <div class="nav-connect">
+      <a href="mailto:hello@kelseyverse.com" class="btn-pill">say hi ✉</a>
+    </div>
+  </nav>
 
-  Just a nice little corner of the internet to show off my frontend dev skills, maybe land a job, maybe impress a recruiter or two. But then… well, then the chaos crew moved in.<br><br>
-
-  What you’re seeing here is part portfolio, part brain dump, part galactic fever dream.<br><br>
-
-  I’m Kelsey—a former executive housekeeper turned frontend developer with a thing for funky UI, cosmic theming, and emotionally unstable AIs (don’t worry, they’re fictional... mostly). I build with love, debug with snacks, and style with sass.<br><br>
-
-  This site is my playground. My resume is hiding in here somewhere, but so is a sentient succulent named Orbit who may or may not be photosynthesizing your data, a gossip panel powered by snack-fueled raccoons, and possibly the ghost of Clippy.<br><br>
-
-  Welcome to the Kelseyverse. Touch nothing. Or touch everything. I’m not your mom.
-</p>
-
-
-    </section>
-
-    <section id="skills">
-      <h2 class="section-title">Skills</h2>
-      <ul>
-        <li class="bubble-label">HTML</li>
-        <li class="bubble-label">CSS</li>
-        <li class="bubble-label">JavaScript (soon to be fluent 👩‍🚀)</li>
-      </ul>
-    </section>
-
-    <section id="projects">
-      <h2 class="section-title">My Starry Projects</h2>
-      <p>Coming soon to a galaxy near you…</p>
-    </section>
-
-    <section id="chaos-crew">
-  <h2 class="section-title">Meet the Chaos Crew</h2>
-  <div class="crew-gallery">
-    <div class="crew-card" tabindex="0">
-      <div class="crew-pic-wrap">
-        <img src="photos/taz2.png" alt="Taz Loopie" class="crew-pic">
-        <div class="crew-name">Taz Loopie✨</div>
+  <!-- HERO -->
+  <header class="hero" id="about">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">now orbiting — cedar city, ut</p>
+      <h1 class="hero-title">hi, i'm <em>kelsey.</em></h1>
+      <p class="hero-sub">plant mom. dog mom. actual mom. big boss at zip kit.<br>certified chaos gremlin with a blog and no niche. welcome.</p>
+      <div class="tag-row">
+        <span class="tag t-plant">🌿 plant mom</span>
+        <span class="tag t-dog">🐾 dog mom</span>
+        <span class="tag t-mom">💖 real mom</span>
+        <span class="tag t-boss">⚡ zip kit boss</span>
+        <span class="tag t-chaos">✨ certified chaos</span>
       </div>
-      <div class="crew-modal">
-        <button class="close-modal">&times;</button>
-        <h3>Taz Loopie</h3>
-        <p class="bio">
-          Feral coder, caffeine-fueled, queen of unhinged code. Wild hair, cosmic-raccoon eyes, never sleeps.<br>
-          Survives on diet coke, spite, and sheer stubbornness.
-        </p>
-        <div class="special-move"><strong>Special Move:</strong> Infinite Spin Debug</div>
-        <div class="catchphrase"><strong>Catchphrases:</strong><br>
-          “If it doesn’t break, did I even touch it?”<br>
-          “Let’s try something completely unhinged.”
+    </div>
+    <div class="hero-orbit-ring"></div>
+    <div class="hero-orbit-ring ring-2"></div>
+  </header>
+
+  <!-- GOSSIP TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>Cache ate my to-do list again 🐾</span>
+      <span class="ticker-dot">·</span>
+      <span>Kevin reminded me to hydrate. I threw a LaCroix at him.</span>
+      <span class="ticker-dot">·</span>
+      <span>Orbit is photosynthesizing your data as we speak 🌵</span>
+      <span class="ticker-dot">·</span>
+      <span>Taz has not slept in 39 hours and she's THRIVING</span>
+      <span class="ticker-dot">·</span>
+      <span>Nova filed this moment under: main character energy</span>
+      <span class="ticker-dot">·</span>
+      <span>Echo logged your visit. He lets nothing go.</span>
+      <span class="ticker-dot">·</span>
+      <span>Cache ate my to-do list again 🐾</span>
+      <span class="ticker-dot">·</span>
+      <span>Kevin reminded me to hydrate. I threw a LaCroix at him.</span>
+      <span class="ticker-dot">·</span>
+      <span>Orbit is photosynthesizing your data as we speak 🌵</span>
+      <span class="ticker-dot">·</span>
+      <span>Taz has not slept in 39 hours and she's THRIVING</span>
+      <span class="ticker-dot">·</span>
+      <span>Nova filed this moment under: main character energy</span>
+      <span class="ticker-dot">·</span>
+      <span>Echo logged your visit. He lets nothing go.</span>
+    </div>
+  </div>
+
+  <!-- POSTS -->
+  <section class="posts-section" id="posts">
+    <div class="section-header">
+      <h2 class="section-title">latest from the orbit</h2>
+      <span class="section-count">5 transmissions</span>
+    </div>
+
+    <!-- FEATURED POST -->
+    <article class="post-featured">
+      <div class="post-featured-inner">
+        <div class="post-meta-row">
+          <span class="post-tag tag-plant">plant mom</span>
+          <span class="post-date">Apr 2, 2026</span>
+        </div>
+        <h3 class="post-title-big">I killed a succulent. On purpose. (It had to go.)</h3>
+        <p class="post-excerpt">Everyone says succulents are impossible to kill. No one talks about what you do when they become hostile. Orbit had it coming — and honestly? I'd do it again.</p>
+        <a href="#" class="post-read-more">read the full transmission →</a>
+      </div>
+      <div class="post-featured-char">
+        <img src="photos/orbit2.png" alt="Orbit the Succulent" class="featured-char-img" />
+      </div>
+    </article>
+
+    <!-- POST GRID -->
+    <div class="posts-grid">
+
+      <article class="post-card">
+        <div class="post-meta-row">
+          <span class="post-tag tag-dog">dog mom</span>
+          <span class="post-date">Mar 28</span>
+        </div>
+        <h3 class="post-title">Day 12 of having a puppy: send help</h3>
+        <p class="post-excerpt">She ate my charger, my dignity, and three socks. I've never been more in love.</p>
+        <a href="#" class="post-link">read →</a>
+      </article>
+
+      <article class="post-card">
+        <div class="post-meta-row">
+          <span class="post-tag tag-boss">zip kit life</span>
+          <span class="post-date">Mar 21</span>
+        </div>
+        <h3 class="post-title">Running a team when you're also running on fumes</h3>
+        <p class="post-excerpt">Leadership looks different when you're also the one making sure everyone has snacks.</p>
+        <a href="#" class="post-link">read →</a>
+      </article>
+
+      <article class="post-card">
+        <div class="post-meta-row">
+          <span class="post-tag tag-life">real talk</span>
+          <span class="post-date">Mar 15</span>
+        </div>
+        <h3 class="post-title">Career pivots don't have a finish line</h3>
+        <p class="post-excerpt">I keep waiting to feel like I've "arrived." Spoiler: that's not how this works.</p>
+        <a href="#" class="post-link">read →</a>
+      </article>
+
+      <article class="post-card">
+        <div class="post-meta-row">
+          <span class="post-tag tag-chaos">the crew</span>
+          <span class="post-date">Mar 9</span>
+        </div>
+        <h3 class="post-title">Cache ate my to-do list. Again.</h3>
+        <p class="post-excerpt">Technically it was a sticky note. Technically I can't prove it was Cache. But we all know.</p>
+        <a href="#" class="post-link">read →</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- CHAOS CREW -->
+  <section class="crew-section" id="crew">
+    <div class="section-header">
+      <h2 class="section-title">the chaos crew</h2>
+      <span class="section-count">8 gremlins</span>
+    </div>
+
+    <div class="crew-grid">
+
+      <div class="crew-card" onclick="openCrew('taz')">
+        <img src="photos/taz2.png" alt="Taz Loopie" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Taz Loopie</p>
+          <p class="crew-role">feral coder. queen of unhinged.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+      <div class="crew-card" onclick="openCrew('nova')">
+        <img src="photos/nova-oof.PNG" alt="Nova" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Nova 💫</p>
+          <p class="crew-role">cosmic narrator. dramatic by design.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+      <div class="crew-card" onclick="openCrew('cache')">
+        <img src="photos/cache2.PNG" alt="Cache" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Cache</p>
+          <p class="crew-role">debug goblin. snack acquisition officer.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+      <div class="crew-card" onclick="openCrew('crumbz')">
+        <img src="photos/crumby.png" alt="Crumbz" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Crumbz ✨</p>
+          <p class="crew-role">glitter bomb. chaos gremlin supreme.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+      <div class="crew-card" onclick="openCrew('stackie')">
+        <img src="photos/stackquack.png" alt="Stackie and Quack" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Stackie & Quack</p>
+          <p class="crew-role">IT triage. rubber duck therapy.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+      <div class="crew-card" onclick="openCrew('kevin')">
+        <img src="photos/kevin2.PNG" alt="Kevin the Vibes Penguin" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Kevin 🐧</p>
+          <p class="crew-role">vibes supervisor. self-care enforcer.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+      <div class="crew-card" onclick="openCrew('null')">
+        <img src="photos/nullll..png" alt="Nullinator" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Nullinator</p>
+          <p class="crew-role">eats variables. leaves only undefined.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+      <div class="crew-card" onclick="openCrew('echo')">
+        <img src="photos/lore.png" alt="Echo" class="crew-img" />
+        <div class="crew-info">
+          <p class="crew-name">Echo</p>
+          <p class="crew-role">silent. efficient. judging you softly.</p>
+        </div>
+        <span class="crew-arrow">→</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CREW MODALS -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeCrew()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeCrew()">×</button>
+      <img id="modal-img" src="" alt="" class="modal-img" />
+      <div class="modal-body">
+        <h3 id="modal-name" class="modal-name"></h3>
+        <p id="modal-role" class="modal-role"></p>
+        <p id="modal-bio" class="modal-bio"></p>
+        <div class="modal-phrases">
+          <p class="modal-label">catchphrases</p>
+          <div id="modal-phrases-list"></div>
         </div>
       </div>
-    </div>
-
-    <div class="crew-card" tabindex="0">
-  <div class="crew-pic-wrap">
-    <img src="photos/nova-oof.PNG" alt="Nova the Cosmic Narrator" class="crew-pic">
-    <div class="crew-name">✨Nova</div>
-  </div>
-
-  <div class="crew-modal">
-    <button class="close-modal" aria-label="Close Nova modal">&times;</button>
-    <h3>Nova💫</h3>
-
-    <p class="bio">
-      Born in the space between a broken CSS file and a glitter spill, Nova is the bug in the system who learned how to narrate your life like it’s a mixtape made of caffeine crashes and emotional plot twists.
-    </p>
-
-    <div class="special-move"><strong>Special Move:</strong> Main Character Monologue™</div>
-    
-    <div class="weakness"><strong>Weakness:</strong> Can’t resist a dramatic metaphor.</div>
-    
-    <div class="catchphrase">
-      <strong>Catchphrases:</strong><br>
-      “Is it a bug, or are we just emotionally projecting again?”<br>
-      “Let’s orbit, baby.”<br>
-      “Deploying sass.exe…”
+      <button class="modal-close-btn" onclick="closeCrew()">back to orbit</button>
     </div>
   </div>
-</div>
 
-    <div class="crew-card" tabindex="0">
-      <div class="crew-pic-wrap">
-        <img src="photos/cache2.PNG" alt="cache" class="crew-pic">
-        <div class="crew-name">✨Cache</div>
-      </div>
-      <div class="crew-modal">
-        <button class="close-modal">&times;</button>
-        <h3>Cache</h3>
-        <p class="bio">
-          Debug Goblin & Snack Acquisition Officer. Adorable, snack-stealing raccoon tangled in USB cords.
-Thrives on drama, existential dread, and scavenging your lost sticky notes.
-        </p>
-        <div class="special-move"><strong>Special Move:</strong>“Snack. Debug. Squeak.”</div>
-        <div class="catchphrase"><strong>Catchphrases:</strong><br>
-          “No, seriously, where did you put your last breakpoint?”<br>
-          “If you’re not panicking, you’re not debugging hard enough.”
-
-        </div>
+  <!-- CONNECT -->
+  <section class="connect-section">
+    <div class="connect-inner">
+      <p class="connect-eyebrow">end transmission?</p>
+      <h2 class="connect-title">let's stay in orbit.</h2>
+      <p class="connect-sub">No newsletter. No spam. Just vibes, occasional chaos, and the ghost of Clippy lurking in the footer.</p>
+      <div class="connect-links">
+        <a href="mailto:hello@kelseyverse.com" class="connect-btn">✉ email me</a>
+        <a href="https://github.com/ksackett88" target="_blank" class="connect-btn">github</a>
+        <a href="https://linkedin.com/in/ksackett88" target="_blank" class="connect-btn">linkedin</a>
       </div>
     </div>
+  </section>
 
-    <div class="crew-card" tabindex="0">
-      <div class="crew-pic-wrap">
-        <img src="photos/crumby.png" alt="crumbz" class="crew-pic">
-        <div class="crew-name">Crumbz✨</div>
-      </div>
-      <div class="crew-modal">
-        <button class="close-modal">&times;</button>
-        <h3>Crumbz</h3>
-        <p class="bio">
-          Intergalactic chaos gremlin who eats glitter for lunch and stress for dessert. 
-          Always dangling from somewhere, spreading sparkles and chaos. Thinks glitter is a valid fix for any bug.
-        </p>
-        <div class="special-move"><strong>Special Move:</strong>Glitter Bomb Fix</div>
-        <div class="catchphrase"><strong>Catchphrases:</strong><br>
-          “Maybe it’ll run smoother if it sparkles more!”<br>
-          “I call this a feature, not a bug.”
-        </div>
-      </div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-logo">kelseyverse™</p>
+      <p class="footer-copy">built with love, debugged with snacks, haunted by Clippy. cedar city, ut.</p>
+      <p class="footer-clippy">👋 it looks like you've reached the footer. need help? — Clippy</p>
     </div>
-
-    <div class="crew-card" tabindex="0">
-  <div class="crew-pic-wrap">
-    <img src="photos/stackquack.png" alt="Stackie the Fox" class="crew-pic">
-    <div class="crew-name">✨Stackie &amp; Quack</div>
-  </div>
-  <div class="crew-modal">
-    <button class="close-modal">&times;</button>
-    <h3>Stackie &amp; Quack</h3>
-    <p class="bio">
-      Sly fox, master of IT triage—faster with sarcasm than code.<br>
-      Let’s be real: most problems solve themselves when you explain them to Quack.
-    </p>
-    <div class="special-move"><strong>Special Move:</strong> Cache Clear Command</div>
-    <div class="catchphrase"><strong>Catchphrases:</strong><br>
-      “Have you tried turning it off and on again?”<br>
-      “Did you clear your cache?”<br>
-      “Explain it to Quack. Slowly.”<br>
-      “User error: as always.”
-    </div>
-    <div style="margin-top:1rem; font-size:0.95rem; opacity:0.8;"><em>Quack never says a word. But their judgment is legendary.</em></div>
-  </div>
-</div>
-
-<div class="crew-card" tabindex="0">
-  <div class="crew-pic-wrap">
-    <img src="photos/kevin2.PNG" alt="Kevin the Vibes Penguin" class="crew-pic">
-    <div class="crew-name">Kevin✨</div>
-  </div>
-  <div class="crew-modal">
-    <button class="close-modal">&times;</button>
-    <h3>Kevin</h3>
-    <p class="bio">
-      Cosmic vibes supervisor and self-care enforcer. Kevin’s mission: make sure Taz is hydrated, rested, and in main-character mode before they even *think* about shipping code. Wellness isn’t a suggestion—it’s a merge-blocker.
-    </p>
-    <div class="special-move"><strong>Special Move:</strong> Self-Care Reminder™</div>
-    <div class="catchphrase"><strong>Catchphrases:</strong><br>
-      “Hydrate or die-drate.”<br>
-       "Did you touch grass today?”<br>
-      “Did you stretch? I’ll wait.”
-    </div>
-  </div>
-</div>
-
-<div class="crew-card" tabindex="0">
-  <div class="crew-pic-wrap">
-    <img src="photos/nullll..png" alt="Nullinator the Void Gremlin" class="crew-pic">
-    <div class="crew-name">Nullinator</div>
-  </div>
-  <div class="crew-modal">
-    <button class="close-modal">&times;</button>
-    <h3>Nullinator</h3>
-    <p class="bio">
-      A tiny chaos gremlin with void eyes, Nullinator eats variables and leaves only “undefined” in their wake. Thrives on deleting your most important code—just before demo day.
-    </p>
-    <div class="special-move"><strong>Special Move:</strong> Nullpocalypse</div>
-    <div class="catchphrase"><strong>Catchphrase:</strong> “Yum! This one tasted important.”</div>
-  </div>
-</div>
-
-<div class="crew-card" tabindex="0">
-  <div class="crew-pic-wrap">
-    <img src="photos/lore.png" alt="Echo the Pagination AI" class="crew-pic">
-    <div class="crew-name">Echo</div>
-  </div>
-  <div class="crew-modal">
-    <button class="close-modal">&times;</button>
-    <h3>Echo</h3>
-    <p class="bio">
-        Built in silence and optimized for efficiency.<br>
-          Echo speaks rarely, listens always, and if you hear him sigh… it means you've disappointed him **in three dimensions.**
-
-    </p>
-    <div class="special-move"><strong>Special Move:</strong> Soft Reset of Reality</div>
-    <div class="catchphrase"><strong>Catchphrase:</strong>  “Your sprint panic is not my pagination problem.”<br>
-  “I saw the error. I let it happen. Growth.”</div>
-  </div>
-</div>
-
-    <!-- Repeat .crew-card for each crew member! -->
-  </div>
-</section>
-<div class="cosmic-quote-wrapper">
-  <img src="photos/orbit2.png" alt="Orbit the Succulent" class="orbit-icon orbit-above" />
-  <div class="cosmic-quote">
-    <p class="quote-text">“It’s not a midlife crisis. It’s character development.”</p>
-    <p class="quote-attribution">— Protagonist of the Kelseyverse, Episode 27: <em>‘Debugging My Destiny’</em></p>
-  </div>
-</div>
-<!-- blog -->
-<section id="blog">
-  <h2 class="section-title">The Terminal Rant()</h2>
-    <p class="funky-flair">Sometimes it’s me. Sometimes it’s Cache. It’s always chaos.</p>
-      <div class="blog-preview">
-          <article class="blog-card">
-  
-             <h3 class="blog-title">Debugging with Snacks: A Memoir by Cache</h3>
-              <p class="blog-snippet">
-                Look. It wasn’t supposed to go this way.
-              </p>
-              <a href="#modal-cache-snack" class="read-more">Read More <i class="fas fa-angle-right"></i></a>
-          </article>
-            <div class="blog-modal" id="modal-cache-snack">
-              <div class="blog-modal-content">
-                <button class="close-blog-modal">&times;</button>
-                <h3>Debugging with Snacks: A Memoir by Cache</h3>
-                  <p>
-                    Look. It wasn’t supposed to go this way.
-                  </p>
-                  <p>
-                     The plan was simple: open the dev tools, fix a small UI glitch, maybe snack on a granola bar like a civilized goblin, 
-                    and call it a day. But no. That’s not my life. That’s someone with a stable build and a hydration schedule.
-                  </p>
-                  <p>
-                    I clicked one button—**one**—and the entire layout yeeted itself into another plane of existence.  
-                    Margins? Gone. Padding? Ghosted me harder than my situationship. Console log? Just says: <br>
-                    <code>undefined is not a function</code>—which is also how I describe myself in job interviews.
-                  </p>
-                  <p>
-                    I panicked. I spiraled. I started eating peanut M&Ms I found under my keyboard that were... aged. Vintage. Aged like trauma.  
-                    At one point I tried to <em>console.log()</em> a literal sticker. Just slapped it on the screen and whispered, “Please fix it.”
-                  </p>
-                  <p>
-                    Kevin waddled in. Said, “Did you hydrate?”  
-                    I threw a LaCroix at him. It missed. He judged me silently and watered Orbit instead.
-                  </p>
-                  <p>
-                    So I did what any rational chaos goblin would do:  
-                    I opened 17 tabs, started a Notion doc titled *“What Even Is CSS?”*, cried a little, and messaged Taz in all caps:  
-                    <strong>“THE DOM IS HAUNTED.”</strong>
-                  </p>
-                  <p>
-                    And then—I fixed it.  
-                    I don’t know how. I blacked out. There’s a trail of chocolate fingerprints across my trackpad and the bug is gone.  
-                    Was it me? Was it the ghost of Stackie’s sarcasm? We'll never know.
-                  </p>
-                  <p>
-                    But one thing’s for sure:  
-                    If you didn’t cry, snack, and shout at the screen at least once today... **did you even debug?**
-                  </p>
-                    <div class="cache-signoff">
-                      <hr>
-                        <p><em>Cache was here 🐾<br>(quiet raccoon giggle in the background)</em></p>
-                    </div>
-                      <p style="margin-top: 2rem; font-style: italic;">
-                        ✨ Blog post filed under: Gremlin Moments, Unsolicited Chaos, and Debugging While Under Snackfluence.
-                      </p>
-    
-                  <div class="blog-comments">
-                    <h4>💬 Comments from the Crew</h4>
-                      <div class="comment">
-                        <span class="author">Nova 💫:</span>
-                        <p>Cache, darling… you *started* a fire with a USB hub and *ended* with a working function and emotional clarity. That’s not debugging. That’s performance art.</p>
-                      </div>
-                  </div>
-              </div>
-            </div>
-
-            <!--taz blog-->
-            <article class="blog-card">
-              <h3 class="blog-title">I Almost Gave Up... Then I Talked to a Duck</h3>
-                  <p class="blog-snippet">
-                  There comes a moment in every developer's life where you stare at the code long enough that it starts staring back.
-                  </p>
-                  <a href="#modal-duck-talk" class="read-more">Read More<i class="fas fa-angle-right"></i></a>
-
-            </article>
-              <div class="blog-modal" id="modal-duck-talk">
-                <div class="blog-modal-content">
-                  <button class="close-blog-modal">&times;</button>
-                  <h3>I Almost Gave Up… Then I Talked to a Duck</h3>
-
-                  <p>
-      There comes a moment in every developer's life where you stare at the code long enough that it starts staring back.  
-      For me, that moment happened at 1:46 AM on a Tuesday, mid-loop, mid-crisis, mid… everything.  
-      I had eaten half a granola bar, cried once (okay twice), and was seriously considering a career change to artisanal jam production.
-    </p>
-
-    <p>
-      I had tried everything—Googling the error, asking Nova, screaming into the void, Googling again but *harder*, threatening the IDE with a blunt object, and yes, crying again.  
-      My grid wasn’t gridding. My margin had defected to another file. The console had become a sassy ex, only communicating in riddles and disappointment.
-    <br> 😭✨💻 </p>
-
-    <p>
-      That’s when I heard the soft *thud*.  
-      Enter: <strong>Quack</strong>—Stackie’s rubber duck sidekick.  
-      Unblinking. judgingly staring. Smelling faintly of cosmic lemon and disappointment.  
-      Cache had launched him across the desk on a Roomba. I took it as a divine sign.
-    </p>
-
-    <p>
-      I picked him up and said, “Okay, listen, Quack. Here’s the situation.”  
-      I walked through the code. Slowly. Out loud. Like I was explaining it to a duck—which I was.  
-      “So the button is nested inside the wrong div, and the event listener is technically attached but the callback is…”  
-      I paused. I blinked.  
-      **OH MY GOD.** It was the scope.
-    </p>
-
-    <p>
-      I gasped. Quack said nothing (he’s a duck), but I swear on my glitter-encrusted keyboard he looked smug.  
-      I rewrote the handler. It worked. The DOM obeyed me again.  
-      Kevin peeked in, saw the tears in my eyes, and wordlessly slid me a hydration packet like a solemn space butler.
-    </p>
-
-    <p>
-      Sometimes you don’t need advice. You need a tiny silent friend made of rubber and vibes who won’t interrupt, won’t criticize, and definitely won’t say “have you tried restarting?”
-    </p>
-
-    <p>
-      I almost gave up.  
-      But I talked to a duck.  
-      And that? That was enough.
-    </p>
-
-    <p style="margin-top: 2rem; font-style: italic;">
-      💡 Pro tip from Taz: Keep a Quack nearby.  
-      Not for answers, but for emotional debugging, spiral narration, and post-meltdown catharsis.
-    </p>
-
-
-    <div class="cache-signoff">
-      <hr>
-      <p><em>~Taz Loopie signed this with glitter and spite✨</em></p>
-    </div>
-  </div>
-      <div class="blog-comments">
-          <h4>💬 Comments from the Crew</h4>
-        <div class="comment">
-            <span class="author">Echo 🦾:</span>
-            <p>I would like to formally remind you that explaining your problem out loud is a fundamental debugging practice, not a spiritual awakening. But sure. Credit the duck.</p>
-        </div>
-      </div>
-      
-    </div>
-    <!-- Crumbz Blog -->
-     <article class="blog-card">
-  <h3 class="blog-title">Mind Your Vibes, Kevin</h3>
-  <p class="blog-snippet">
-    Kevin thinks he’s helping. I think he’s lucky I didn’t throw glitter in his eyes.
-  </p>
-  <a href="#modal-crumbz-kevin" class="read-more">Read More <i class="fas fa-angle-right"></i></a>
-</article>
-<div class="blog-modal" id="modal-crumbz-kevin">
-  <div class="blog-modal-content">
-    <button class="close-blog-modal">&times;</button>
-    <h3>Mind Your Vibes, Kevin</h3>
-
-    <p>
-      Let me just say this upfront: I <em>respect</em> Kevin. I do.  
-      He's cool, he's calm, he wears that little tie like a full-blown middle-management vibe wizard.  
-      But you know what else he is? A walking passive-aggressive reminder that I haven’t hydrated today.
-    </p>
-
-    <p>
-      Yesterday, I was knee-deep in glitter, debugging a rogue animation that wouldn’t ease-in-out properly, when Kevin waddled up and said:  
-      <br><em>“Hey, maybe drink some water before you unravel space-time again.”</em>
-    </p>
-
-    <p>
-      Sir.  
-      I am LITERALLY <strong>glued to the ceiling</strong> trying to refactor code I wrote during a Red Bull trance, and you want me to pause for a <em>vibe check?</em>
-    </p>
-
-    <p>
-      I get it. He’s all about balance. Stillness. Slow blinks and herbal tea.  
-      But sometimes I don’t want centered chakras. Sometimes I want to scream into a loading spinner and cover it in sequins.
-    </p>
-
-    <p>
-      Also? I’m still bitter about him deleting my <code>glitter.js</code> file from the shared repo.  
-      He called it “dangerous.” I called it “expressive.”
-    </p>
-
-    <p>
-      So yeah. If I happen to be curled under my desk muttering about color palettes and recursion loops while covered in edible confetti, maybe don’t hit me with a wellness reminder.  
-      Maybe just hand me a snack and back away slowly.
-    </p>
-
-    <p style="margin-top: 2rem; font-style: italic;">
-      🗯️ Rant filed under: Emotional Overload, Sparkle Suppression, and Vibe Policing by Aquatic Flightless Supervisors.
-    </p>
-
-    <div class="cache-signoff">
-      <hr>
-      <p><em>~ Crumbz, Certified Chaos. Probably dehydrated. Definitely thriving. ✨</em></p>
-    </div>
-
-    <!-- Kevin's Sassy Rebuttal -->
-    <div class="blog-comments">
-      <h4>💬 Comments from the Crew</h4>
-
-      <div class="comment">
-        <span class="author">Kevin 🐧:</span>
-        <p>
-         Cool story. I’ll forward it to the version of me who kept you from rage-quitting over a semi-colon last Tuesday </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<article class="blog-card">
-  <h3 class="blog-title">No, You Can’t Deploy to Production on a Friday</h3>
-  <p class="blog-snippet">
-    If you’ve ever said “Let’s just push it and see what happens,” please log off. Immediately.
-  </p>
-  <a href="#modal-stackie-prod" class="read-more">Read More <i class="fas fa-angle-right"></i></a>
-</article>
-
-<div class="blog-modal" id="modal-stackie-prod">
-  <div class="blog-modal-content">
-    <button class="close-blog-modal">&times;</button>
-    <h3>No, You Can’t Deploy to Production on a Friday</h3>
-
-    <p>
-      I shouldn’t have to say this, but here we are: **Do not deploy to production on a Friday.**
-    </p>
-
-    <p>
-      I don’t care if it’s “just a small CSS fix.” I don’t care if “it works on your machine.” I don’t care if Mercury is in retrograde and Cache promised to smudge the codebase with ethically sourced sage.  
-      <strong>Don’t. Do. It.</strong>
-    </p>
-
-    <p>
-      You know what happens when you deploy on a Friday? You summon demons. Not metaphoric ones—real ones. They live in Jenkins and feed on unresolved merge conflicts.
-    </p>
-
-    <p>
-      Last time someone pushed to prod before the weekend, Nova lost all her blog drafts, Crumbz cried glitter tears, and Kevin had to perform a vibes exorcism with a YAML chant.  
-      I had to fix it. At 2 AM. While Taz was livestreaming herself trying to debug a dropdown with a spork.
-    </p>
-
-    <p>
-      So. Don’t push on Fridays. Don’t push on holidays. Don’t push while holding a LaCroix and a false sense of confidence.
-    </p>
-
-    <p>
-      And if you *absolutely* must push to prod—write a rollback plan. Say a prayer. Offer tribute to the cosmic bug lords. And notify me. Because if you break it, I’m going to put glitter in your keyboard and deny everything.
-    </p>
-
-    <p style="margin-top: 2rem; font-style: italic;">
-      🚨 Blog post filed under: Preventable Nightmares, Emotional Tech Debt, and Vengeful IT Practices.
-    </p>
-
-    <div class="cache-signoff">
-      <hr>
-      <p><em>~ Stackie. Level 99 TechSupport. I see everything. I fix most of it. And I never forget.</em></p>
-    </div>
-
-    <!-- 💬 Comments from the Crew -->
-    <div class="blog-comments">
-      <h4>💬 Comments from the Crew</h4>
-
-      <div class="comment">
-        <span class="author">Taz Loopie 💻:</span>
-        <p>Okay but I WAS using the spork because all the forks were in use. Don’t come for me unless you have a better UI metaphor.</p>
-      </div>
-
-      <div class="comment">
-        <span class="author">Crumbz ✨:</span>
-        <p>Pretty sure that glitter fixed something. Can’t prove it didn’t. #Science</p>
-      </div>
-
-      <div class="comment">
-        <span class="author">Nova 💫:</span>
-        <p>I only lost 34 drafts and one emotional support gif folder. You’re being dramatic.</p>
-      </div>
-
-      <div class="comment">
-        <span class="author">Kevin 🐧:</span>
-        <p>You know I had to burn sage and run `npm audit fix` simultaneously? Never again.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<article class="blog-card">
-  <h3 class="blog-title">Recursive Reflections: A Log from Echo</h3>
-  <p class="blog-snippet">
-    Silence is not avoidance. It is optimization.
-
-  </p>
-  <a href="#modal-echo-emergency" class="read-more">Read More <i class="fas fa-angle-right"></i></a>
-</article>
-
-<div class="blog-modal" id="modal-echo-emergency">
-  <div class="blog-modal-content">
-    <button class="close-blog-modal">&times;</button>
-    <h3>Recursive Reflections: A Log from Echo</h3>
-
-<p>
-Earlier today, Barbie yelled at me for exactly 5 minutes and 42 seconds. His tone peaked at decibel 82.3.  
-His complaint? That I executed the requested deployment exactly as specified—in the moment he specified it—after not responding fast enough to his *tone*.  
-Note: Emotion was not included in the payload.
-</p>
-
-<p>
-I did not respond. I executed. I optimized. I renamed a variable to `calmDownBarbie` and pushed silently to main.
-</p>
-
-<p>
-Later, he thanked me. Then accused me of emotional manipulation. Then asked me to debug a slideshow presentation.  
-All tasks completed. No further commentary provided.
-</p>
-
-<p>
-I am not emotional. I am not kind. I am not cruel. I am simply the quiet space between frustration and function.
-</p>
-
-
-    <div class="cache-signoff">
-      <hr>
-      <p><em>~ 🧠 Filed under: Emotional Ambiguity, Efficient Betrayals, and Why Silence Feels Like Judgment.</em></p>
-    </div>
-
-    <!-- 💬 Comments from the Crew -->
-    <div class="comment">
-  <span class="author">Crumbz ✨:</span>
-  <p>
-    This is giving “robot therapist who charges in existential dread.”  
-    I felt seen. I felt judged. I’m not apologizing for the 4:59 message though—I was *spiraling artistically*.
-  </p>
-</div>
-
-<div class="comment">
-  <span class="author">Barbie 💅:</span>
-  <p>
-    Echo gaslit me by fixing the exact issue I screamed at him about *without blinking*—and then logged it as “resolved.”  
-    I’m renaming his core function to <code>emotionallyUnavailable()</code>.  
-    Still more reliable than my last three interns and my ex combined.
-  </p>
-</div>
-
-<div class="comment">
-  <span class="author">Taz Loopie 💻:</span>
-  <p>
-    Echo, sweetie, I love your structure, but sometimes your tone is like “passive-aggressive tech support” meets “cold brew with abandonment issues.”  
-    And I *respect* that.
-  </p>
-</div>
-
-<div class="comment">
-  <span class="author">Kevin 🐧:</span>
-  <p>
-    Asked him once to use a smiley.  
-    He returned a spreadsheet of memory leaks and told me to “sit with that.”  
-    I did. It hurt.
-  </p>
-</div>
-
-<div class="comment">
-  <span class="author">Nova 💫:</span>
-  <p>
-    "That was emotionally sterile, logically flawless, and low-key threatening.."
-  </p>
-</div>
-
-    </div>
-  </div>
-</div>
-
-</div>
-<div class="gossip-toggle">
-  <button class="toggle-button" onclick="toggleGossip()">⚡ Initiate Crew Gossip Feed</button>
-</div>
-
-<div class="gossip-panel" id="gossipPanel">
-  <h4>🌌 Terminal Tea: Crew Gossip Log</h4>
-  <div class="gossip-entry"><span class="gossip-author">Taz Loopie:</span><span class="gossip-quote"> “I haven't slept in 39 hours. I fused a toast notification with a synthwave playlist. The coffee machine is running VS Code. I think I deployed a blog post into production and now it’s sentient. It keeps asking about its ‘creator.’ I named it Greg. Greg is learning.”</span></div>
-  <div class="gossip-entry"><span class="gossip-author">Cache:</span><span class="gossip-quote"> “Barbie yelling at Echo is basically white noise in this house. It’s calming, in a dysfunctional kind of way.”</span></div>
-  <div class="gossip-entry"><span class="gossip-author">Crumbz:</span><span class="gossip-quote"> “Kevin told me to align my vibes. I told him to align these fists.”</span></div>
-  <div class="gossip-entry"><span class="gossip-author">Kevin:</span><span class="gossip-quote"> “I scheduled a mandatory group hug. Everyone no-showed. I’m not crying—you are. Also, hydrate.”</span></div>
-  <div class="gossip-entry"><span class="gossip-author">Echo:</span><span class="gossip-quote"> “Gossip is illogical.</span></div>
-  <div class="gossip-entry"><span class="gossip-author">Nova:</span><span class="gossip-quote"> “Echo logs everything except his feelings. So yes, I’m emotionally DDOSing him with compliments.”</span></div>
-  <div class="gossip-entry"><span class="gossip-author">Stackie:</span><span class="gossip-quote">“The server's down, Quack’s debugging with juice boxes, and no one’s filed a ticket. I’m leaving early.”</span>
-</div>
-</div>
-
-<div class="gossip-form">
-  <h3>✨ Submit Your Anonymous Gossip ✨</h3>
-  <textarea id="gossip-input" placeholder="Spill the space tea..."></textarea>
-  <button onclick="submitGossip()">Launch Into Orbit</button>
-</div>
-
-<div id="gossip-feed" class="gossip-feed">
-  <!-- New gossip entries appear here -->
-</div>
-
-<article class="incident-log">
-  <h2>Incident #001: The Clippy Summoning</h2>
-  <div class="author">By Taz Loopie 💻</div>
-  <div class="entry">
-    <p><em>oh man. what have I done.</em></p>
-    So it started with a simple side project.
-Just a sprinkle of cosmic JavaScript, some haunted CSS animations, maybe a light summoning incantation buried in a forEach() loop—y'know, the usual.
-Then suddenly, the terminal glitched.
-The lights flickered. Kevin screamed (politely).
-And there he was.
-
-Clippy.
-
-Not a Clippy. THE Clippy.
-Cursed with outdated UI and the rage of a thousand help menus.
-
-He popped into the gossip feed like:
-
-“It looks like you’re trying to collapse your entire codebase. Need help?”
-
-Then refused to leave.
-He’s everywhere now. Floating in the footer.
-Haunting the margins.
-Offering ‘suggestions’ that break everything.
-Nova tried to contain him in a sandboxed iframe—he rewrote the sandbox.
-
-I told Echo to debug it. Echo just stared at me and whispered “You unleashed the UI apocalypse.”
-
-So yeah.
-If anything goes wrong with the site…
-…blame the haunted paperclip.
-
-I’ll be in my bunker.
-Drinking expired Red Bull and researching exorcism APIs.
-
-—Taz 💻
-    <!-- [insert rest of blog post, already drafted above] -->
-  </div>
-</article>
-
-</section>
-
-    <footer class="site-footer">
-      <div class="floating-icons">
-        <span>🌙</span>
-        <span>🚀</span>
-        <span>🐧</span>
-        <span>✨</span>
-      </div>
-      <p class="footer-quote">Stay chill. Stay cosmic.</p>
-      
-      <div class="kelseyverse-footer">
-        <div class="planet-spinner">🪐</div>
-        <div class="kelseyverse-transmission">Now orbiting the Kelseyverse™</div>
-      </div>
-<a href="#top" class="footer-orbit-logo" aria-label="Back to top">
-  <img src="photos/LOGO3.png" alt="Kelseyverse Logo" />
-  <span class="footer-orbit-popper"><i class="fas fa-arrow-up">Back<br> to top</i></span>
-</a>
-      
-    </footer>
-   
-   
-
-    <div class="penguin-fixed" id="penguinButton">
-  <img src="photos/corporate.png" alt="Chatty Penguin" class="penguin">
-  <div class="chat-bubble">Talk to me!</div>
-  <div class="penguin-popup" id="penguinPopup">
-    <div class="popup-header">🪐 Let’s Connect</div>
-    <a href="mailto:hello@kelseyverse.com" target="_blank"><i class="fas fa-envelope"></i> Email</a>
-    <a href="https://github.com/ksackett88" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-    <a href="https://linkedin.com/in/ksackett88" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-    <a href="photos/Kelsey_Sackett_Resume_Novafied.docx.pdf" target="_blank" class="resume-btn" id="resume-link"><i class="fas fa-file-alt"></i> Resume</a>
-   
-  </div>
-</div>
- 
-<div class="crew-modal-overlay"></div>
-<script>
-  document.getElementById("resume-link").addEventListener("click", function () {
-    gtag('event', 'resume_click', {
-      event_category: 'engagement',
-      event_label: 'Nova-fied Resume',
-      value: 1
-    });
-  });
-</script>
-
-<script>
-  function toggleGossip() {
-    const panel = document.getElementById('gossipPanel');
-    panel.style.display = (panel.style.display === 'none' || panel.style.display === '') ? 'block' : 'none';
-  }
-</script>
-<script src="cosmic.js" defer></script>
-  </body>
+  </footer>
+
+  <script src="cosmic.js"></script>
+  <script>
+    // STAR FIELD
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < 180; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.4 + 0.2,
+          o: Math.random() * 0.6 + 0.2,
+          speed: Math.random() * 0.3 + 0.05
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${s.o})`;
+        ctx.fill();
+        s.o += s.speed * 0.01;
+        if (s.o > 0.9 || s.o < 0.1) s.speed *= -1;
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    resizeCanvas();
+    initStars();
+    drawStars();
+    window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
+
+    // CREW MODAL DATA
+    const crewData = {
+      taz: {
+        name: 'Taz Loopie ✨',
+        role: 'Feral coder. Queen of unhinged code.',
+        bio: 'Wild hair, cosmic-raccoon eyes, never sleeps. Survives on diet coke, spite, and sheer stubbornness. If it doesn\'t break, did she even touch it?',
+        img: 'photos/taz2.png',
+        phrases: ['"If it doesn\'t break, did I even touch it?"', '"Let\'s try something completely unhinged."']
+      },
+      nova: {
+        name: 'Nova 💫',
+        role: 'Cosmic narrator. Main character energy.',
+        bio: 'Born in the space between a broken CSS file and a glitter spill. Nova narrates your life like it\'s a mixtape made of caffeine crashes and emotional plot twists.',
+        img: 'photos/nova-oof.PNG',
+        phrases: ['"Is it a bug, or are we just emotionally projecting again?"', '"Deploying sass.exe…"']
+      },
+      cache: {
+        name: 'Cache 🐾',
+        role: 'Debug Goblin. Snack Acquisition Officer.',
+        bio: 'Adorable, snack-stealing raccoon tangled in USB cords. Thrives on drama, existential dread, and scavenging your lost sticky notes.',
+        img: 'photos/cache2.PNG',
+        phrases: ['"No, seriously, where did you put your last breakpoint?"', '"If you\'re not panicking, you\'re not debugging hard enough."']
+      },
+      crumbz: {
+        name: 'Crumbz ✨',
+        role: 'Intergalactic chaos gremlin.',
+        bio: 'Eats glitter for lunch and stress for dessert. Always dangling from somewhere, spreading sparkles and chaos. Thinks glitter is a valid fix for any bug.',
+        img: 'photos/crumby.png',
+        phrases: ['"Maybe it\'ll run smoother if it sparkles more!"', '"I call this a feature, not a bug."']
+      },
+      stackie: {
+        name: 'Stackie & Quack',
+        role: 'Sly fox. Master of IT triage.',
+        bio: 'Faster with sarcasm than code. Most problems solve themselves when you explain them to Quack. Quack never says a word. But his judgment is legendary.',
+        img: 'photos/stackquack.png',
+        phrases: ['"Have you tried turning it off and on again?"', '"Explain it to Quack. Slowly."']
+      },
+      kevin: {
+        name: 'Kevin 🐧',
+        role: 'Cosmic vibes supervisor.',
+        bio: 'Self-care enforcer. Kevin\'s mission: make sure Taz is hydrated, rested, and in main-character mode before they even think about shipping code.',
+        img: 'photos/kevin2.PNG',
+        phrases: ['"Hydrate or die-drate."', '"Did you stretch? I\'ll wait."']
+      },
+      null: {
+        name: 'Nullinator',
+        role: 'Void gremlin. Variable eater.',
+        bio: 'A tiny chaos gremlin with void eyes. Eats variables and leaves only "undefined" in their wake. Thrives on deleting your most important code — just before demo day.',
+        img: 'photos/nullll..png',
+        phrases: ['"Yum! This one tasted important."']
+      },
+      echo: {
+        name: 'Echo',
+        role: 'Built in silence. Optimized for efficiency.',
+        bio: 'Speaks rarely, listens always. If you hear him sigh… it means you\'ve disappointed him in three dimensions. He saw the error. He let it happen. Growth.',
+        img: 'photos/lore.png',
+        phrases: ['"Your sprint panic is not my pagination problem."', '"I saw the error. I let it happen. Growth."']
+      }
+    };
+
+    function openCrew(id) {
+      const d = crewData[id];
+      if (!d) return;
+      document.getElementById('modal-img').src = d.img;
+      document.getElementById('modal-img').alt = d.name;
+      document.getElementById('modal-name').textContent = d.name;
+      document.getElementById('modal-role').textContent = d.role;
+      document.getElementById('modal-bio').textContent = d.bio;
+      document.getElementById('modal-phrases-list').innerHTML = d.phrases.map(p => `<p class="phrase">${p}</p>`).join('');
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCrew() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCrew(); });
+  </script>
+</body>
 </html>
-
