@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: ksackett88/KelseyVerse
+  name: git-gateway
   branch: main
 
 media_folder: "photos"
@@ -15,6 +14,6 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Category", name: "category", widget: "select", options: ["plant mom", "dog mom", "real talk", "zip kit life", "the crew", "certified chaos"] }
+      - { label: "Category", name: "category", widget: "select", options: ["plant mom", "dog mom", "real talk", "zip kit life", "certified chaos"] }
       - { label: "Excerpt", name: "excerpt", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
