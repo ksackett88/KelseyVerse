@@ -853,3 +853,24 @@ img { display: block; max-width: 100%; }
 .vine-tr { transform-origin: 100% 0; animation: sway2 11s ease-in-out infinite; }
 .vine-bl { transform-origin: 0 100%; animation: sway3 13s ease-in-out infinite; }
 .vine-br { transform-origin: 100% 100%; animation: sway 10s ease-in-out infinite 2s; }
+
+/* EXPANDED ABOUT */
+.about-expanded {
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 0.5px solid var(--border);
+  max-width: 580px;
+}
+.about-expanded p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.2em;
+}
+.about-expanded p:last-child { margin-bottom: 0; }
+.about-aside {
+  font-size: 13px !important;
+  color: var(--text-dim) !important;
+  font-style: italic;
+  margin-top: 1.5em !important;
+}
