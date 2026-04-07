@@ -819,3 +819,37 @@ img { display: block; max-width: 100%; }
   .photos-grid { grid-template-columns: repeat(2, 1fr); }
   .obsessed-card { padding: 22px; }
 }
+
+/* TRAILING PLANT VINES */
+.vine-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.vine-layer svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes sway {
+  0%,100% { transform: rotate(0deg) translateY(0px); }
+  33%      { transform: rotate(1.5deg) translateY(3px); }
+  66%      { transform: rotate(-1deg) translateY(-2px); }
+}
+@keyframes sway2 {
+  0%,100% { transform: rotate(0deg) translateY(0px); }
+  33%      { transform: rotate(-2deg) translateY(4px); }
+  66%      { transform: rotate(1deg) translateY(-3px); }
+}
+@keyframes sway3 {
+  0%,100% { transform: rotate(0deg); }
+  50%      { transform: rotate(2.5deg) translateY(5px); }
+}
+
+.vine-tl { transform-origin: 0 0; animation: sway 9s ease-in-out infinite; }
+.vine-tr { transform-origin: 100% 0; animation: sway2 11s ease-in-out infinite; }
+.vine-bl { transform-origin: 0 100%; animation: sway3 13s ease-in-out infinite; }
+.vine-br { transform-origin: 100% 100%; animation: sway 10s ease-in-out infinite 2s; }
