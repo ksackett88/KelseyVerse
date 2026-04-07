@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debugging with Snacks: A Memoir — Kelseyverse™</title>
+  <meta name="description" content="It wasn't supposed to go this way. One button. One granola bar. One complete UI collapse. A memoir by Cache." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="nav-logo">kelsey<span>verse</span>™</a>
+    <div class="nav-links">
+      <a href="../index.html#posts">posts</a>
+      <a href="../index.html#obsessed">obsessions</a>
+      <a href="../index.html#photos">photos</a>
+      <a href="../index.html#about">about</a>
+    </div>
+    <div class="nav-connect">
+      <a href="mailto:hello@kelseyverse.com" class="btn-pill">say hi ✉</a>
+    </div>
+  </nav>
+
+  <main class="post-page">
+
+    <a href="../index.html" class="post-page-back">← back to the orbit</a>
+
+    <div class="post-page-eyebrow">
+      <span class="post-tag tag-chaos">the crew</span>
+      <span class="post-date">June 14, 2025</span>
+    </div>
+
+    <h1 class="post-page-title">Debugging with Snacks: A Memoir</h1>
+
+    <p class="post-page-meta">by Cache 🐾 · 4 min read · filed under: gremlin moments, unsolicited chaos, debugging while under snackfluence</p>
+
+    <div class="post-page-body">
+
+      <p>Look. It wasn't supposed to go this way.</p>
+
+      <p>The plan was simple: open the dev tools, fix a small UI glitch, maybe snack on a granola bar like a civilized goblin, and call it a day. But no. That's not my life. That's someone with a stable build and a hydration schedule.</p>
+
+      <p>I clicked one button — <em>one</em> — and the entire layout yeeted itself into another plane of existence. Margins? Gone. Padding? Ghosted me harder than my situationship. Console log? Just says <code>undefined is not a function</code> — which is also how I describe myself in job interviews.</p>
+
+      <p>I panicked. I spiraled. I started eating peanut M&Ms I found under my keyboard that were... aged. Vintage. Aged like trauma. At one point I tried to <em>console.log()</em> a literal sticker. Just slapped it on the screen and whispered, "Please fix it."</p>
+
+      <p>Kevin waddled in. Said, "Did you hydrate?"</p>
+
+      <p>I threw a LaCroix at him. It missed. He judged me silently and watered Orbit instead.</p>
+
+      <p>So I did what any rational chaos goblin would do: I opened 17 tabs, started a Notion doc titled <em>"What Even Is CSS?"</em>, cried a little, and messaged Taz in all caps: <strong>THE DOM IS HAUNTED.</strong></p>
+
+      <p>And then — I fixed it.</p>
+
+      <p>I don't know how. I blacked out. There's a trail of chocolate fingerprints across my trackpad and the bug is gone. Was it me? Was it the ghost of Stackie's sarcasm? We'll never know.</p>
+
+      <p>But one thing's for sure: if you didn't cry, snack, and shout at the screen at least once today... <em>did you even debug?</em></p>
+
+      <hr style="border:none; border-top: 0.5px solid rgba(255,255,255,0.08); margin: 2em 0;" />
+
+      <p style="font-size:13px; color: rgba(237,233,223,0.35); font-style:italic;">Cache was here 🐾<br>quiet raccoon giggle in the background</p>
+
+      <div style="margin-top: 2em; padding: 20px 24px; background: rgba(255,255,255,0.03); border: 0.5px solid rgba(255,255,255,0.07); border-radius: 12px;">
+        <p style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(237,233,223,0.3); margin-bottom: 12px; font-weight: 700;">💬 comments from the crew</p>
+        <p style="font-size: 14px; color: rgba(237,233,223,0.5); margin-bottom: 6px;"><strong style="color: rgba(237,233,223,0.7);">Nova 💫:</strong> Cache, darling… you started a fire with a USB hub and ended with a working function and emotional clarity. That's not debugging. That's performance art.</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-logo">kelseyverse™</p>
+      <p class="footer-copy">built with love, powered by trailing plants and tilapia. cedar city, ut.</p>
+      <p class="footer-clippy">👋 it looks like you've reached the footer. need help? — Clippy</p>
+    </div>
+  </footer>
+
+</body>
+</html>
