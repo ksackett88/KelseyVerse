@@ -11,80 +11,63 @@
   <link rel="stylesheet" href="../style.css" />
 </head>
 <body>
-
   <nav class="nav">
-    <a href="../index.html" class="nav-logo">kelsey<span>verse</span>™</a>
-    <div class="nav-links">
-      <a href="../index.html#posts">posts</a>
-      <a href="../index.html#obsessed">obsessions</a>
-      <a href="../index.html#photos">photos</a>
-      <a href="../index.html#about">about</a>
+    <a href="/" class="nav-logo">kelsey<span>verse</span>™</a>
+    <div class="nav-links" id="nav-links">
+      <a href="/#posts">posts</a>
+      <a href="/#obsessed">obsessions</a>
+      <a href="/#photos">photos</a>
+      <a href="/#about">about</a>
     </div>
-    <div class="nav-connect">
+    <div class="nav-right">
       <a href="mailto:hello@kelseyverse.com" class="btn-pill">say hi ✉</a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
-
   <main class="post-page">
-
-    <a href="../index.html" class="post-page-back">← back to the orbit</a>
-
+    <a href="/" class="post-page-back">← back to the orbit</a>
     <div class="post-page-eyebrow">
       <span class="post-tag tag-chaos">certified chaos</span>
       <span class="post-tag tag-boss">zip kit life</span>
       <span class="post-date">March 12, 2026</span>
     </div>
-
     <h1 class="post-page-title">So Apparently I'm Threatening. Cool.</h1>
-
     <p class="post-page-meta">by Kelsey · 4 min read · filed under: zip kit life, certified chaos, things I needed to get out of my body</p>
-
     <div class="post-page-body">
-
       <p>Found out recently that a coworker doesn't like me. Not because I did something to her. Not because we had a falling out. Not because of any actual, real, tangible thing that happened between us.</p>
-
       <p>Because she feels <em>threatened.</em></p>
-
       <p>Okay. Cool. Noted. What exactly would you like me to do with that information?</p>
-
       <p>Should I be less capable? Dial it back a little? Start pretending I don't know things I know? Show up less? Show up worse? I genuinely want to understand the ask here because I never had a single problem with this woman personally. Not one. She could have been someone I liked. She could have been an ally. She could have been, at minimum, a neutral presence in my professional life. But here we are.</p>
-
       <h2>Let Me Tell You About Emree</h2>
-
       <p>Professionally — and I want to be very clear that I am being professional right now by not saying more — Emree is the least professional person I have ever shared a workplace with. And I have worked in hospitality. I have worked in restaurants. I have managed housekeeping staff at a resort. I have seen some things. Emree is somehow still in a category of her own.</p>
-
       <p>She manipulates our boss and he doesn't see it. Like genuinely does not see it. She has this whole thing where she plays sweet and overwhelmed and he just... falls for it every time. Meanwhile the rest of us are standing there watching it happen like audience members at a magic show except the trick isn't impressive it's just exhausting.</p>
-
       <p>And here is the part that really gets me. No one — and I mean no one, not a single person in that building — knows what she actually does all day. What are the tasks? What is the output? What does she contribute? These are questions that remain unanswered. Genuinely mysterious. A riddle wrapped in an enigma wrapped in someone who is somehow always busy but never seems to produce anything.</p>
-
       <p>We are paid the same.</p>
-
       <p>We. Are. Paid. The. Same.</p>
-
       <h2>The Threatened Thing Though</h2>
-
       <p>Here's what actually gets under my skin about the "she feels threatened" revelation. It's not the feeling itself — people feel things, that's fine, feelings are valid, I took a deep breath, I understand. What gets me is that being threatened by someone who is just <em>doing their job well</em> is a you problem that you have decided to make a me problem.</p>
-
       <p>I didn't go after her position. I didn't undermine her. I didn't talk badly about her to our boss or anyone else. I showed up, did my work, and apparently the crime was doing it visibly. The audacity of competence. Lock me up.</p>
-
       <p>The thing about threatened people is they have two options. They can let it motivate them — get better, grow, use the feeling as information — or they can decide the problem is the other person and make that person's life harder. Emree has clearly chosen door number two and honestly? Fine. That's a choice you're allowed to make. But don't expect me to shrink because of it.</p>
-
       <h2>What I'm Actually Going To Do</h2>
-
       <p>Nothing. I'm going to do nothing differently. I'm going to keep showing up and doing my job and being exactly who I am because that's what I was doing before I found out about any of this and it was working fine for me.</p>
-
       <p>I'm not going to make it weird. I'm not going to be cold or passive aggressive or suddenly develop a problem with her in return. I genuinely don't have the energy for workplace drama and I have trailing plants to water and a dog who is untying my shoes as I write this.</p>
-
       <p>But I'm also not going to change. Not one single thing. If my existence in a professional space makes someone feel threatened then that is information about them, not a flaw in me that needs correcting.</p>
-
       <p>Get thicker skin, king. Some of us are just out here working.</p>
-
       <p>Okay. I'm done. Thanks for coming to my TED talk. Powder has successfully untied both shoes and is very proud of himself.</p>
-
     </div>
-
   </main>
-
+  <section class="post-cta">
+    <div>
+      <p class="post-cta-eyebrow">still orbiting?</p>
+      <h2 class="post-cta-title">there's more where that came from.</h2>
+      <div class="post-cta-links">
+        <a href="/" class="post-cta-btn">← back to all posts</a>
+        <a href="mailto:hello@kelseyverse.com" class="post-cta-btn">say hi ✉</a>
+      </div>
+    </div>
+  </section>
   <footer class="footer">
     <div class="footer-inner">
       <p class="footer-logo">kelseyverse™</p>
@@ -92,6 +75,10 @@
       <p class="footer-clippy">👋 it looks like you've reached the footer. need help? — Clippy</p>
     </div>
   </footer>
-
+  <script>
+    const hamburger = document.getElementById('nav-hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); hamburger.classList.toggle('open'); });
+  </script>
 </body>
 </html>
