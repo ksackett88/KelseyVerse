@@ -122,7 +122,7 @@
       <a href="#about">about</a>
     </div>
     <div class="nav-right">
-      <a href="mailto:hello@kelseyverse.com" class="btn-pill">say hi ✉</a>
+      <a href="/cdn-cgi/l/email-protection#660e030a0a09260d030a15031f10031415034805090b" class="btn-pill">say hi ✉</a>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -189,20 +189,20 @@
   <section class="posts-section" id="posts">
     <div class="section-header">
       <h2 class="section-title">latest from the orbit</h2>
-      <span class="section-count">7 transmissions</span>
+      <span class="section-count">6 transmissions</span>
     </div>
 
-    <!-- FEATURED POST — swap this out whenever you have a new main post -->
+    <!-- FEATURED POST — always the newest post -->
     <article class="post-featured">
       <div class="post-featured-inner">
         <div class="post-meta-row">
+          <span class="post-tag tag-plant">plant mom</span>
           <span class="post-tag tag-chaos">certified chaos</span>
-          <span class="post-tag tag-life">real talk</span>
-          <span class="post-date">Apr 8, 2026</span>
+          <span class="post-date">Apr 9, 2026</span>
         </div>
-        <h3 class="post-title-big">Gym Bro Jr. Has Entered the Building.</h3>
-        <p class="post-excerpt">My gym goal is not health or fitness. It's so my daughter can one day look a man dead in the eyes and say "my mom can and will beat your ass on sight." Also we're starting a clothing line. First drop: I Have Rabies.</p>
-        <a href="posts/gym-bro-jr.html" class="post-read-more">read the full transmission →</a>
+        <h3 class="post-title-big">I Went to Check for Gnats. I Did Not Expect This.</h3>
+        <p class="post-excerpt">All I wanted was a quick root check. What I got was an explosion, five secret plants, a two-foot vine of pure beauty, and gnat-infested soil that needed to be returned to nature immediately.</p>
+        <a href="posts/gnat-war.html" class="post-read-more">read the full transmission →</a>
       </div>
       <div class="post-featured-char">
         <img src="photos/adventure.jpg" alt="Powder" class="featured-char-img" loading="lazy" width="400" />
@@ -213,15 +213,15 @@
     <div class="posts-grid" id="more-posts">
 
       <article class="post-card">
-  <div class="post-meta-row">
-    <span class="post-tag tag-plant">plant mom</span>
-    <span class="post-tag tag-chaos">certified chaos</span>
-    <span class="post-date">Apr 9, 2026</span>
-  </div>
-  <h3 class="post-title">I Went to Check for Gnats. I Did Not Expect This.</h3>
-  <p class="post-excerpt">All I wanted was a quick root check. What I got was an explosion, five secret plants, and gnat-infested soil that needed to be returned to nature immediately.</p>
-  <a href="posts/gnat-war.html" class="post-link">read →</a>
-</article>
+        <div class="post-meta-row">
+          <span class="post-tag tag-chaos">certified chaos</span>
+          <span class="post-tag tag-life">real talk</span>
+          <span class="post-date">Apr 8, 2026</span>
+        </div>
+        <h3 class="post-title">Gym Bro Jr. Has Entered the Building.</h3>
+        <p class="post-excerpt">My gym goal is not health or fitness. It's so my daughter can one day look a man dead in the eyes and say "my mom can and will beat your ass on sight."</p>
+        <a href="posts/gym-bro-jr.html" class="post-link">read →</a>
+      </article>
 
       <article class="post-card">
         <div class="post-meta-row">
@@ -345,7 +345,7 @@
       <h2 class="connect-title">let's stay in orbit.</h2>
       <p class="connect-sub">No newsletter. No spam. Just life, plants, an Aussie Blue Heeler with strong opinions about your shoelaces, and the occasional crisis that becomes a blog post.</p>
       <div class="connect-links">
-        <a href="mailto:hello@kelseyverse.com" class="connect-btn">✉ email me</a>
+        <a href="/cdn-cgi/l/email-protection#a3cbc6cfcfcce3c8c6cfd0c6dad5c6d1d0c68dc0ccce" class="connect-btn">✉ email me</a>
         <a href="https://github.com/ksackett88" target="_blank" rel="noopener" class="connect-btn">github</a>
         <a href="https://linkedin.com/in/ksackett88" target="_blank" rel="noopener" class="connect-btn">linkedin</a>
       </div>
@@ -361,7 +361,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
     let stars = [];
@@ -391,13 +391,4 @@
       navLinks.classList.toggle('open');
       hamburger.classList.toggle('open');
     });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        hamburger.classList.remove('open');
-      });
-    });
-  </script>
-
-</body>
-</html>
+    navLinks.querySelectorAll(
