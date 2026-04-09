@@ -785,3 +785,39 @@ img { display: block; max-width: 100%; }
   .hero-title { font-size: 48px; }
   .nav-links a { font-size: 14px; }
 }
+
+/* BIO PHOTO STRIP */
+.bio-photo-strip {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  max-width: 580px;
+}
+.bio-photo-strip img,
+.bio-photo-placeholder {
+  flex: 1;
+  height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 0.5px solid var(--border);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.bio-photo-strip img:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-accent);
+}
+.bio-photo-placeholder {
+  background: var(--surface);
+  border: 0.5px dashed rgba(134,194,129,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .bio-photo-strip { gap: 8px; }
+  .bio-photo-strip img,
+  .bio-photo-placeholder { height: 120px; border-radius: 8px; }
+}
