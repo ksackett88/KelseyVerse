@@ -97,7 +97,7 @@ img { display: block; max-width: 100%; }
 .nav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -227,7 +227,7 @@ img { display: block; max-width: 100%; }
 /* HERO */
 .hero {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   padding: 100px 40px 80px;
   overflow: hidden;
   border-bottom: 0.5px solid var(--border);
@@ -258,7 +258,7 @@ img { display: block; max-width: 100%; }
   to   { transform: translate(40px,30px) scale(1.08); }
 }
 
-.hero-inner { position: relative; z-index: 2; max-width: 720px; }
+.hero-inner { position: relative; z-index: 1; max-width: 720px; }
 
 .hero-eyebrow {
   font-size: 11px;
