@@ -805,16 +805,16 @@ img { display: block; max-width: 100%; }
     flex-direction: column;
     gap: 0;
     background: rgba(10,10,15,0.97);
-    border-bottom: 0.5px solid var(--border);
     padding: 0;
-    transform: translateY(-110%);
-    transition: transform 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
     z-index: 9999;
     pointer-events: none;
-    overflow: hidden;
   }
   .nav-links.open {
-    transform: translateY(0);
+    max-height: 300px;
+    border-bottom: 0.5px solid var(--border);
     pointer-events: all;
   }
   .nav-links a {
