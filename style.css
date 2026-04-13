@@ -94,10 +94,12 @@ img { display: block; max-width: 100%; }
 .vine-br { animation: sway-br 11s ease-in-out infinite 2s; opacity: 0.5; }
 
 /* NAV */
-.nav {
+.nav-wrapper {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -106,6 +108,7 @@ img { display: block; max-width: 100%; }
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 0.5px solid var(--border);
+  position: relative;
 }
 
 .nav-logo {
@@ -790,7 +793,9 @@ img { display: block; max-width: 100%; }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .nav { padding: 12px 20px; }
+  .nav {
+    padding: 12px 20px;
+  }
   .kv-logo__main { font-size: 16px; }
   .kv-logo__tagline { font-size: 7px; }
   .nav-links {
@@ -804,8 +809,9 @@ img { display: block; max-width: 100%; }
     padding: 0;
     transform: translateY(-110%);
     transition: transform 0.3s ease;
-    z-index: 99;
+    z-index: 9999;
     pointer-events: none;
+    overflow: hidden;
   }
   .nav-links.open {
     transform: translateY(0);
