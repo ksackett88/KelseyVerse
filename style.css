@@ -139,19 +139,17 @@ img { display: block; max-width: 100%; }
   line-height: 1;
 }
 .kv-logo__verse {
-  -webkit-text-stroke: 1px var(--sage);
-  color: transparent;
+  color: var(--sage);
 }
 .kv-logo__tm {
   font-size: 9px;
   vertical-align: super;
   letter-spacing: 0;
   color: var(--text);
-  -webkit-text-stroke: 0;
 }
 .kv-logo__tagline {
   font-family: 'Rock Salt', cursive;
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 1px;
   color: #ff2d8a;
   text-shadow:
@@ -159,9 +157,10 @@ img { display: block; max-width: 100%; }
     0 0 14px rgba(255,45,138,0.6),
     0 0 28px rgba(255,45,138,0.3);
   white-space: nowrap;
-  transform: rotate(-4deg) translateX(2px);
-  display: inline-block;
-  margin-top: 2px;
+  display: block;
+  margin-top: 1px;
+  align-self: flex-end;
+  transform: rotate(-4deg) translateX(-4px);
 }
 @media (max-width: 600px) {
   .kv-logo__main { font-size: 17px; }
