@@ -360,7 +360,7 @@
       <div class="photo-card"><img src="photos/powder.jpg" alt="Powder" loading="lazy" /></div>
       <div class="photo-card"><img src="photos/adventure.jpg" alt="adventures" loading="lazy" /></div>
       <div class="photo-card"><img src="photos/snow1.jpg" alt="playing in the snow" loading="lazy" /></div>
-      <div class="photo-card"><img src="photos/phillip.jpg" alt="plants" loading="lazy" /></div>
+      <div class="photo-card"><img src="photos/plant3.jpg" alt="plants" loading="lazy" /></div>
       <div class="photo-card"><img src="photos/meandpow.jpg" alt="me and Powder" loading="lazy" /></div>
       <div class="photo-card"><img src="photos/cody1.jpg" alt="Cody" loading="lazy" /></div>
       <div class="photo-card"><img src="photos/meandpow2.jpg" alt="me and Powder" loading="lazy" /></div>
@@ -420,4 +420,12 @@
       navLinks.classList.toggle('open');
       hamburger.classList.toggle('open');
     });
-    navLinks.querySelectorAll()
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
