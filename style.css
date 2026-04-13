@@ -118,29 +118,32 @@ img { display: block; max-width: 100%; }
 .nav-logo span { color: var(--sage); }
 
 /* ── KV HERO LOGO ─────────────────────────────── */
+/* ── KV NAV LOGO ─────────────────────────────── */
 .kv-logo {
   position: relative;
-  display: inline-block;
-  padding: 20px 30px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
   user-select: none;
+  text-decoration: none;
+  line-height: 1;
 }
 .kv-logo__main {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 64px;
-  letter-spacing: 2px;
+  font-size: 20px;
+  letter-spacing: 0.5px;
   color: var(--text);
   text-transform: lowercase;
   line-height: 1;
-  position: relative;
-  z-index: 1;
 }
 .kv-logo__verse {
   -webkit-text-stroke: 1px var(--sage);
   color: transparent;
 }
 .kv-logo__tm {
-  font-size: 14px;
+  font-size: 9px;
   vertical-align: super;
   letter-spacing: 0;
   color: var(--text);
@@ -148,24 +151,21 @@ img { display: block; max-width: 100%; }
 }
 .kv-logo__tagline {
   font-family: 'Rock Salt', cursive;
-  font-size: 42px;
-  letter-spacing: 3px;
+  font-size: 9px;
+  letter-spacing: 1px;
   color: #ff2d8a;
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translate(-50%, 20%) rotate(-8deg);
-  z-index: 3;
   text-shadow:
-    0 0 10px rgba(255,45,138,0.9),
-    0 0 30px rgba(255,45,138,0.7),
-    0 0 60px rgba(255,45,138,0.4),
-    0 0 100px rgba(255,45,138,0.2);
+    0 0 6px rgba(255,45,138,0.9),
+    0 0 14px rgba(255,45,138,0.6),
+    0 0 28px rgba(255,45,138,0.3);
   white-space: nowrap;
+  transform: rotate(-4deg) translateX(2px);
+  display: inline-block;
+  margin-top: 2px;
 }
 @media (max-width: 600px) {
-  .kv-logo__main { font-size: 40px; }
-  .kv-logo__tagline { font-size: 22px; bottom: 4px; }
+  .kv-logo__main { font-size: 17px; }
+  .kv-logo__tagline { font-size: 8px; }
 }
 
 .nav-links {

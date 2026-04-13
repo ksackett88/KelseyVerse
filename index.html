@@ -48,7 +48,10 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a href="/" class="nav-logo">kelsey<span>verse</span>™</a>
+    <a href="/" class="kv-logo">
+      <div class="kv-logo__main">kelsey<span class="kv-logo__verse">verse</span><span class="kv-logo__tm">&trade;</span></div>
+      <div class="kv-logo__tagline">Plant Bitch</div>
+    </a>
     <div class="nav-links" id="nav-links">
       <a href="#posts">posts</a>
       <a href="#obsessed">obsessions</a>
@@ -56,7 +59,7 @@
       <a href="#about">about</a>
     </div>
     <div class="nav-right">
-      <a href="mailto:hello@kelseyverse.com" class="btn-pill">say hi ✉</a>
+      <a href="/cdn-cgi/l/email-protection#98f0fdf4f4f7d8f3fdf4ebfde1eefdeaebfdb6fbf7f5" class="btn-pill">say hi ✉</a>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -66,11 +69,6 @@
   <!-- HERO -->
   <header class="hero" id="about">
     <div class="hero-inner">
-
-      <div class="kv-logo" style="margin-bottom: 2rem;">
-        <div class="kv-logo__main">kelsey<span class="kv-logo__verse">verse</span><span class="kv-logo__tm">&trade;</span></div>
-        <div class="kv-logo__tagline">Plant Bitch</div>
-      </div>
 
       <p class="hero-eyebrow">now orbiting — cedar city, ut</p>
       <h1 class="hero-title">hi, i'm <em>kelsey.</em></h1>
@@ -376,7 +374,7 @@
       <h2 class="connect-title">let's stay in orbit.</h2>
       <p class="connect-sub">No newsletter. No spam. Just life, plants, an Aussie Blue Heeler with strong opinions about your shoelaces, and the occasional crisis that becomes a blog post.</p>
       <div class="connect-links">
-        <a href="mailto:hello@kelseyverse.com" class="connect-btn">✉ email me</a>
+        <a href="/cdn-cgi/l/email-protection#dab2bfb6b6b59ab1bfb6a9bfa3acbfa8a9bff4b9b5b7" class="connect-btn">✉ email me</a>
         <a href="https://github.com/ksackett88" target="_blank" rel="noopener" class="connect-btn">github</a>
         <a href="https://linkedin.com/in/ksackett88" target="_blank" rel="noopener" class="connect-btn">linkedin</a>
       </div>
@@ -392,6 +390,7 @@
     </div>
   </footer>
 
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
@@ -422,13 +421,5 @@
       navLinks.classList.toggle('open');
       hamburger.classList.toggle('open');
     });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        hamburger.classList.remove('open');
-      });
-    });
-  </script>
-
-</body>
-</html>
+    navLinks.querySelectorAll()
+    
