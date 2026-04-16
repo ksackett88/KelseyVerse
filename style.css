@@ -409,12 +409,8 @@ img { display: block; max-width: 100%; }
   border-bottom: 0.5px solid var(--border);
 }
 .about-inner {
-  max-width: 960px;
+  max-width: 720px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 64px;
-  align-items: start;
 }
 .about-chapter {
   font-family: var(--f-mono);
@@ -424,9 +420,6 @@ img { display: block; max-width: 100%; }
   color: var(--leaf);
   margin-bottom: 24px;
   opacity: 0.8;
-}
-.about-photos {
-  padding-top: 16px;
 }
 
 .hero-title {
@@ -454,6 +447,8 @@ img { display: block; max-width: 100%; }
   border-color: var(--neon);
 }
 
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .tag {
   font-family: var(--f-mono);
@@ -1096,8 +1091,6 @@ img { display: block; max-width: 100%; }
   .hero-botanical { font-size: 12px; }
 
   .about-section { padding: 52px 20px; }
-  .about-inner { grid-template-columns: 1fr; gap: 32px; }
-  .about-photos { display: flex; justify-content: center; }
 
   .posts-section, .obsessed-section, .photos-section { padding: 52px 20px; }
   .post-featured { grid-template-columns: 1fr; padding: 28px; }
