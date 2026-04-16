@@ -352,7 +352,10 @@ img { display: block; max-width: 100%; }
   line-height: 1.65;
   margin-bottom: 36px;
   font-family: var(--f-body);
-  max-width: 480px;
+  max-width: 480px; /* hero only — overridden in about section */
+}
+.about-section .hero-sub {
+  max-width: 100%;
 }
 
 .hero-cta-row {
@@ -405,11 +408,11 @@ img { display: block; max-width: 100%; }
 /* ── ABOUT SECTION ── */
 .about-section {
   position: relative; z-index: 2;
-  padding: 80px 40px;
+  padding: 80px 80px;
   border-bottom: 0.5px solid var(--border);
 }
 .about-inner {
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
 }
 .about-chapter {
@@ -471,7 +474,7 @@ img { display: block; max-width: 100%; }
   margin-top: 36px;
   padding-top: 32px;
   border-top: 0.5px solid var(--border);
-  max-width: 580px;
+  max-width: 100%;
 }
 .about-expanded p {
   font-size: 15px;
