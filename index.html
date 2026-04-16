@@ -7,7 +7,7 @@
   <meta name="description" content="Plant mom. Dog mom. Real mom. Big boss at Zip Kit. Certified chaos with a blog and no niche. Welcome to the Kelseyverse." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=Rock+Salt&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&family=Rock+Salt&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -58,6 +58,7 @@
       <a href="#obsessed">obsessions</a>
       <a href="#photos">photos</a>
       <a href="#about">about</a>
+      <a href="/shop" class="nav-shop">shop ✦</a>
     </div>
     <div class="nav-right">
       <a href="mailto:hello@kelseyverse.com" class="btn-pill">say hi ✉</a>
@@ -72,26 +73,66 @@
   <header class="hero" id="about">
     <div class="hero-inner">
 
-      <p class="hero-eyebrow">now orbiting — cedar city, ut</p>
-      <h1 class="hero-title">hi, i'm <em>kelsey.</em></h1>
-      <p class="hero-sub">plant mom. dog mom. actual mom. big boss at zip kit.<br>certified chaos with a blog and no niche. welcome.</p>
-      <div class="tag-row">
-        <span class="tag t-plant">🌿 plant mom</span>
-        <span class="tag t-dog">🐾 dog mom</span>
-        <span class="tag t-mom">💖 real mom</span>
-        <span class="tag t-boss">⚡ zip kit boss</span>
-        <span class="tag t-chaos">✨ certified chaos</span>
+      <!-- BRAND STATEMENT -->
+      <div class="hero-brand-block">
+        <p class="hero-chapter">chapter 00 — welcome to my orbit</p>
+        <div class="hero-lockup">
+          <div class="hero-wordmark">kelsey<span class="hero-wordmark__verse">verse</span><sup class="hero-wordmark__tm">™</sup></div>
+          <div class="hero-tagline-wrap">
+            <span class="hero-neon">Plant Bitch</span>
+            <span class="hero-botanical">Botanicals</span>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-circles">
-        <div class="hero-circle c1">
-          <img src="photos/pow.jpg" alt="Powder" />
+      <!-- ORBIT PLANT SVG -->
+      <div class="hero-orbit-wrap">
+        <div class="hero-orbit-ring"></div>
+        <div class="hero-orbit-ring ring-2"></div>
+        <div class="hero-plant-svg" aria-hidden="true">
+          <svg viewBox="0 0 160 200" width="160" height="200" xmlns="http://www.w3.org/2000/svg">
+            <!-- stem -->
+            <path d="M80,190 C80,160 75,130 72,105 C68,78 62,58 65,35" fill="none" stroke="#4a7d44" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- leaves -->
+            <path d="M72,105 C55,95 38,88 30,70 C50,65 68,72 72,105Z" fill="#2d5229" opacity="0.9"/>
+            <line x1="72" y1="105" x2="51" y2="78" stroke="#3a6635" stroke-width="0.8"/>
+            <path d="M74,85 C90,72 108,68 118,50 C100,48 82,55 74,85Z" fill="#3a6635" opacity="0.85"/>
+            <line x1="74" y1="85" x2="96" y2="62" stroke="#4a7d44" stroke-width="0.8"/>
+            <path d="M70,130 C52,122 36,118 26,100 C46,96 66,105 70,130Z" fill="#2d5229" opacity="0.8"/>
+            <line x1="70" y1="130" x2="48" y2="111" stroke="#3a6635" stroke-width="0.8"/>
+            <path d="M73,60 C85,44 102,36 115,20 C98,18 78,28 73,60Z" fill="#4a7d44" opacity="0.8"/>
+            <line x1="73" y1="60" x2="94" y2="38" stroke="#5a8f52" stroke-width="0.8"/>
+            <!-- pot -->
+            <rect x="62" y="188" width="36" height="8" rx="2" fill="#1e2238" opacity="0.8"/>
+            <path d="M58,188 L66,165 L94,165 L102,188Z" fill="#151829" opacity="0.9"/>
+            <path d="M66,165 L94,165" stroke="#3a6635" stroke-width="0.5" opacity="0.4"/>
+          </svg>
         </div>
-        <div class="hero-circle c2">
-          <img src="photos/ryry.jpg" alt="my babies" />
+      </div>
+
+      <!-- PERSONAL INTRO -->
+      <div class="hero-intro">
+        <p class="hero-eyebrow">now orbiting — cedar city, ut</p>
+        <h1 class="hero-title">hi, i'm <em>kelsey.</em></h1>
+        <p class="hero-sub">plant mom. dog mom. actual mom. big boss at zip kit.<br>certified chaos with a blog and no niche. welcome.</p>
+        <div class="tag-row">
+          <span class="tag t-plant">🌿 plant mom</span>
+          <span class="tag t-dog">🐾 dog mom</span>
+          <span class="tag t-mom">💖 real mom</span>
+          <span class="tag t-boss">⚡ zip kit boss</span>
+          <span class="tag t-chaos">✨ certified chaos</span>
         </div>
-        <div class="hero-circle c3">
-          <img src="photos/plants1.jpg" alt="plant room" />
+
+        <div class="hero-circles">
+          <div class="hero-circle c1">
+            <img src="photos/pow.jpg" alt="Powder" />
+          </div>
+          <div class="hero-circle c2">
+            <img src="photos/ryry.jpg" alt="my babies" />
+          </div>
+          <div class="hero-circle c3">
+            <img src="photos/plants1.jpg" alt="plant room" />
+          </div>
         </div>
       </div>
 
@@ -105,8 +146,6 @@
         <p class="about-aside">Well. I am someone's mom. But not yours.</p>
       </div>
     </div>
-    <div class="hero-orbit-ring"></div>
-    <div class="hero-orbit-ring ring-2"></div>
   </header>
 
   <!-- TICKER -->
@@ -118,13 +157,15 @@
       <span class="ticker-dot">·</span>
       <span>the philodendron is going to be fine. I've decided.</span>
       <span class="ticker-dot">·</span>
-      <span>salmon for dinner. again. not sorry.</span>
-      <span class="ticker-dot">·</span>
       <span>trailing plants are everything and I will not be taking questions</span>
+      <span class="ticker-dot">·</span>
+      <span>drop 01 incoming ✦ plant bitch botanicals</span>
       <span class="ticker-dot">·</span>
       <span>gym bro jr. has entered the building 🏋️</span>
       <span class="ticker-dot">·</span>
       <span>big bertha has entered the guest room. pray for the hooks. 🌿</span>
+      <span class="ticker-dot">·</span>
+      <span>never recolor the neon pink. pink is the voice.</span>
       <span class="ticker-dot">·</span>
       <span>Powder untied my shoes again 🐾</span>
       <span class="ticker-dot">·</span>
@@ -132,13 +173,15 @@
       <span class="ticker-dot">·</span>
       <span>the philodendron is going to be fine. I've decided.</span>
       <span class="ticker-dot">·</span>
-      <span>salmon for dinner. again. not sorry.</span>
-      <span class="ticker-dot">·</span>
       <span>trailing plants are everything and I will not be taking questions</span>
+      <span class="ticker-dot">·</span>
+      <span>drop 01 incoming ✦ plant bitch botanicals</span>
       <span class="ticker-dot">·</span>
       <span>gym bro jr. has entered the building 🏋️</span>
       <span class="ticker-dot">·</span>
       <span>big bertha has entered the guest room. pray for the hooks. 🌿</span>
+      <span class="ticker-dot">·</span>
+      <span>never recolor the neon pink. pink is the voice.</span>
     </div>
   </div>
 
@@ -351,114 +394,21 @@
       <span class="section-count">moments & chaos</span>
     </div>
     <div class="photos-grid">
-
-      <div class="photo-card">
-        <img src="photos/homedepot-dog.jpg" alt="Powder at Home Depot" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">Powder on duty 🐾</span>
-          <a class="photo-card__sub" href="posts/casual-sunday.html">→ just a casual sunday</a>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/snow2.jpg" alt="adventures" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">cedar city winter ❄️</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/my-babies.jpg" alt="my babies" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">my babies 💖</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/plant-room.jpg" alt="plant room" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">the sanctuary 🌿</span>
-          <a class="photo-card__sub" href="posts/the-beast.html">→ i brought home a beast</a>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/powder2.jpg" alt="Powder" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">Powder, unrepentant 🐾</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/plant2.jpg" alt="plants" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">the crew 🌱</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/plants4.jpg" alt="plants" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">chaos, organized 🌿</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/cody2.jpg" alt="Cody" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">Cody ✨</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/powder.jpg" alt="Powder" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">the shoe untier 🐾</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/adventure.jpg" alt="adventures" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">somewhere good ✨</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/snow1.jpg" alt="playing in the snow" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">powder's first love ❄️</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/plant3.jpg" alt="plants" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">plant things 🌿</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/meandpow.jpg" alt="me and Powder" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">us 🐾💖</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/cody1.jpg" alt="Cody" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">Cody again ✨</span>
-        </div>
-      </div>
-
-      <div class="photo-card">
-        <img src="photos/meandpow2.jpg" alt="me and Powder" loading="lazy" />
-        <div class="photo-card__overlay">
-          <span class="photo-card__label">still us 🐾</span>
-        </div>
-      </div>
-
+      <div class="photo-card"><img src="photos/homedepot-dog.jpg" alt="Powder at Home Depot" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">Powder on duty 🐾</span><a class="photo-card__sub" href="posts/casual-sunday.html">→ just a casual sunday</a></div></div>
+      <div class="photo-card"><img src="photos/snow2.jpg" alt="adventures" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">cedar city winter ❄️</span></div></div>
+      <div class="photo-card"><img src="photos/my-babies.jpg" alt="my babies" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">my babies 💖</span></div></div>
+      <div class="photo-card"><img src="photos/plant-room.jpg" alt="plant room" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">the sanctuary 🌿</span><a class="photo-card__sub" href="posts/the-beast.html">→ i brought home a beast</a></div></div>
+      <div class="photo-card"><img src="photos/powder2.jpg" alt="Powder" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">Powder, unrepentant 🐾</span></div></div>
+      <div class="photo-card"><img src="photos/plant2.jpg" alt="plants" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">the crew 🌱</span></div></div>
+      <div class="photo-card"><img src="photos/plants4.jpg" alt="plants" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">chaos, organized 🌿</span></div></div>
+      <div class="photo-card"><img src="photos/cody2.jpg" alt="Cody" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">Cody ✨</span></div></div>
+      <div class="photo-card"><img src="photos/powder.jpg" alt="Powder" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">the shoe untier 🐾</span></div></div>
+      <div class="photo-card"><img src="photos/adventure.jpg" alt="adventures" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">somewhere good ✨</span></div></div>
+      <div class="photo-card"><img src="photos/snow1.jpg" alt="playing in the snow" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">powder's first love ❄️</span></div></div>
+      <div class="photo-card"><img src="photos/plant3.jpg" alt="plants" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">plant things 🌿</span></div></div>
+      <div class="photo-card"><img src="photos/meandpow.jpg" alt="me and Powder" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">us 🐾💖</span></div></div>
+      <div class="photo-card"><img src="photos/cody1.jpg" alt="Cody" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">Cody again ✨</span></div></div>
+      <div class="photo-card"><img src="photos/meandpow2.jpg" alt="me and Powder" loading="lazy" /><div class="photo-card__overlay"><span class="photo-card__label">still us 🐾</span></div></div>
     </div>
   </section>
 
@@ -470,6 +420,7 @@
       <p class="connect-sub">No newsletter. No spam. Just life, plants, an Aussie Blue Heeler with strong opinions about your shoelaces, and the occasional crisis that becomes a blog post.</p>
       <div class="connect-links">
         <a href="mailto:hello@kelseyverse.com" class="connect-btn">✉ email me</a>
+        <a href="/shop" class="connect-btn connect-btn--neon">✦ plant bitch shop</a>
         <a href="https://github.com/ksackett88" target="_blank" rel="noopener" class="connect-btn">github</a>
         <a href="https://linkedin.com/in/ksackett88" target="_blank" rel="noopener" class="connect-btn">linkedin</a>
       </div>
@@ -479,8 +430,9 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <p class="footer-logo">kelseyverse™</p>
-      <p class="footer-copy">built with love, powered by trailing plants and tilapia. cedar city, ut.</p>
+      <p class="footer-logo">kelsey<span>verse</span>™</p>
+      <p class="footer-tagline">Plant Bitch</p>
+      <p class="footer-copy">made with love + chlorophyll · 2026 · cedar city · anywhere green grows</p>
       <p class="footer-clippy">👋 it looks like you've reached the footer. need help? — Clippy</p>
     </div>
   </footer>
