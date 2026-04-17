@@ -1509,6 +1509,192 @@
     .tile--10 { grid-column: span 6; grid-row: span 2; }
   }
 
+  /* ============ DROP 01 ============ */
+  .drop {
+    padding: 140px 0 160px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 50% 40% at 15% 10%, rgba(255,45,138,0.13), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 85% 80%, rgba(134,194,129,0.08), transparent 60%),
+      linear-gradient(180deg, var(--ink-4) 0%, #0a0c18 100%);
+  }
+  .drop::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,45,138,0.32), transparent);
+  }
+  .drop__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 56px;
+  }
+  .drop__head-right {
+    text-align: right;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    line-height: 1.8;
+  }
+  .drop__head-right b { color: var(--neon-soft); font-weight: 500; }
+
+  .drop__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 1000px) { .drop__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .drop__grid { grid-template-columns: 1fr; } }
+
+  .drop__card {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #0a0c18;
+    border: 1px solid rgba(243,236,222,0.06);
+    transition: transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.4s, box-shadow 0.4s;
+    display: block;
+    color: inherit;
+  }
+  .drop__card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,45,138,0.38);
+    box-shadow: 0 40px 80px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,45,138,0.18);
+  }
+  .drop__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.92) saturate(1.08);
+    transition: transform 0.7s, filter 0.5s;
+  }
+  .drop__card:hover img {
+    transform: scale(1.03);
+    filter: brightness(1) saturate(1.15);
+  }
+  .drop__card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(9,10,20,0.62) 76%, rgba(9,10,20,0.92) 100%);
+    pointer-events: none;
+  }
+
+  .drop__card-head {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 2;
+  }
+  .drop__card-sku {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    opacity: 0.85;
+  }
+  .drop__card-badge {
+    font-family: var(--f-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    background: rgba(255,45,138,0.2);
+    border: 1px solid rgba(255,45,138,0.42);
+    border-radius: 999px;
+    color: var(--neon-soft);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .drop__card-body {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 14px;
+  }
+  .drop__card-name {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.4vw, 32px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: lowercase;
+    color: var(--cream);
+    margin: 0 0 6px;
+  }
+  .drop__card-type {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.75;
+  }
+  .drop__card-arrow {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(243,236,222,0.1);
+    border: 1px solid rgba(243,236,222,0.18);
+    color: var(--cream);
+    flex-shrink: 0;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .drop__card-arrow svg { width: 14px; height: 14px; }
+  .drop__card:hover .drop__card-arrow {
+    background: var(--neon);
+    border-color: var(--neon);
+    color: #fff;
+  }
+
+  .drop__cta-row {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+  }
+  .drop__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 32px;
+    background: var(--neon);
+    border: 1px solid var(--neon);
+    border-radius: 999px;
+    color: #fff;
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+    box-shadow: 0 0 22px rgba(255,45,138,0.55), 0 0 60px rgba(255,45,138,0.25);
+  }
+  .drop__cta:hover {
+    background: var(--neon-hot);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255,45,138,0.7), 0 0 80px rgba(255,45,138,0.35);
+  }
+
   /* ============ FOOTER / SIGNOFF ============ */
   .signoff {
     padding: 140px 0 60px;
@@ -1743,6 +1929,7 @@
   <a href="#posts">posts</a>
   <a href="#obsessed">obsessed</a>
   <a href="#orbit">orbit</a>
+  <a href="#drop">drop 01</a>
   <a href="#about">about</a>
   <a href="./shop/" class="nav-cta">shop ✦</a>
 </nav>
@@ -2363,6 +2550,138 @@
       <a href="#" class="tile tile--10">
         <img src="./photos/plant3.jpg" alt="Another angle of the plant room">
         <div class="tile__cap"><span>sunday plant light</span><b>plant mom</b></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DROP 01 ============ -->
+<section class="drop" id="drop">
+  <div class="wrap">
+    <header class="drop__head reveal">
+      <div>
+        <span class="eyebrow">chapter 05 — the lab</span>
+        <h2 class="section-title">drop 01 — merch <em>in the lab</em></h2>
+        <p class="section-kicker">
+          hats, hoodies, mugs, an apron, the whole gym bro jr. line. ships when it ships.
+          no schedule, just small batches whenever i can't stop tweaking the pink.
+        </p>
+      </div>
+      <div class="drop__head-right">
+        drop 01 / 2026<br>
+        <b>6 skus</b> shown<br>
+        full range: 14 pieces
+      </div>
+    </header>
+
+    <div class="drop__grid">
+      <a class="drop__card reveal" href="./shop/">
+        <img src="./photos/swag/hat-green.png" alt="Plant Bitch washed green distressed hat">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-hat-grn</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the dad hat.</h3>
+            <span class="drop__card-type">distressed · washed green</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card reveal" href="./shop/">
+        <img src="./photos/swag/hoodie-green.png" alt="Plant Bitch acid-washed green hoodie">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-hood-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the hoodie.</h3>
+            <span class="drop__card-type">heavyweight · acid wash green</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card reveal" href="./shop/">
+        <img src="./photos/swag/mug-white.png" alt="Plant Bitch mug with pink handle, staged with plants">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-mug-w01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the morning mug.</h3>
+            <span class="drop__card-type">ceramic · pink handle · coffee-ready</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card reveal" href="./shop/">
+        <img src="./photos/swag/apron.png" alt="Plant Bitch canvas work apron with garden tools">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-aprn-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the work apron.</h3>
+            <span class="drop__card-type">heavy canvas · repot-proof pockets</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card reveal" href="./shop/">
+        <img src="./photos/swag/gymbro-jr.png" alt="Gym Bro Jr. line: crop top, shorts, and hat">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-gbjr-set</span>
+          <span class="drop__card-badge">sub-drop</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">gym bro jr.</h3>
+            <span class="drop__card-type">the whole line · crop · shorts · hat</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card reveal" href="./shop/">
+        <img src="./photos/swag/hat-cream-model.png" alt="Plant Bitch cream-colored hat with tank">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-hat-crm</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the cream cap.</h3>
+            <span class="drop__card-type">washed natural · tank sold separately</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <div class="drop__cta-row reveal">
+      <a href="./shop/" class="drop__cta">
+        see the full drop ✦
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
       </a>
     </div>
   </div>
