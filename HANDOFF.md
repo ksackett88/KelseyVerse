@@ -2,7 +2,8 @@
 
 > **Status:** LIVE at https://kelseyverse.com as of 2026-04-17
 > **Deployed via:** Netlify auto-deploy from `main` (+ GitHub Pages mirror at https://ksackett88.github.io/KelseyVerse/)
-> **Current on main:** squash commit `e3b820b` ("Design: Homepage redesign (editorial plant-punk)")
+> **Current on main:** `0c409fb` ("Lazy-load below-fold images") — on top of `f37160e` (this handoff) and squash `e3b820b` (the redesign)
+> **Last shipped:** `loading="lazy"` on all 21 below-fold images. First-paint weight dropped from ~30MB → ~500KB. Confirmed live and snappier on Kelsey's end.
 
 This document hands off the redesigned homepage and the brand system it sits inside. Read it once end-to-end before touching anything. Every section matters.
 
@@ -252,6 +253,17 @@ Each SKU in Drop 01 has its own tagline. **They are NOT interchangeable.** Use t
 
 She drops new photos into `C:\Users\codya\Dropbox\plant bitch swag\`. Rejected versions get moved to `wrong font/` subfolder inside that folder. **If a file lives in `wrong font/`, DO NOT PULL IT.** Those are deprecated.
 
+### On image weight
+
+Drop 01 product shots are PNGs averaging 2.3–3.8MB each. Total `photos/swag/` weight is ~70MB on disk, ~28MB referenced from the homepage.
+
+**What's already done:** every below-fold image has `loading="lazy"` — first paint only pulls ~500KB (index + 3 hero botanicals + fonts + grain). Scroll-into-view triggers download.
+
+**What's still open (worth doing):**
+1. **PNG → JPG at q85** — product shots don't need PNG transparency. Expected weight: ~3MB total instead of ~28MB. Needs ImageMagick (`winget install ImageMagick`), or a small sharp/Pillow script.
+2. **WebP + `<picture>` fallback + responsive `srcset`** at 400/800/1200 widths with explicit `width`/`height` for layout-shift prevention. Target total page weight under 2MB.
+3. **`photos/powder-dutch-bros.jpg.jpg`** has a double extension typo and weighs 2.3MB alone — referenced by the mosaic tile 2. Rename + compress whenever the file-rename cleanup pass happens.
+
 ---
 
 ## 6. Common tasks — how to
@@ -360,6 +372,12 @@ The brand showcase uses: "drop 01 / 2026 / X skus shown / full range: N pieces."
 
 ### Commit messages matter here
 Kelsey's own history is chaotic ("gsgsd", "dgd"). This redesign introduced proper messages with Co-Authored-By trailers. Her UX/UI team should match: subject in imperative, body explains *why*, trailer for attribution. She's handing work to a team; commits are the shared record.
+
+### Browser cache will lie to her
+On deploy day, Kelsey looked at the live site and said "cache and crumbz aren't there." They were — verified via `curl https://kelseyverse.com | grep crew-card`. The markup was serving; her browser was holding an older index.html. Netlify's `Cache-Control: public, max-age=0, must-revalidate` should force revalidation, but some browsers still hold stale cached HTML across fast deploys. **When she (or a reviewer) says something's missing, curl the live URL first.** If it's in the response, it's a browser cache issue — tell them Ctrl+Shift+R. If it's not, then investigate.
+
+### Performance discovery → ship cycle
+First time someone complained of slow loading, the diagnosis was instant (28MB of Drop 01 PNGs), the fix was tiny (`loading="lazy"` via one-line sed), the ship was under ten minutes. **Pattern: when perf complaints come in, measure bytes first with `curl -sI`, then `du -b photos/**/*` — don't guess.**
 
 ---
 
