@@ -1397,6 +1397,186 @@
     .foot__meta { text-align: left; }
     .foot__grid { align-items: flex-start; }
   }
+
+  /* ============ CHAOS GRID (plants + drop merch) ============ */
+  .chaos {
+    padding: 100px 0 120px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 50% 40% at 15% 10%, rgba(255,45,138,0.13), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 85% 80%, rgba(134,194,129,0.12), transparent 60%),
+      linear-gradient(180deg, var(--ink-2, #151829) 0%, #0a0c18 100%);
+  }
+  .chaos::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,45,138,0.32), transparent);
+  }
+  .chaos__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 56px;
+  }
+  .chaos__head-right {
+    text-align: right;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.6;
+    line-height: 1.8;
+  }
+  .chaos__head-right b { color: var(--neon-soft, #ff69b4); font-weight: 500; }
+
+  .drop__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 1000px) { .drop__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .drop__grid { grid-template-columns: 1fr; } }
+
+  .drop__card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #0a0c18;
+    border: 1px solid rgba(243,236,222,0.08);
+    text-decoration: none;
+    display: block;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, box-shadow 0.5s;
+  }
+  .drop__card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255,45,138,0.35);
+    box-shadow: 0 40px 80px -20px rgba(255,45,138,0.25);
+  }
+  .drop__card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+    opacity: 0.85;
+  }
+  .drop__card:hover img {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  .drop__card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,12,24,0) 40%, rgba(10,12,24,0.82) 82%, rgba(10,12,24,0.96) 100%);
+    pointer-events: none;
+  }
+  .drop__card-head {
+    position: relative;
+    z-index: 2;
+    padding: 18px 18px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .drop__card-sku {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.75;
+    background: rgba(13,15,28,0.5);
+    padding: 5px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(243,236,222,0.1);
+  }
+  .drop__card-badge {
+    font-family: var(--f-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    background: rgba(255,45,138,0.2);
+    border: 1px solid rgba(255,45,138,0.42);
+    border-radius: 999px;
+    color: var(--neon-soft, #ff69b4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .drop__card-badge--live {
+    background: rgba(134,194,129,0.22);
+    border-color: rgba(134,194,129,0.48);
+    color: var(--leaf);
+    letter-spacing: 0.18em;
+  }
+  .drop__card--live { background: #0c120c; }
+
+  .drop__card-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 20px 22px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .drop__card-name {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(18px, 2vw, 24px);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--cream);
+    text-transform: lowercase;
+    margin: 0 0 6px;
+  }
+  .drop__card-type {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.7;
+    line-height: 1.3;
+  }
+  .drop__card-arrow {
+    flex-shrink: 0;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: rgba(255,45,138,0.15);
+    border: 1px solid rgba(255,45,138,0.42);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neon-soft, #ff69b4);
+    transition: background 0.3s, transform 0.3s;
+  }
+  .drop__card-arrow svg { width: 14px; height: 14px; }
+  .drop__card:hover .drop__card-arrow {
+    background: rgba(255,45,138,0.35);
+    transform: translateX(3px);
+  }
+  .drop__card--live .drop__card-arrow {
+    background: rgba(134,194,129,0.18);
+    border-color: rgba(134,194,129,0.48);
+    color: var(--leaf);
+  }
+  .drop__card--live:hover .drop__card-arrow {
+    background: rgba(134,194,129,0.36);
+  }
 </style>
 </head>
 <body>
@@ -2087,16 +2267,257 @@
     </div>
   </div>
 </section>
+<section class="chaos" id="chaos">
+  <div class="wrap">
+    <header class="chaos__head">
+      <div>
+        <span class="eyebrow">chapter 01 — the chaos</span>
+        <h2 class="section-title">the <em>chaos</em> — plants, merch, and whatever else i'm selling this week</h2>
+        <p class="section-kicker">
+          a pothos next to a hoodie next to a monstera next to a ceramic skull. no sections, no categories — just every loud thing in one grid. ships when it ships. emails get answered.
+        </p>
+      </div>
+      <div class="chaos__head-right">
+        live goods / drop 01 / 2026<br>
+        <b>13 things</b> on deck<br>
+        more when i propagate more
+      </div>
+    </header>
+
+    <div class="drop__grid">
+      <a class="drop__card drop__card--live" href="mailto:hello@kelseyverse.com?subject=Monstera%20baby">
+        <img loading="lazy" src="https://loremflickr.com/800/800/monstera,plant" alt="Baby monstera deliciosa in a small pot">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">2&quot; pot · 3-4&quot; tall</span>
+          <span class="drop__card-badge drop__card-badge--live">🌿 live</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the monstera baby.</h3>
+            <span class="drop__card-type">she will be enormous someday. not your problem yet.</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Dad%20Hat">
+        <img loading="lazy" src="./photos/swag/hat.png" alt="Plant Bitch washed green hat with stop touching it back detail">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-hat-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the dad hat.</h3>
+            <span class="drop__card-type">stop touching it · washed green</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card drop__card--live" href="mailto:hello@kelseyverse.com?subject=Pothos">
+        <img loading="lazy" src="https://loremflickr.com/800/800/pothos,plant" alt="Small potted pothos cutting">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">2&quot; pot · 4-5&quot; tall</span>
+          <span class="drop__card-badge drop__card-badge--live">🌿 live</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the pothos.</h3>
+            <span class="drop__card-type">unkillable. no notes. you're welcome.</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Hoodie">
+        <img loading="lazy" src="./photos/swag/hoodie-where-the-sun.png" alt="Plant Bitch hoodie reading where the fuck is the sun">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-hood-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the hoodie.</h3>
+            <span class="drop__card-type">where the fuck is the sun · acid wash</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Skull%20Planter">
+        <img loading="lazy" src="./photos/swag/skull.png" alt="Ceramic skull planter">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-skull-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the skull.</h3>
+            <span class="drop__card-type">ceramic planter · keeps them alive</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card drop__card--live" href="mailto:hello@kelseyverse.com?subject=Philodendron%20baby">
+        <img loading="lazy" src="https://loremflickr.com/800/800/philodendron,plant" alt="A small philodendron baby in a 2-inch pot">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">2&quot; pot · 4-5&quot; tall</span>
+          <span class="drop__card-badge drop__card-badge--live">🌿 live</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the philodendron baby.</h3>
+            <span class="drop__card-type">small but she has plans.</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Morning%20Mug">
+        <img loading="lazy" src="./photos/swag/mug.png" alt="Plant Bitch black mug with pink interior reading water it leave it repeat">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-mug-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the morning mug.</h3>
+            <span class="drop__card-type">water it. leave it. repeat. · pink + black</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Gym%20Bro%20Jr">
+        <img loading="lazy" src="./photos/swag/gymbrojr.png" alt="Gym Bro Jr. crop top and shorts line">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-gym-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">gym bro jr.</h3>
+            <span class="drop__card-type">the whole line · crop · shorts · hat</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card drop__card--live" href="mailto:hello@kelseyverse.com?subject=String%20of%20Pearls">
+        <img loading="lazy" src="https://loremflickr.com/800/800/string+of+pearls,succulent" alt="String of pearls succulent cutting">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">rooted cutting</span>
+          <span class="drop__card-badge drop__card-badge--live">🌿 live</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the string of pearls.</h3>
+            <span class="drop__card-type">dramatic. trails everywhere. worth it.</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Work%20Apron">
+        <img loading="lazy" src="./photos/swag/apron.png" alt="Plant Bitch canvas work apron with garden tools">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-aprn-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the work apron.</h3>
+            <span class="drop__card-type">heavy canvas · repot-proof pockets</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Crop%20Tee">
+        <img loading="lazy" src="./photos/swag/crop.png" alt="Plant Bitch charcoal crop tee">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-crop-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the crop tee.</h3>
+            <span class="drop__card-type">stop touching it · charcoal wash</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Doormat">
+        <img loading="lazy" src="./photos/swag/doormat.png" alt="Jute doormat reading leave me alone">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-mat-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the doormat.</h3>
+            <span class="drop__card-type">jute · leave me alone</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="drop__card" href="mailto:hello@kelseyverse.com?subject=Matching%20Set">
+        <img loading="lazy" src="./photos/swag/matching-set.png" alt="Crop top and leggings matching set">
+        <div class="drop__card-head">
+          <span class="drop__card-sku">sku · pb-set-01</span>
+          <span class="drop__card-badge">drop 01</span>
+        </div>
+        <div class="drop__card-body">
+          <div>
+            <h3 class="drop__card-name">the matching set.</h3>
+            <span class="drop__card-type">crop + leggings · i watered it</span>
+          </div>
+          <span class="drop__card-arrow">
+            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 <section id="merch" class="merch">
   <div class="wrap">
     <header class="merch__header">
       <div>
-        <span class="eyebrow">chapter 02 — the goods</span>
-        <h2 class="section-title">wear it, carry it, <em>stick it</em></h2>
+        <span class="eyebrow">chapter 02 — the mockups</span>
+        <h2 class="section-title">the <em>vectors</em></h2>
         <p class="section-kicker">
-          six starter SKUs to kick off the drop. each mockup uses the real mark
-          placed exactly where it'll land on the garment — no fake tees, no
-          generic templates, no "we'll figure out the hoodie later."
+          six starter SKUs in mockup form — each uses the real mark placed exactly
+          where it'll land on the garment. these are how the drop actually gets
+          designed. shop the real thing in the chaos above.
         </p>
       </div>
       <div class="merch__header-right">
