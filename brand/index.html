@@ -1401,6 +1401,12 @@
   /* ============ MOBILE SAFETY PASS ============ */
   @media (max-width: 720px) {
     .wrap { width: min(1280px, 100% - 32px); }
+    .hero {
+      min-height: auto !important;
+      padding-top: 90px !important;
+      padding-bottom: 60px !important;
+    }
+    .hero__content { gap: 28px; }
     .hero__top, .hero__stats, .variants__header, .system__header,
     .foot__grid, .foot__bar, .foot__meta {
       flex-wrap: wrap !important;
@@ -1410,14 +1416,19 @@
       width: 100%;
     }
     .foot__meta { text-align: left !important; width: 100%; }
-    .hero__stats { gap: 24px !important; row-gap: 18px; }
-    .hero__stat-num { font-size: 28px; }
-    h1, h2, h3, .section-title { overflow-wrap: anywhere; word-break: break-word; }
+    .hero__stats { gap: 20px !important; row-gap: 14px; }
+    .hero__stat-num { font-size: 26px; }
+    .section-title { overflow-wrap: break-word; }
   }
   @media (max-width: 480px) {
-    .wrap { width: min(1280px, 100% - 24px); }
-    .hero__lockup .mark { font-size: clamp(44px, 14vw, 70px); }
-    .hero__lockup .neon { font-size: clamp(28px, 9vw, 48px); }
+    .wrap { width: min(1280px, 100% - 20px); }
+    .hero { padding-top: 80px !important; padding-bottom: 48px !important; }
+    .hero__lockup .mark { font-size: clamp(44px, 13vw, 64px); }
+    .hero__lockup .neon { font-size: clamp(26px, 9vw, 40px); }
+    .hero__tagline { font-size: 14px !important; }
+    .hero__stats { gap: 14px !important; row-gap: 10px; }
+    .hero__stat-num { font-size: 22px; }
+    .hero__stat-label { font-size: 9px !important; }
   }
 </style>
 </head>

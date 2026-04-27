@@ -1948,23 +1948,31 @@
     /* Tighter wrap on small phones */
     .wrap { width: min(1320px, 100% - 32px); }
 
-    /* Force all section header rows to wrap and stack */
+    /* Hero auto-sizes on mobile so content never gets clipped */
+    .hero {
+      min-height: auto !important;
+      padding-top: 90px;
+      padding-bottom: 60px;
+    }
+    .hero__content { padding: 20px 0 40px !important; gap: 28px !important; }
+
+    /* Force section header rows to wrap and stack */
     .hero__top, .hero__stats, .crew__head, .crew__head-right,
     .about__head, .obsessed__head, .drop__head, .post-feature__meta,
     .post__meta, .post-meta-row, .drop__cta-row, .signoff__base,
     .signoff__grid, .signup, .post-feature, .foot__bar, .foot__grid {
       flex-wrap: wrap !important;
     }
-    /* Right-aligned meta blocks stack to left and full width */
+    /* Right-aligned meta blocks stack to left full-width */
     .crew__head-right, .drop__head-right, .obsessed__head-right,
     .about__head-right {
       text-align: left;
       width: 100%;
     }
     /* Tighter stat row */
-    .hero__stats { gap: 24px !important; row-gap: 18px; }
-    .hero__stat-num { font-size: 28px; }
-    /* Buttons full-width pills */
+    .hero__stats { gap: 20px !important; row-gap: 14px; }
+    .hero__stat-num { font-size: 26px; }
+    /* CTA buttons full-width */
     .drop__cta-row .drop__cta { width: 100%; justify-content: center; }
     /* Signup form stacks */
     .signup { flex-direction: column; border-radius: 22px; padding: 14px; gap: 12px; }
@@ -1972,23 +1980,20 @@
     .signup button { width: 100%; }
     /* Post feature stacks */
     .post-feature { grid-template-columns: 1fr !important; }
-    /* Long words / titles never overflow */
-    h1, h2, h3, .section-title, .post__title, .post-feature__title {
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-    /* Section content padding */
-    section, .crew, .obsessed, .drop, .posts, .about, .orbit-gallery,
-    .post-feature, .signoff {
-      padding-left: 0;
-      padding-right: 0;
-    }
+    /* Soft wrap long titles WITHOUT breaking single words like 'kelseyverse' */
+    .section-title, .post__title, .post-feature__title { overflow-wrap: break-word; }
   }
 
   @media (max-width: 480px) {
-    .wrap { width: min(1320px, 100% - 24px); }
-    .hero__lockup .mark { font-size: clamp(44px, 14vw, 70px); }
-    .hero__lockup .neon { font-size: clamp(28px, 9vw, 48px); }
+    .wrap { width: min(1320px, 100% - 20px); }
+    .hero { padding-top: 80px; padding-bottom: 48px; }
+    .hero__lockup .mark { font-size: clamp(44px, 13vw, 64px); }
+    .hero__lockup .neon { font-size: clamp(26px, 9vw, 40px); }
+    .hero__sub { font-size: 15px !important; }
+    .hero__tagline { font-size: 14px !important; }
+    .hero__stats { gap: 14px !important; row-gap: 10px; }
+    .hero__stat-num { font-size: 22px; }
+    .hero__stat-label { font-size: 9px !important; }
   }
 </style>
 </head>
