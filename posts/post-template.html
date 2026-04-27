@@ -59,14 +59,68 @@
       </div>
     </div>
   </section>
-  <footer class="footer">
-    <div class="footer-inner">
-      <p class="footer-logo">kelseyverse™</p>
-      <p class="footer-copy">built with love, powered by trailing plants and tilapia. cedar city, ut.</p>
-      <p class="footer-clippy">👋 it looks like you've reached the footer. need help? — Clippy</p>
+  <footer class="signoff">
+    <div class="wrap">
+      <div class="signoff__hero">
+        <span class="eyebrow">the signoff</span>
+        <h2 class="signoff__title">join the <em>orbit</em>.</h2>
+        <p class="signoff__sub">
+          no newsletter. no spam. just life, plants, an aussie blue heeler with strong
+          opinions about your shoelaces, and the occasional crisis that becomes a blog post.
+        </p>
+        <form class="signup" onsubmit="event.preventDefault(); this.querySelector('button').textContent='in orbit ✦'; this.querySelector('input').value='';">
+          <input type="email" placeholder="your email — i won't abuse it" aria-label="email">
+          <button type="submit">enter the orbit</button>
+        </form>
+        <p class="signup__note">sent whenever something worth sending happens. zero obligation. un-orbit anytime.</p>
+      </div>
+
+      <div class="signoff__grid">
+        <div class="signoff__col">
+          <div class="signoff__brand-mark">
+            <span>kelsey</span><span>verse</span><sup>™</sup>
+          </div>
+          <span class="signoff__brand-plant">Plant Bitch</span>
+          <p class="signoff__brand-blurb">
+            a personal orbit that leaked into a blog. built around plants, a dog,
+            a daughter, a company to run, and a chaos crew who refuses to stay offline.
+          </p>
+        </div>
+        <div class="signoff__col">
+          <h4>the orbit</h4>
+          <ul>
+            <li><a href="/#posts">posts</a></li>
+            <li><a href="/#obsessed">obsessed</a></li>
+            <li><a href="/#photos">photos</a></li>
+            <li><a href="/#about">about kelsey</a></li>
+          </ul>
+        </div>
+        <div class="signoff__col">
+          <h4>the goods</h4>
+          <ul>
+            <li><a href="/shop/">plant bitch shop ✦</a></li>
+            <li><a href="/shop/">drop 01 merch</a></li>
+            <li><a href="/shop/">sticker pack</a></li>
+            <li><a href="/shop/">the canvas tote</a></li>
+          </ul>
+        </div>
+        <div class="signoff__col">
+          <h4>elsewhere</h4>
+          <ul>
+            <li><a href="mailto:hello@kelseyverse.com">hello@kelseyverse.com</a></li>
+            <li><a href="https://github.com/ksackett88" target="_blank" rel="noopener">github ↗</a></li>
+            <li><a href="https://www.linkedin.com/in/ksackett88/" target="_blank" rel="noopener">linkedin ↗</a></li>
+            <li><a href="#">press kit</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="signoff__base">
+        <span>© 2026 kelseyverse™ &middot; made with <b>love + chlorophyll</b> &middot; cedar city, ut</span>
+        <span>never recolor the neon. <b>pink is the voice.</b></span>
+      </div>
     </div>
-  </footer>
-  <script>
+  </footer>  <script>
     const hamburger = document.getElementById('nav-hamburger');
     const navLinks = document.getElementById('nav-links');
     hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); hamburger.classList.toggle('open'); });
