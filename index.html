@@ -1942,6 +1942,54 @@
       transition: none !important;
     }
   }
+
+  /* ============ MOBILE SAFETY PASS ============ */
+  @media (max-width: 720px) {
+    /* Tighter wrap on small phones */
+    .wrap { width: min(1320px, 100% - 32px); }
+
+    /* Force all section header rows to wrap and stack */
+    .hero__top, .hero__stats, .crew__head, .crew__head-right,
+    .about__head, .obsessed__head, .drop__head, .post-feature__meta,
+    .post__meta, .post-meta-row, .drop__cta-row, .signoff__base,
+    .signoff__grid, .signup, .post-feature, .foot__bar, .foot__grid {
+      flex-wrap: wrap !important;
+    }
+    /* Right-aligned meta blocks stack to left and full width */
+    .crew__head-right, .drop__head-right, .obsessed__head-right,
+    .about__head-right {
+      text-align: left;
+      width: 100%;
+    }
+    /* Tighter stat row */
+    .hero__stats { gap: 24px !important; row-gap: 18px; }
+    .hero__stat-num { font-size: 28px; }
+    /* Buttons full-width pills */
+    .drop__cta-row .drop__cta { width: 100%; justify-content: center; }
+    /* Signup form stacks */
+    .signup { flex-direction: column; border-radius: 22px; padding: 14px; gap: 12px; }
+    .signup input { width: 100%; text-align: center; }
+    .signup button { width: 100%; }
+    /* Post feature stacks */
+    .post-feature { grid-template-columns: 1fr !important; }
+    /* Long words / titles never overflow */
+    h1, h2, h3, .section-title, .post__title, .post-feature__title {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    /* Section content padding */
+    section, .crew, .obsessed, .drop, .posts, .about, .orbit-gallery,
+    .post-feature, .signoff {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .wrap { width: min(1320px, 100% - 24px); }
+    .hero__lockup .mark { font-size: clamp(44px, 14vw, 70px); }
+    .hero__lockup .neon { font-size: clamp(28px, 9vw, 48px); }
+  }
 </style>
 </head>
 <body>

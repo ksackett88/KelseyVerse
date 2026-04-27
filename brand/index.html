@@ -1397,6 +1397,28 @@
     .foot__meta { text-align: left; }
     .foot__grid { align-items: flex-start; }
   }
+
+  /* ============ MOBILE SAFETY PASS ============ */
+  @media (max-width: 720px) {
+    .wrap { width: min(1280px, 100% - 32px); }
+    .hero__top, .hero__stats, .variants__header, .system__header,
+    .foot__grid, .foot__bar, .foot__meta {
+      flex-wrap: wrap !important;
+    }
+    .variants__header-right, .system__header-right {
+      text-align: left;
+      width: 100%;
+    }
+    .foot__meta { text-align: left !important; width: 100%; }
+    .hero__stats { gap: 24px !important; row-gap: 18px; }
+    .hero__stat-num { font-size: 28px; }
+    h1, h2, h3, .section-title { overflow-wrap: anywhere; word-break: break-word; }
+  }
+  @media (max-width: 480px) {
+    .wrap { width: min(1280px, 100% - 24px); }
+    .hero__lockup .mark { font-size: clamp(44px, 14vw, 70px); }
+    .hero__lockup .neon { font-size: clamp(28px, 9vw, 48px); }
+  }
 </style>
 </head>
 <body>

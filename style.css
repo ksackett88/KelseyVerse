@@ -1494,3 +1494,28 @@ img { display: block; max-width: 100%; }
   }
   .signoff__base b { color: var(--neon); font-weight: 400; }
 
+
+/* ============ MOBILE SAFETY PASS ============ */
+@media (max-width: 720px) {
+  .wrap { width: min(1280px, 100% - 32px); }
+  .post-page { padding: 32px 18px 48px; }
+  .post-page-title { font-size: clamp(28px, 7vw, 44px); overflow-wrap: anywhere; }
+  .post-page-body { font-size: 16px; line-height: 1.85; }
+  .post-page-body h2 { font-size: 20px; overflow-wrap: anywhere; }
+  .nav { padding: 10px 14px; }
+  .nav-logo { font-size: 14px; }
+  .nav-links { display: none; }
+  .post-cta { padding: 36px 18px; }
+  .post-cta-title { font-size: clamp(18px, 5vw, 28px); overflow-wrap: anywhere; }
+  .foot__grid, .foot__bar, .foot__meta { flex-wrap: wrap !important; }
+  .foot__meta { text-align: left !important; width: 100%; }
+  .signoff__grid, .signoff__base, .signup, .post-feature { flex-wrap: wrap !important; }
+  .post-feature { grid-template-columns: 1fr !important; }
+  h1, h2, h3 { overflow-wrap: anywhere; word-break: break-word; }
+}
+
+@media (max-width: 480px) {
+  .wrap { width: min(1280px, 100% - 24px); }
+  .post-page { padding: 24px 14px 36px; }
+  .post-page-title { font-size: clamp(24px, 8vw, 36px); }
+}

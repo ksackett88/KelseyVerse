@@ -1577,6 +1577,30 @@
   .drop__card--live:hover .drop__card-arrow {
     background: rgba(134,194,129,0.36);
   }
+
+  /* ============ MOBILE SAFETY PASS ============ */
+  @media (max-width: 720px) {
+    .wrap { width: min(1280px, 100% - 32px); }
+    .hero__top, .hero__stats, .variants__header, .merch__header,
+    .system__header, .chaos__head, .drop__cta-row, .foot__grid,
+    .foot__bar, .foot__meta {
+      flex-wrap: wrap !important;
+    }
+    .variants__header-right, .merch__header-right, .chaos__head-right,
+    .system__header-right {
+      text-align: left;
+      width: 100%;
+    }
+    .foot__meta { text-align: left !important; width: 100%; }
+    .hero__stats { gap: 24px !important; row-gap: 18px; }
+    .hero__stat-num { font-size: 28px; }
+    h1, h2, h3, .section-title { overflow-wrap: anywhere; word-break: break-word; }
+  }
+  @media (max-width: 480px) {
+    .wrap { width: min(1280px, 100% - 24px); }
+    .hero__lockup .mark { font-size: clamp(44px, 14vw, 70px); }
+    .hero__lockup .neon { font-size: clamp(28px, 9vw, 48px); }
+  }
 </style>
 </head>
 <body>
