@@ -2902,8 +2902,10 @@
         no newsletter. no spam. just life, plants, an aussie blue heeler with strong
         opinions about your shoelaces, and the occasional crisis that becomes a blog post.
       </p>
-      <form class="signup" onsubmit="event.preventDefault(); this.querySelector('button').textContent='in orbit ✦'; this.querySelector('input').value='';">
-        <input type="email" placeholder="your email — i won't abuse it" aria-label="email">
+      <form class="signup" action="https://formspree.io/f/xojyoggd" method="POST" data-formspree>
+        <input type="email" name="email" placeholder="your email — i won't abuse it" aria-label="email" required>
+        <input type="hidden" name="_subject" value="new orbit subscriber ✦">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <button type="submit">enter the orbit</button>
       </form>
       <p class="signup__note">sent whenever something worth sending happens. zero obligation. un-orbit anytime.</p>
@@ -2972,6 +2974,36 @@
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  })();
+
+  // Newsletter signup → Formspree (AJAX so we don't leave the page)
+  (function () {
+    document.querySelectorAll('form[data-formspree]').forEach(function (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button');
+        var input = form.querySelector('input[type="email"]');
+        var originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'sending…';
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(function (res) {
+          if (res.ok) {
+            btn.textContent = 'in orbit ✦';
+            input.value = '';
+          } else {
+            btn.textContent = 'try again ?';
+            btn.disabled = false;
+          }
+        }).catch(function () {
+          btn.textContent = 'try again ?';
+          btn.disabled = false;
+        });
+      });
+    });
   })();
 
   // Rotate the "now in orbit" chips on each load
