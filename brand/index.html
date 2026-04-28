@@ -1402,11 +1402,19 @@
   @media (max-width: 720px) {
     .wrap { width: min(1280px, 100% - 32px); }
     .hero {
-      min-height: auto !important;
-      padding-top: 90px !important;
-      padding-bottom: 60px !important;
+      min-height: 0 !important;
+      height: auto !important;
+      display: block !important;
+      overflow: visible !important;
+      padding: 90px 0 60px !important;
     }
-    .hero__content { gap: 28px; }
+    .hero__content {
+      flex: none !important;
+      display: block !important;
+      padding: 0 !important;
+    }
+    .hero__content > * + * { margin-top: 24px; }
+    .hero__logo, .hero__lockup { text-align: center; }
     .hero__top, .hero__stats, .variants__header, .system__header,
     .foot__grid, .foot__bar, .foot__meta {
       flex-wrap: wrap !important;
