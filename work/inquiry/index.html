@@ -543,9 +543,13 @@
           btn.innerHTML = 'send another';
         }, 3000);
       } else {
-        return res.json().then(function (data) { throw data; });
+        return res.json().then(function (data) {
+          throw new Error(data.error || ('HTTP ' + res.status));
+        });
       }
-    }).catch(function () {
+    }).catch(function (err) {
+      var msg = err && err.message ? err.message : 'network error';
+      error.innerHTML = 'something went wrong (' + msg + '). try again, or email me directly at <a href="mailto:hello@kelseyverse.com" style="color: inherit; text-decoration: underline;">hello@kelseyverse.com</a>.';
       error.classList.add('on');
       btn.disabled = false;
       btn.innerHTML = 'try again →';
