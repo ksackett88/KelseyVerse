@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZipKit Quoting Tool — Kelseyverse Work</title>
+<meta name="description" content="Internal sales quoting, proposal, and invoicing platform built for ZipKit Homes and Mountain Valley Prefab. Six quote types, dynamic pricing, PDF generation, override fields, custom payment schedules.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0f1c'/><path d='M16 5C10 10 9 18 14 25Q16 27 18 25C23 18 22 10 16 5Z' fill='%2386c281'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Rock+Salt&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0d0f1c;
+    --ink-2: #151829;
+    --ink-3: #1e2238;
+    --ink-4: #090a14;
+    --cream: #f3ecde;
+    --cream-2: #e8dfc9;
+    --cream-dim: #c9bfa4;
+    --leaf: #86c281;
+    --leaf-dark: #5b9456;
+    --neon: #ff2d8a;
+    --neon-soft: #ff69b4;
+    --neon-hot: #ff0f7a;
+    --grain-opacity: 0.06;
+    --f-display: 'Syne', sans-serif;
+    --f-hand: 'Rock Salt', cursive;
+    --f-body: 'Inter', sans-serif;
+    --f-mono: 'JetBrains Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--f-body);
+    background: var(--ink);
+    color: var(--cream);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.7'/></svg>");
+  }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  .wrap { width: min(1280px, 100% - 48px); margin-inline: auto; }
+
+  /* NAV */
+  .nav {
+    position: fixed; top: 20px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 500;
+    display: flex; align-items: center; gap: 4px;
+    padding: 10px 14px;
+    background: rgba(13,15,28,0.55);
+    backdrop-filter: blur(18px) saturate(1.3);
+    -webkit-backdrop-filter: blur(18px) saturate(1.3);
+    border: 1px solid rgba(243,236,222,0.1);
+    border-radius: 999px;
+    box-shadow: 0 12px 40px -10px rgba(0,0,0,0.5);
+  }
+  .nav a {
+    text-decoration: none;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: var(--cream-2);
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .nav a:hover { background: rgba(134,194,129,0.14); color: var(--leaf); }
+  .nav .nav-mark {
+    font-family: var(--f-display);
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: lowercase;
+    padding: 8px 12px 8px 16px;
+    color: var(--cream);
+  }
+  .nav .nav-mark span { color: var(--leaf); }
+  .nav a.nav-cta {
+    background: var(--neon); color: #fff;
+    box-shadow: 0 0 12px rgba(255,45,138,0.55);
+  }
+  @media (max-width: 860px) { .nav a:not(.nav-mark):not(.nav-cta) { display: none; } }
+
+  /* HERO */
+  .proj-hero {
+    padding: 140px 0 60px;
+    background:
+      radial-gradient(ellipse 55% 45% at 20% 40%, rgba(134,194,129,0.15), transparent 60%),
+      radial-gradient(ellipse 45% 40% at 85% 60%, rgba(255,45,138,0.1), transparent 60%),
+      linear-gradient(180deg, #080a14 0%, var(--ink) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .proj-hero__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: gap 0.2s;
+  }
+  .proj-hero__back:hover { gap: 12px; }
+  .proj-hero__eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .proj-hero__eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+  }
+  .proj-hero__title {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(38px, 5.5vw, 68px);
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    color: var(--cream);
+    margin: 0 0 20px;
+  }
+  .proj-hero__sub {
+    font-family: var(--f-body);
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.55;
+    color: var(--cream-2);
+    opacity: 0.82;
+    max-width: 680px;
+    margin: 0 0 32px;
+  }
+  .proj-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.3s, border-color 0.25s;
+    border: 1px solid transparent;
+  }
+  .btn--primary {
+    background: var(--neon); color: #fff;
+    box-shadow: 0 0 20px rgba(255,45,138,0.35);
+  }
+  .btn--primary:hover { background: var(--neon-hot); transform: translateY(-2px); }
+  .btn--secondary {
+    background: rgba(134,194,129,0.08);
+    color: var(--leaf);
+    border-color: rgba(134,194,129,0.35);
+  }
+  .btn--secondary:hover { background: rgba(134,194,129,0.16); border-color: var(--leaf); }
+  .btn svg { width: 12px; height: 12px; }
+  .proj-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(243,236,222,0.08);
+    margin-top: 44px;
+  }
+  .proj-hero__meta-item h4 {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin: 0 0 6px;
+    font-weight: 500;
+  }
+  .proj-hero__meta-item p {
+    font-family: var(--f-body);
+    font-size: 15px;
+    color: var(--cream-2);
+    margin: 0;
+  }
+
+  /* SECTIONS */
+  section.pad { padding: 80px 0; }
+  .label {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .label::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+  }
+  .h2 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(28px, 3.5vw, 44px);
+    letter-spacing: -0.025em;
+    color: var(--cream);
+    margin: 0 0 24px;
+    text-transform: lowercase;
+    line-height: 1.05;
+  }
+  .h2 em { font-style: normal; color: var(--leaf); }
+  .body-copy {
+    max-width: 720px;
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--cream-2);
+    opacity: 0.9;
+  }
+  .body-copy p { margin-bottom: 1.2em; }
+  .body-copy p:last-child { margin-bottom: 0; }
+  .body-copy strong { color: var(--cream); font-weight: 500; }
+
+  /* SCREENSHOT PLACEHOLDER */
+  .shot {
+    aspect-ratio: 16 / 10;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1d30, #0e1020);
+    border: 1px solid rgba(243,236,222,0.08);
+    position: relative;
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,0.6);
+  }
+  .shot img { width: 100%; height: 100%; object-fit: cover; }
+  .shot__placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--cream-2);
+    opacity: 0.4;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    gap: 10px;
+    text-align: center;
+    padding: 20px;
+  }
+  .shot__placeholder svg { width: 42px; height: 42px; opacity: 0.6; }
+  .shot__cap {
+    margin-top: 14px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.6;
+    text-align: center;
+  }
+
+  /* FEATURES GRID */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 40px;
+  }
+  .feature {
+    padding: 24px 26px;
+    background: rgba(243,236,222,0.03);
+    border: 1px solid rgba(243,236,222,0.08);
+    border-radius: 16px;
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .feature:hover {
+    border-color: rgba(134,194,129,0.35);
+    background: rgba(134,194,129,0.05);
+  }
+  .feature__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(134,194,129,0.15);
+    color: var(--leaf);
+    margin-bottom: 14px;
+    border: 1px solid rgba(134,194,129,0.3);
+  }
+  .feature__icon svg { width: 20px; height: 20px; }
+  .feature__title {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--cream);
+    margin: 0 0 6px;
+    text-transform: lowercase;
+    letter-spacing: -0.01em;
+  }
+  .feature__desc {
+    font-family: var(--f-body);
+    font-size: 14px;
+    color: var(--cream-2);
+    opacity: 0.75;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* QUOTE TYPES LIST */
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .quote-chip {
+    padding: 16px 22px;
+    background: linear-gradient(160deg, var(--ink-2) 0%, var(--ink-4) 100%);
+    border: 1px solid rgba(134,194,129,0.15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .quote-chip:hover {
+    border-color: rgba(134,194,129,0.4);
+    transform: translateY(-2px);
+  }
+  .quote-chip__num {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--leaf);
+    background: rgba(134,194,129,0.12);
+    border: 1px solid rgba(134,194,129,0.3);
+    padding: 6px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .quote-chip__body {
+    font-family: var(--f-body);
+    font-size: 14px;
+    color: var(--cream);
+    line-height: 1.35;
+  }
+  .quote-chip__body small {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.55;
+    margin-top: 3px;
+    font-weight: normal;
+  }
+
+  /* STACK */
+  .stack-band {
+    background: linear-gradient(160deg, var(--ink-2) 0%, var(--ink-4) 100%);
+    border-top: 1px solid rgba(243,236,222,0.06);
+    border-bottom: 1px solid rgba(243,236,222,0.06);
+    padding: 60px 0;
+  }
+  .stack-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .stack-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .stack-tag {
+    padding: 12px 16px;
+    background: rgba(243,236,222,0.04);
+    border: 1px solid rgba(243,236,222,0.1);
+    border-radius: 10px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .stack-tag::before {
+    content: "◆";
+    color: var(--leaf);
+    font-size: 10px;
+  }
+  @media (max-width: 720px) {
+    .stack-grid { grid-template-columns: 1fr; gap: 30px; }
+    .stack-list { grid-template-columns: 1fr; }
+  }
+
+  /* ROADMAP */
+  .roadmap {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .road-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: baseline;
+    padding: 20px 24px;
+    background: rgba(243,236,222,0.03);
+    border: 1px solid rgba(243,236,222,0.08);
+    border-radius: 14px;
+    border-left: 3px solid var(--leaf);
+  }
+  .road-item.done { border-left-color: var(--leaf); opacity: 0.85; }
+  .road-item.doing { border-left-color: var(--neon); }
+  .road-item.next { border-left-color: var(--cream-dim); opacity: 0.7; }
+  .road-status {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .road-item.done .road-status { background: rgba(134,194,129,0.15); color: var(--leaf); border: 1px solid rgba(134,194,129,0.35); }
+  .road-item.doing .road-status { background: rgba(255,45,138,0.15); color: var(--neon-soft); border: 1px solid rgba(255,45,138,0.35); }
+  .road-item.next .road-status { background: rgba(243,236,222,0.05); color: var(--cream-dim); border: 1px solid rgba(243,236,222,0.15); }
+  .road-body {
+    font-family: var(--f-body);
+    font-size: 15px;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+  .road-body strong { font-weight: 500; }
+  .road-body small {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.6;
+    margin-top: 4px;
+  }
+
+  /* END CTA */
+  .end-cta {
+    padding: 120px 0;
+    text-align: center;
+    background:
+      radial-gradient(ellipse 55% 45% at 50% 50%, rgba(255,45,138,0.12), transparent 65%),
+      var(--ink-4);
+    border-top: 1px solid rgba(255,45,138,0.18);
+  }
+  .end-cta__title {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(30px, 4vw, 48px);
+    letter-spacing: -0.025em;
+    color: var(--cream);
+    margin: 12px 0 20px;
+    text-transform: lowercase;
+  }
+  .end-cta__title em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--neon);
+  }
+  .end-cta__sub {
+    font-family: var(--f-body);
+    font-size: 16px;
+    color: var(--cream-2);
+    opacity: 0.78;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+
+  /* FOOTER MINI */
+  .foot-mini {
+    padding: 40px 0 30px;
+    background: #050709;
+    text-align: center;
+    border-top: 1px solid rgba(243,236,222,0.06);
+  }
+  .foot-mini__mark {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    color: var(--cream);
+  }
+  .foot-mini__mark span { color: var(--leaf); }
+  .foot-mini__links {
+    margin-top: 12px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.6;
+  }
+  .foot-mini__links a {
+    color: inherit;
+    text-decoration: none;
+    margin: 0 12px;
+    transition: color 0.2s;
+  }
+  .foot-mini__links a:hover { color: var(--leaf); }
+
+  @media (max-width: 720px) {
+    .wrap { width: min(1280px, 100% - 24px); }
+    .proj-hero { padding: 110px 0 40px; }
+    .proj-hero__meta { gap: 20px; margin-top: 32px; padding-top: 24px; }
+    .proj-hero__actions .btn { width: 100%; justify-content: center; }
+    section.pad { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-mark">kelsey<span>verse</span></a>
+  <a href="/">home</a>
+  <a href="../">work</a>
+  <a href="../inquiry/" class="nav-cta">start a project ✦</a>
+</nav>
+
+<!-- HERO -->
+<section class="proj-hero">
+  <div class="wrap">
+    <a href="../" class="proj-hero__back">← back to work</a>
+    <span class="proj-hero__eyebrow">case study · web + digital</span>
+    <h1 class="proj-hero__title">ZipKit Quoting Tool.</h1>
+    <p class="proj-hero__sub">
+      An internal sales platform that turns six different building product
+      lines into consistent, calculable proposals, invoices, and PDFs — used
+      daily by the ZipKit Homes and Mountain Valley Prefab sales teams.
+    </p>
+    <div class="proj-hero__actions">
+      <a href="https://ksackett88.github.io/zipkit-quoting-tool/ZipKit_Quoting_Tool.html" target="_blank" rel="noopener" class="btn btn--primary">
+        view live tool
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l6-6M5 3h4v4"/></svg>
+      </a>
+      <a href="https://github.com/ksackett88/zipkit-quoting-tool" target="_blank" rel="noopener" class="btn btn--secondary">
+        source on github
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l6-6M5 3h4v4"/></svg>
+      </a>
+    </div>
+    <div class="proj-hero__meta">
+      <div class="proj-hero__meta-item">
+        <h4>client</h4>
+        <p>ZipKit Homes / Mountain Valley Prefab</p>
+      </div>
+      <div class="proj-hero__meta-item">
+        <h4>role</h4>
+        <p>Sole designer + developer</p>
+      </div>
+      <div class="proj-hero__meta-item">
+        <h4>stack</h4>
+        <p>Vanilla JS · HTML · CSS · GitHub Pages</p>
+      </div>
+      <div class="proj-hero__meta-item">
+        <h4>status</h4>
+        <p>Live · in daily use · shipping updates</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="pad">
+  <div class="wrap">
+    <div class="label">the brief</div>
+    <h2 class="h2">from spreadsheets to a <em>real sales tool</em>.</h2>
+    <div class="body-copy">
+      <p>ZipKit Homes builds shell kits, modular homes, garages, airplane hangars, light-gauge steel frames, and full custom builds. Every product line had different pricing logic — snow-load engineering for shell kits, window packages for modular units, hangar-door sizing for aviation structures — and every quote was being rebuilt from scratch in a spreadsheet by a sales rep trying to remember which formulas mattered for which product.</p>
+      <p>The result: <strong>inconsistent quotes, math errors, and hours per proposal.</strong> The team needed a single tool that knew each product's rules, calculated in real time, produced customer-ready PDFs, and let sales negotiate without breaking the underlying math.</p>
+      <p>I designed and built it end-to-end as a single-page static tool that runs on GitHub Pages — no backend to maintain, no server to pay for, works from any device the sales team logs into.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HERO SCREENSHOT -->
+<section class="pad" style="padding-top: 20px;">
+  <div class="wrap">
+    <div class="shot">
+      <!-- TODO: drop screenshot at ./screenshot-main.png -->
+      <div class="shot__placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>main interface — quote type accordion</span>
+      </div>
+    </div>
+    <p class="shot__cap">the tool in daily use — single page, accordion sections per quote type</p>
+  </div>
+</section>
+
+<!-- QUOTE TYPES -->
+<section class="pad">
+  <div class="wrap">
+    <div class="label">what it supports</div>
+    <h2 class="h2">six product lines, <em>one tool</em>.</h2>
+    <p class="body-copy">Each quote type has its own field set, pricing rules, and required specs — but they all share a common line-item builder, payment schedule, and PDF pipeline.</p>
+    <div class="quotes-grid">
+      <div class="quote-chip">
+        <span class="quote-chip__num">01</span>
+        <div class="quote-chip__body">Shell Kits<small>snow load · package tiers · engineering</small></div>
+      </div>
+      <div class="quote-chip">
+        <span class="quote-chip__num">02</span>
+        <div class="quote-chip__body">Modular Homes<small>window packages · options · finish tiers</small></div>
+      </div>
+      <div class="quote-chip">
+        <span class="quote-chip__num">03</span>
+        <div class="quote-chip__body">Garages<small>size configurations · add-ons</small></div>
+      </div>
+      <div class="quote-chip">
+        <span class="quote-chip__num">04</span>
+        <div class="quote-chip__body">Airplane Hangars<small>hangar door sizing · specialty specs</small></div>
+      </div>
+      <div class="quote-chip">
+        <span class="quote-chip__num">05</span>
+        <div class="quote-chip__body">Light-Gauge Steel Frames<small>structural configurations</small></div>
+      </div>
+      <div class="quote-chip">
+        <span class="quote-chip__num">06</span>
+        <div class="quote-chip__body">Custom Builds<small>free-form line-item builder</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="pad">
+  <div class="wrap">
+    <div class="label">what it does</div>
+    <h2 class="h2">the <em>features that matter</em>.</h2>
+
+    <div class="features">
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v6H4z M4 14h16v6H4z M8 7h8M8 17h8"/></svg>
+        </span>
+        <h3 class="feature__title">dynamic pricing calculators</h3>
+        <p class="feature__desc">Live calculations that factor shipping distance, multi-unit discounts, snow load upgrades, and add-ons the moment a field changes.</p>
+      </div>
+
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v16M4 12h16"/></svg>
+        </span>
+        <h3 class="feature__title">line-item builder</h3>
+        <p class="feature__desc">Custom extras and credits with support for negative values, so discounts, promos, and negotiated concessions live in the same math.</p>
+      </div>
+
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 12l4 4 8-8"/></svg>
+        </span>
+        <h3 class="feature__title">override fields</h3>
+        <p class="feature__desc">Sales can hand-set negotiated prices per line without breaking the base calculations — the tool remembers what was overridden vs. calculated.</p>
+      </div>
+
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 10h8M8 14h5"/></svg>
+        </span>
+        <h3 class="feature__title">PDF proposal + invoice generation</h3>
+        <p class="feature__desc">One-click customer-facing PDFs from any configured quote — with the correct disclaimer, payment schedule, and branding baked in.</p>
+      </div>
+
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </span>
+        <h3 class="feature__title">custom payment schedules</h3>
+        <p class="feature__desc">Percentage-based payment stages that adjust to total automatically — deposit, milestone, delivery, final.</p>
+      </div>
+
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </span>
+        <h3 class="feature__title">special invoice builder</h3>
+        <p class="feature__desc">A free-form invoice mode for anything that doesn't map to a standard product line — change orders, extras, one-off charges.</p>
+      </div>
+
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h16M8 4v4M16 4v4M4 12h16v9H4zM8 16h8"/></svg>
+        </span>
+        <h3 class="feature__title">project management links</h3>
+        <p class="feature__desc">Deep-linked project URLs (like the one you clicked to see this) so a specific quote can be reopened, shared, or resumed from any device.</p>
+      </div>
+
+      <div class="feature">
+        <span class="feature__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+        </span>
+        <h3 class="feature__title">accordion single-page ux</h3>
+        <p class="feature__desc">Everything on one screen. Collapsible sections per quote type, per client, per invoice. No page reloads. No lost state.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="stack-band">
+  <div class="wrap">
+    <div class="stack-grid">
+      <div>
+        <div class="label" style="margin-bottom: 12px;">the stack</div>
+        <h2 class="h2" style="font-size: clamp(24px, 3vw, 32px);">no framework, <em>no backend</em>, no pager duty.</h2>
+      </div>
+      <div>
+        <div class="stack-list">
+          <span class="stack-tag">Vanilla JavaScript</span>
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">GitHub Pages</span>
+          <span class="stack-tag">LocalStorage state</span>
+          <span class="stack-tag">Client-side PDF gen</span>
+          <span class="stack-tag">Deep-link routing</span>
+          <span class="stack-tag">Zero dependencies</span>
+        </div>
+        <p style="margin-top: 20px; font-family: var(--f-body); font-size: 14px; color: var(--cream-2); opacity: 0.7; line-height: 1.6;">
+          A backend would've been overkill. Every calc runs client-side, state persists per project, and hosting is free forever on GitHub Pages. When the sales team asks for a new field, it's a git push away.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="pad">
+  <div class="wrap">
+    <div class="label">what's next</div>
+    <h2 class="h2">the <em>roadmap</em>.</h2>
+    <p class="body-copy">The tool ships in continuous iterations — sales team says what's slowing them down, I build it, it's live the same day.</p>
+
+    <div class="roadmap">
+      <div class="road-item done">
+        <span class="road-status">shipped</span>
+        <div class="road-body">
+          <strong>Quoting engine, six product lines, PDF proposals, invoices, payment schedules</strong>
+          <small>in daily use since 2025</small>
+        </div>
+      </div>
+      <div class="road-item doing">
+        <span class="road-status">building</span>
+        <div class="road-body">
+          <strong>Contract generation from approved proposals</strong>
+          <small>same data, contract-ready templates, one click</small>
+        </div>
+      </div>
+      <div class="road-item next">
+        <span class="road-status">next</span>
+        <div class="road-body">
+          <strong>Electronic signature integration</strong>
+          <small>customer signs the contract in the same tool the quote came from</small>
+        </div>
+      </div>
+      <div class="road-item next">
+        <span class="road-status">next</span>
+        <div class="road-body">
+          <strong>Client project dashboard</strong>
+          <small>every quote, invoice, and signature status for a client in one view</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- END CTA -->
+<section class="end-cta">
+  <div class="wrap">
+    <span style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--neon);">need something like this?</span>
+    <h2 class="end-cta__title">custom sales tools, <em>quoted per scope</em>.</h2>
+    <p class="end-cta__sub">
+      If your team is quoting products in a spreadsheet and losing hours per proposal,
+      I can build you the same kind of thing — configured for how your business actually works.
+    </p>
+    <a href="../inquiry/" class="btn btn--primary">
+      start a project
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer class="foot-mini">
+  <div class="wrap">
+    <div class="foot-mini__mark">kelsey<span>verse</span></div>
+    <div class="foot-mini__links">
+      <a href="/">home</a>
+      <a href="../">work</a>
+      <a href="../inquiry/">start a project</a>
+      <a href="mailto:hello@kelseyverse.com">email</a>
+      <a href="https://github.com/ksackett88" target="_blank" rel="noopener">github ↗</a>
+      <a href="https://www.linkedin.com/in/ksackett88/" target="_blank" rel="noopener">linkedin ↗</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
