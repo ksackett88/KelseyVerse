@@ -364,6 +364,124 @@
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 24px;
   }
+
+  /* ==== GLAM HERO CARD (single big showcase) ==== */
+  .glam-card {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    background: linear-gradient(160deg, var(--ink-2) 0%, var(--ink-4) 100%);
+    border: 1px solid rgba(243,236,222,0.08);
+    border-radius: 24px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), border-color 0.35s, box-shadow 0.5s;
+    box-shadow: 0 40px 100px -30px rgba(0,0,0,0.55);
+  }
+  .glam-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(134,194,129,0.4);
+    box-shadow: 0 60px 140px -30px rgba(134,194,129,0.25);
+  }
+  .glam-card__frame {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #0e1020;
+    position: relative;
+  }
+  .glam-card__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s ease;
+  }
+  .glam-card:hover .glam-card__frame img { transform: scale(1.05); }
+  .glam-card__frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 70%, rgba(9,10,20,0.4) 100%);
+    pointer-events: none;
+  }
+  .glam-card__body {
+    padding: 56px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+  .glam-card__badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    background: rgba(134,194,129,0.14);
+    color: var(--leaf);
+    border: 1px solid rgba(134,194,129,0.35);
+    border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .glam-card__title {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(44px, 5vw, 68px);
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: var(--cream);
+    margin: 0 0 18px;
+    text-transform: lowercase;
+  }
+  .glam-card__meta {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    line-height: 1.8;
+    margin: 0 0 16px;
+    opacity: 0.85;
+  }
+  .glam-card__desc {
+    font-family: var(--f-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--cream-2);
+    opacity: 0.8;
+    margin: 0 0 24px;
+  }
+  .glam-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px;
+    background: var(--neon);
+    color: #fff;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 999px;
+    align-self: flex-start;
+    box-shadow: 0 0 20px rgba(255,45,138,0.35);
+    transition: background 0.25s, transform 0.2s;
+  }
+  .glam-card__cta svg { width: 12px; height: 12px; }
+  .glam-card:hover .glam-card__cta {
+    background: var(--neon-hot);
+    transform: translateX(4px);
+  }
+  @media (max-width: 900px) {
+    .glam-card { grid-template-columns: 1fr; }
+    .glam-card__frame { aspect-ratio: 16 / 10; }
+    .glam-card__body { padding: 36px 32px 40px; }
+  }
+  @media (max-width: 560px) {
+    .glam-card__body { padding: 28px 24px 32px; }
+  }
   .viz-card {
     background: linear-gradient(160deg, var(--ink-2) 0%, var(--ink-4) 100%);
     border: 1px solid rgba(243,236,222,0.06);
@@ -1027,57 +1145,27 @@
       </div>
     </div>
 
-    <div class="viz-grid">
-      <!-- Tailwater case study -->
-      <a href="./tailwater/" class="viz-card">
-        <div class="viz-card__frame">
-          <img src="./tailwater/Tailwater-front-Enhanced-1.png" alt="Tailwater — front exterior render" loading="lazy">
-        </div>
-        <div class="viz-card__body">
-          <span class="viz-card__badge">case study</span>
-          <h3 class="viz-card__title">Tailwater · Raised Bar Ventures</h3>
-          <p class="viz-card__loc">Hailey, Idaho</p>
-          <p class="viz-card__services">Interior + Exterior Visualization · 3 Home Models · Cinematic Media</p>
-        </div>
-      </a>
-
-      <!-- Feature preview cards from Tailwater case study -->
-      <a href="./tailwater/#interiors" class="viz-card">
-        <div class="viz-card__frame">
-          <img src="./tailwater/LOT-1-KITCHENLIVING.png" alt="Lot 1 kitchen + living" loading="lazy">
-        </div>
-        <div class="viz-card__body">
-          <span class="viz-card__badge">interior</span>
-          <h3 class="viz-card__title">Lot 1 — Kitchen + Living</h3>
-          <p class="viz-card__loc">Tailwater / Hailey, ID</p>
-          <p class="viz-card__services">Interior Visualization · Furniture + Styling</p>
-        </div>
-      </a>
-
-      <a href="./tailwater/#home-models" class="viz-card">
-        <div class="viz-card__frame">
-          <img src="./tailwater/1. THE DELLA.jpg" alt="The Della — home model" loading="lazy">
-        </div>
-        <div class="viz-card__body">
-          <span class="viz-card__badge">home model</span>
-          <h3 class="viz-card__title">The Della</h3>
-          <p class="viz-card__loc">Raised Bar / Tailwater</p>
-          <p class="viz-card__services">Concept Rendering · Exterior Visualization</p>
-        </div>
-      </a>
-
-      <a href="./tailwater/#interiors" class="viz-card">
-        <div class="viz-card__frame">
-          <img src="./tailwater/raised bar.png" alt="Raised bar detail" loading="lazy">
-        </div>
-        <div class="viz-card__body">
-          <span class="viz-card__badge">detail</span>
-          <h3 class="viz-card__title">Raised Bar — Interior Detail</h3>
-          <p class="viz-card__loc">Lot 1 · Tailwater</p>
-          <p class="viz-card__services">Materials · Lighting · Composition</p>
-        </div>
-      </a>
-    </div>
+    <a href="./tailwater/" class="glam-card">
+      <div class="glam-card__frame">
+        <img src="./tailwater/Tailwater-front-Enhanced-1.png" alt="Tailwater — three-home boutique development, Old Hailey, Idaho" loading="lazy">
+      </div>
+      <div class="glam-card__body">
+        <span class="glam-card__badge">featured case study</span>
+        <h3 class="glam-card__title">Tailwater.</h3>
+        <p class="glam-card__meta">
+          A three-home boutique development · Old Hailey, Idaho ·
+          For Raised Bar Development Group
+        </p>
+        <p class="glam-card__desc">
+          Full visualization scope — exteriors, interiors, three custom home
+          designs, and cinematic media. Now live at tailwater208.com.
+        </p>
+        <span class="glam-card__cta">
+          view the case study
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+        </span>
+      </div>
+    </a>
   </div>
 </section>
 
