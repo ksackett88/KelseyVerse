@@ -293,6 +293,58 @@
     opacity: 0.6;
     text-align: center;
   }
+  .shot { transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1), border-color 0.25s; }
+  .shot:hover { transform: translateY(-4px); border-color: rgba(134,194,129,0.3); }
+  .shots-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .shot--half { aspect-ratio: 16 / 10; }
+  @media (max-width: 900px) {
+    .shots-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .shots-grid { grid-template-columns: 1fr; }
+  }
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,7,9,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 40px;
+    cursor: zoom-out;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .lightbox.on { display: flex; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.7);
+  }
+  .lightbox__close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 44px; height: 44px;
+    background: rgba(243,236,222,0.08);
+    border: 1px solid rgba(243,236,222,0.15);
+    border-radius: 999px;
+    color: var(--cream);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .lightbox__close:hover { background: rgba(255,45,138,0.3); }
 
   /* FEATURES GRID */
   .features {
@@ -627,14 +679,28 @@
 <!-- HERO SCREENSHOT -->
 <section class="pad" style="padding-top: 20px;">
   <div class="wrap">
-    <div class="shot">
-      <!-- TODO: drop screenshot at ./screenshot-main.png -->
-      <div class="shot__placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        <span>main interface — quote type accordion</span>
-      </div>
+    <div class="shot" data-full="sales1.png" style="cursor: zoom-in;">
+      <img src="sales1.png" alt="ZipKit Quoting Tool — main interface" loading="eager">
     </div>
     <p class="shot__cap">the tool in daily use — single page, accordion sections per quote type</p>
+  </div>
+</section>
+
+<!-- ADDITIONAL SCREENSHOTS -->
+<section class="pad" style="padding-top: 40px; padding-bottom: 40px;">
+  <div class="wrap">
+    <div class="label">more of the interface</div>
+    <div class="shots-grid">
+      <div class="shot shot--half" data-full="sales2.png">
+        <img src="sales2.png" alt="ZipKit Quoting Tool — screenshot 2" loading="lazy">
+      </div>
+      <div class="shot shot--half" data-full="sales3.png">
+        <img src="sales3.png" alt="ZipKit Quoting Tool — screenshot 3" loading="lazy">
+      </div>
+      <div class="shot shot--half" data-full="sales4.png">
+        <img src="sales4.png" alt="ZipKit Quoting Tool — screenshot 4" loading="lazy">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -843,6 +909,30 @@
     </div>
   </div>
 </footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" id="lightbox-close" aria-label="close">×</button>
+  <img id="lightbox-img" alt="">
+</div>
+
+<script>
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+  document.querySelectorAll('[data-full]').forEach(function (el) {
+    el.style.cursor = 'zoom-in';
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      lbImg.src = el.getAttribute('data-full');
+      lb.classList.add('on');
+    });
+  });
+  function closeLb() { lb.classList.remove('on'); lbImg.src = ''; }
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  lbClose.addEventListener('click', closeLb);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+</script>
 
 </body>
 </html>

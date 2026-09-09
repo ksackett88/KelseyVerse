@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tailwater Residential Development — Kelseyverse Work</title>
-<meta name="description" content="Photorealistic residential visualization developed from existing architectural models for a multi-home development in Hailey, Idaho.">
+<title>Tailwater / Raised Bar — Kelseyverse Work</title>
+<meta name="description" content="Photorealistic residential visualization developed for the Tailwater development — a Raised Bar Ventures project in Idaho. Interiors, exteriors, and cinematic media across three home models.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0f1c'/><path d='M16 5C10 10 9 18 14 25Q16 27 18 25C23 18 22 10 16 5Z' fill='%2386c281'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
     --neon: #ff2d8a;
     --neon-soft: #ff69b4;
     --neon-hot: #ff0f7a;
-    --grain-opacity: 0.06;
+    --grain-opacity: 0.05;
     --f-display: 'Syne', sans-serif;
     --f-hand: 'Rock Salt', cursive;
     --f-body: 'Inter', sans-serif;
@@ -52,7 +52,7 @@
   }
   a { color: inherit; }
   img { display: block; max-width: 100%; }
-  .wrap { width: min(1280px, 100% - 48px); margin-inline: auto; }
+  .wrap { width: min(1360px, 100% - 48px); margin-inline: auto; }
 
   /* NAV */
   .nav {
@@ -61,7 +61,7 @@
     z-index: 500;
     display: flex; align-items: center; gap: 4px;
     padding: 10px 14px;
-    background: rgba(13,15,28,0.55);
+    background: rgba(13,15,28,0.6);
     backdrop-filter: blur(18px) saturate(1.3);
     -webkit-backdrop-filter: blur(18px) saturate(1.3);
     border: 1px solid rgba(243,236,222,0.1);
@@ -146,13 +146,22 @@
     color: var(--cream);
     margin: 0 0 20px;
   }
+  .proj-hero__sub {
+    font-family: var(--f-body);
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.55;
+    color: var(--cream-2);
+    opacity: 0.82;
+    max-width: 680px;
+    margin: 0 0 12px;
+  }
   .proj-hero__meta {
     display: flex;
     flex-wrap: wrap;
     gap: 32px;
-    padding-top: 24px;
+    padding-top: 32px;
     border-top: 1px solid rgba(243,236,222,0.08);
-    margin-top: 32px;
+    margin-top: 40px;
   }
   .proj-hero__meta-item h4 {
     font-family: var(--f-mono);
@@ -170,25 +179,38 @@
     margin: 0;
   }
 
-  /* OVERVIEW */
-  .overview {
-    padding: 60px 0 80px;
+  /* HERO SHOT */
+  .hero-shot {
+    padding: 20px 0 40px;
   }
-  .overview__body {
-    max-width: 720px;
-    font-family: var(--f-body);
-    font-size: 17px;
-    line-height: 1.75;
+  .hero-shot__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #0e1020;
+    box-shadow: 0 60px 140px -40px rgba(0,0,0,0.7);
+    border: 1px solid rgba(243,236,222,0.06);
+  }
+  .hero-shot__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-shot__cap {
+    margin-top: 16px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
     color: var(--cream-2);
+    opacity: 0.6;
+    text-align: center;
   }
-  .overview__body p { margin-bottom: 1.2em; }
-  .overview__body p:last-child { margin-bottom: 0; }
 
-  /* IMAGE STACK */
-  .stack {
-    padding: 40px 0 120px;
-  }
-  .stack__label {
+  /* SECTIONS */
+  section.pad { padding: 80px 0; }
+  .label {
     font-family: var(--f-mono);
     font-size: 11px;
     letter-spacing: 0.24em;
@@ -197,115 +219,211 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
-  .stack__label::before {
+  .label::before {
     content: "";
     width: 28px;
     height: 1px;
     background: currentColor;
   }
-  .stack__title {
+  .h2 {
     font-family: var(--f-display);
     font-weight: 700;
-    font-size: clamp(28px, 3.5vw, 40px);
-    letter-spacing: -0.02em;
+    font-size: clamp(28px, 3.5vw, 44px);
+    letter-spacing: -0.025em;
     color: var(--cream);
-    margin: 0 0 32px;
+    margin: 0 0 24px;
     text-transform: lowercase;
+    line-height: 1.05;
   }
-  .stack__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-  .stack__grid--full { grid-template-columns: 1fr; }
-  .stack__img {
-    aspect-ratio: 4 / 3;
-    border-radius: 16px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1a1d30, #0e1020);
-    border: 1px solid rgba(243,236,222,0.08);
-    position: relative;
-  }
-  .stack__img--wide { aspect-ratio: 16 / 9; }
-  .stack__img img { width: 100%; height: 100%; object-fit: cover; }
-  .stack__placeholder {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  .h2 em { font-style: normal; color: var(--leaf); }
+  .body-copy {
+    max-width: 720px;
+    font-family: var(--f-body);
+    font-size: 16px;
+    line-height: 1.75;
     color: var(--cream-2);
-    opacity: 0.4;
+    opacity: 0.85;
+  }
+  .body-copy p { margin-bottom: 1.1em; }
+  .body-copy p:last-child { margin-bottom: 0; }
+  .body-copy strong { color: var(--cream); font-weight: 500; }
+
+  /* MODELS GRID */
+  .models {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 32px;
+  }
+  .model-card {
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(160deg, var(--ink-2) 0%, var(--ink-4) 100%);
+    border: 1px solid rgba(243,236,222,0.06);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), border-color 0.3s;
+  }
+  .model-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(134,194,129,0.35);
+  }
+  .model-card__frame {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #0e1020;
+  }
+  .model-card__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .model-card:hover .model-card__frame img { transform: scale(1.04); }
+  .model-card__body { padding: 22px 24px 24px; }
+  .model-card__num {
     font-family: var(--f-mono);
     font-size: 10px;
-    letter-spacing: 0.24em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    gap: 10px;
-    text-align: center;
-    padding: 20px;
+    color: var(--leaf);
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid rgba(134,194,129,0.3);
+    background: rgba(134,194,129,0.08);
+    border-radius: 999px;
+    margin-bottom: 12px;
   }
-  .stack__placeholder svg { width: 42px; height: 42px; opacity: 0.6; }
+  .model-card__name {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    text-transform: lowercase;
+    color: var(--cream);
+    margin: 0 0 4px;
+  }
+  .model-card__type {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.55;
+  }
+  @media (max-width: 900px) { .models { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .models { grid-template-columns: 1fr; } }
 
-  .stack__cap {
-    margin-top: 16px;
+  /* GALLERY */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    grid-auto-flow: dense;
+  }
+  .g-item {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0e1020;
+    aspect-ratio: 4 / 3;
+    cursor: zoom-in;
+    border: 1px solid rgba(243,236,222,0.06);
+    transition: border-color 0.25s, transform 0.35s cubic-bezier(0.2,0.8,0.2,1);
+  }
+  .g-item:hover {
+    border-color: rgba(134,194,129,0.3);
+    transform: translateY(-3px);
+  }
+  .g-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .g-item:hover img { transform: scale(1.04); }
+  .g-item__cap {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 14px 12px;
+    background: linear-gradient(to top, rgba(13,15,28,0.95) 0%, rgba(13,15,28,0.6) 50%, transparent 100%);
     font-family: var(--f-mono);
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--cream-2);
-    opacity: 0.6;
-    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
   }
-  @media (max-width: 720px) {
-    .stack__grid { grid-template-columns: 1fr; }
+  .g-item:hover .g-item__cap { opacity: 1; }
+  /* Feature sizing */
+  .g-item--wide { grid-column: span 3; }
+  .g-item--reg { grid-column: span 2; }
+  .g-item--small { grid-column: span 2; }
+  .g-item--tall { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  @media (max-width: 900px) {
+    .gallery { grid-template-columns: repeat(4, 1fr); }
+    .g-item--wide { grid-column: span 4; }
+    .g-item--reg { grid-column: span 2; }
+    .g-item--small { grid-column: span 2; }
+    .g-item--tall { grid-column: span 2; grid-row: span 1; aspect-ratio: 4/3; }
+  }
+  @media (max-width: 560px) {
+    .gallery { grid-template-columns: 1fr 1fr; }
+    .g-item--wide, .g-item--reg, .g-item--small, .g-item--tall {
+      grid-column: span 2;
+      grid-row: auto;
+      aspect-ratio: 4/3;
+    }
   }
 
-  /* BEFORE / AFTER */
-  .ba-section {
-    padding: 0 0 80px;
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,7,9,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 40px;
+    cursor: zoom-out;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
-  .ba {
-    background: linear-gradient(160deg, var(--ink-2) 0%, var(--ink-4) 100%);
-    border: 1px solid rgba(243,236,222,0.06);
-    border-radius: 24px;
-    padding: 36px;
+  .lightbox.on { display: flex; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.7);
   }
-  .ba__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-  .ba__pane-label {
-    font-family: var(--f-mono);
-    font-size: 10px;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    padding: 6px 12px;
-    background: rgba(13,15,28,0.75);
+  .lightbox__close {
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 44px; height: 44px;
+    background: rgba(243,236,222,0.08);
     border: 1px solid rgba(243,236,222,0.15);
     border-radius: 999px;
-    color: var(--cream-2);
-    display: inline-block;
-    margin-bottom: 12px;
+    color: var(--cream);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
   }
-  .ba__pane-label--after {
-    background: rgba(255,45,138,0.15);
-    border-color: rgba(255,45,138,0.4);
-    color: var(--neon-soft);
-  }
-  @media (max-width: 720px) {
-    .ba { padding: 24px; }
-    .ba__grid { grid-template-columns: 1fr; }
-  }
+  .lightbox__close:hover { background: rgba(255,45,138,0.3); }
 
   /* PROCESS */
   .process {
-    padding: 60px 0 120px;
+    padding: 100px 0 120px;
     background: linear-gradient(180deg, transparent 0%, var(--ink-4) 100%);
+    border-top: 1px solid rgba(243,236,222,0.05);
   }
   .process__grid {
     display: grid;
@@ -313,16 +431,7 @@
     gap: 60px;
     align-items: start;
   }
-  .process__col h2 {
-    font-family: var(--f-display);
-    font-weight: 700;
-    font-size: clamp(32px, 4vw, 44px);
-    letter-spacing: -0.025em;
-    color: var(--cream);
-    text-transform: lowercase;
-    margin: 0;
-  }
-  .process__col h2 em { font-style: normal; color: var(--leaf); }
+  .process__col h2 { margin: 0; }
   .process__list {
     list-style: none;
     padding: 0;
@@ -375,9 +484,8 @@
   }
   .end-cta__title em {
     font-style: normal;
-    color: var(--neon);
-    -webkit-text-stroke: 1px var(--neon);
     color: transparent;
+    -webkit-text-stroke: 1px var(--neon);
   }
   .end-cta__sub {
     font-family: var(--f-body);
@@ -441,9 +549,11 @@
   .foot-mini__links a:hover { color: var(--leaf); }
 
   @media (max-width: 720px) {
-    .wrap { width: min(1280px, 100% - 24px); }
+    .wrap { width: min(1360px, 100% - 24px); }
     .proj-hero { padding: 110px 0 40px; }
     .proj-hero__meta { gap: 20px; }
+    section.pad { padding: 60px 0; }
+    .process { padding: 60px 0 80px; }
   }
 </style>
 </head>
@@ -460,153 +570,184 @@
 <section class="proj-hero">
   <div class="wrap">
     <a href="../" class="proj-hero__back">← back to work</a>
-    <span class="proj-hero__eyebrow">case study · visualization</span>
-    <h1 class="proj-hero__title">Tailwater Residential Development.</h1>
+    <span class="proj-hero__eyebrow">case study · architectural visualization</span>
+    <h1 class="proj-hero__title">Tailwater · Raised Bar Ventures.</h1>
+    <p class="proj-hero__sub">
+      Photorealistic residential visualization for a Raised Bar Ventures
+      development — exterior renderings, three home model concepts, and full
+      interior visualization for the flagship Lot 1 build.
+    </p>
     <div class="proj-hero__meta">
+      <div class="proj-hero__meta-item">
+        <h4>client</h4>
+        <p>Raised Bar Ventures · via Zip Kit Homes</p>
+      </div>
       <div class="proj-hero__meta-item">
         <h4>location</h4>
         <p>Hailey, Idaho</p>
       </div>
       <div class="proj-hero__meta-item">
         <h4>services</h4>
-        <p>Interior Visualization · Cinematic Media</p>
+        <p>Interior + Exterior Visualization · Cinematic Media</p>
       </div>
       <div class="proj-hero__meta-item">
         <h4>year</h4>
         <p>2025 – 2026</p>
       </div>
-      <div class="proj-hero__meta-item">
-        <h4>scope</h4>
-        <p>Multi-home development</p>
-      </div>
     </div>
+  </div>
+</section>
+
+<!-- HERO SHOT -->
+<section class="hero-shot">
+  <div class="wrap">
+    <div class="hero-shot__frame">
+      <img src="Tailwater-front-Enhanced-1.png" alt="Tailwater — front exterior, photorealistic render" loading="eager">
+    </div>
+    <p class="hero-shot__cap">Tailwater — front exterior · enhanced final</p>
   </div>
 </section>
 
 <!-- OVERVIEW -->
-<section class="overview">
+<section class="pad">
   <div class="wrap">
-    <div class="overview__body">
-      <p>Residential visualization developed from existing architectural models for a multi-home development in Hailey, Idaho. The goal was marketing-ready imagery that could carry a listing on its own — interiors people could imagine living in, exteriors that read as photography, not renders.</p>
-      <p>Camera direction, materials, lighting, furniture and styling, and final image production all handled in-house from the same architectural files the builder was already working from.</p>
-    </div>
-  </div>
-</section>
-
-<!-- BEFORE / AFTER -->
-<section class="ba-section">
-  <div class="wrap">
-    <div class="ba">
-      <div class="stack__label">source → final</div>
-      <div class="ba__grid">
-        <div>
-          <span class="ba__pane-label">source / before</span>
-          <div class="stack__img">
-            <!-- TODO: drop image at ./before.jpg -->
-            <div class="stack__placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h18v18H3z M3 9h18 M9 3v18"/></svg>
-              <span>raw architectural model</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <span class="ba__pane-label ba__pane-label--after">final / after</span>
-          <div class="stack__img">
-            <!-- TODO: drop image at ./after.jpg -->
-            <div class="stack__placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-              <span>photorealistic final</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INTERIORS -->
-<section class="stack">
-  <div class="wrap">
-    <div class="stack__label">interiors</div>
-    <h2 class="stack__title">the <em style="color: var(--leaf); font-style: normal;">rooms</em></h2>
-
-    <div class="stack__grid">
-      <div>
-        <div class="stack__img">
-          <!-- TODO: drop image at ./kitchen-1.jpg -->
-          <div class="stack__placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>kitchen — hero angle</span>
-          </div>
-        </div>
-        <p class="stack__cap">kitchen — hero angle</p>
-      </div>
-      <div>
-        <div class="stack__img">
-          <!-- TODO: drop image at ./kitchen-2.jpg -->
-          <div class="stack__placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>kitchen — alternate</span>
-          </div>
-        </div>
-        <p class="stack__cap">kitchen — alternate angle</p>
-      </div>
-    </div>
-
-    <div class="stack__grid">
-      <div>
-        <div class="stack__img">
-          <!-- TODO: drop image at ./living-room.jpg -->
-          <div class="stack__placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>living room</span>
-          </div>
-        </div>
-        <p class="stack__cap">living room</p>
-      </div>
-      <div>
-        <div class="stack__img">
-          <!-- TODO: drop image at ./bedroom.jpg -->
-          <div class="stack__placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>bedroom</span>
-          </div>
-        </div>
-        <p class="stack__cap">primary bedroom</p>
-      </div>
+    <div class="label">the brief</div>
+    <h2 class="h2">renderings that <em>sell homes</em>, not just show them.</h2>
+    <div class="body-copy">
+      <p>Raised Bar Ventures is developing a residential community in Hailey, Idaho, with three distinct home model concepts and multi-unit deployments. They needed marketing-ready renderings that could carry listings, presentations, and buyer conversations — photorealistic enough to close, cinematic enough to remember.</p>
+      <p>The scope covered <strong>exteriors for the flagship Tailwater build</strong>, <strong>three home model concept renderings</strong> (The Della, Carbonate, and The Big Lost), and <strong>full interior visualization for Lot 1</strong> — main home plus ADU. Every space, every angle, developed from the architectural files and delivered ready to publish.</p>
     </div>
   </div>
 </section>
 
 <!-- EXTERIORS -->
-<section class="stack" style="padding-top: 0;">
+<section class="pad" style="padding-top: 40px;">
   <div class="wrap">
-    <div class="stack__label">exteriors + cinematic</div>
-    <h2 class="stack__title">the <em style="color: var(--leaf); font-style: normal;">outside</em></h2>
-
-    <div class="stack__grid stack__grid--full">
-      <div>
-        <div class="stack__img stack__img--wide">
-          <!-- TODO: drop image at ./exterior.jpg -->
-          <div class="stack__placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-            <span>exterior — hero shot</span>
-          </div>
-        </div>
-        <p class="stack__cap">exterior — hero shot</p>
+    <div class="label">exteriors</div>
+    <h2 class="h2">the <em>outside</em>.</h2>
+    <div class="gallery">
+      <div class="g-item g-item--wide" data-full="Tailwater-front-Enhanced-1.png">
+        <img src="Tailwater-front-Enhanced-1.png" alt="Tailwater front exterior — enhanced" loading="lazy">
+        <div class="g-item__cap">front exterior · enhanced</div>
+      </div>
+      <div class="g-item g-item--wide" data-full="Tailwater-Rear-Enhanced-1.png">
+        <img src="Tailwater-Rear-Enhanced-1.png" alt="Tailwater rear exterior — enhanced" loading="lazy">
+        <div class="g-item__cap">rear exterior · enhanced</div>
+      </div>
+      <div class="g-item g-item--wide" data-full="Tailwater Rendering-Front View 6-26-26.jpg">
+        <img src="Tailwater Rendering-Front View 6-26-26.jpg" alt="Tailwater front rendering — 6/26" loading="lazy">
+        <div class="g-item__cap">front view rendering · 06.26</div>
+      </div>
+      <div class="g-item g-item--wide" data-full="Tailwater Rendering-Rear View 6-26-26.png">
+        <img src="Tailwater Rendering-Rear View 6-26-26.png" alt="Tailwater rear rendering — 6/26" loading="lazy">
+        <div class="g-item__cap">rear view rendering · 06.26</div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="stack__grid stack__grid--full">
-      <div>
-        <div class="stack__img stack__img--wide">
-          <!-- TODO: drop video/still at ./cinematic.jpg or embed video -->
-          <div class="stack__placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <span>cinematic media</span>
-          </div>
+<!-- HOME MODELS -->
+<section class="pad" id="home-models" style="padding-top: 20px;">
+  <div class="wrap">
+    <div class="label">home models</div>
+    <h2 class="h2">three <em>concepts</em>, one development.</h2>
+    <div class="models">
+      <a class="model-card" data-full="1. THE DELLA.jpg">
+        <div class="model-card__frame">
+          <img src="1. THE DELLA.jpg" alt="The Della — home model rendering" loading="lazy">
         </div>
-        <p class="stack__cap">cinematic walkthrough — <a href="#" style="color: var(--leaf);">watch on request</a></p>
+        <div class="model-card__body">
+          <span class="model-card__num">model 01</span>
+          <h3 class="model-card__name">the della.</h3>
+          <p class="model-card__type">home model concept · exterior</p>
+        </div>
+      </a>
+      <a class="model-card" data-full="2. CARBONATE.jpg">
+        <div class="model-card__frame">
+          <img src="2. CARBONATE.jpg" alt="Carbonate — home model rendering" loading="lazy">
+        </div>
+        <div class="model-card__body">
+          <span class="model-card__num">model 02</span>
+          <h3 class="model-card__name">carbonate.</h3>
+          <p class="model-card__type">home model concept · exterior</p>
+        </div>
+      </a>
+      <a class="model-card" data-full="3. The-big-lost.png">
+        <div class="model-card__frame">
+          <img src="3. The-big-lost.png" alt="The Big Lost — home model rendering" loading="lazy">
+        </div>
+        <div class="model-card__body">
+          <span class="model-card__num">model 03</span>
+          <h3 class="model-card__name">the big lost.</h3>
+          <p class="model-card__type">home model concept · exterior</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INTERIORS - LOT 1 -->
+<section class="pad" id="interiors" style="padding-top: 40px;">
+  <div class="wrap">
+    <div class="label">interiors · lot 1 main home</div>
+    <h2 class="h2">inside the <em>flagship build</em>.</h2>
+    <div class="gallery">
+      <div class="g-item g-item--wide" data-full="LOT-1-KITCHENLIVING.png">
+        <img src="LOT-1-KITCHENLIVING.png" alt="Lot 1 kitchen + living — main home" loading="lazy">
+        <div class="g-item__cap">kitchen + living · main home</div>
+      </div>
+      <div class="g-item g-item--wide" data-full="LOT-1-BATHROOM MAIN.png">
+        <img src="LOT-1-BATHROOM MAIN.png" alt="Lot 1 main bathroom" loading="lazy">
+        <div class="g-item__cap">main bathroom</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="lot1 room1.png">
+        <img src="lot1 room1.png" alt="Lot 1 bedroom" loading="lazy">
+        <div class="g-item__cap">bedroom 01</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="lot1 room2.png">
+        <img src="lot1 room2.png" alt="Lot 1 bedroom 2" loading="lazy">
+        <div class="g-item__cap">bedroom 02</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="lot1 upstairs living.png">
+        <img src="lot1 upstairs living.png" alt="Lot 1 upstairs living area" loading="lazy">
+        <div class="g-item__cap">upstairs living</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="LOT1-LAUNDRY.png">
+        <img src="LOT1-LAUNDRY.png" alt="Lot 1 laundry" loading="lazy">
+        <div class="g-item__cap">laundry</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="raised bar 1.png">
+        <img src="raised bar 1.png" alt="Raised bar detail 1" loading="lazy">
+        <div class="g-item__cap">raised bar · detail</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="raised bar.png">
+        <img src="raised bar.png" alt="Raised bar detail 2" loading="lazy">
+        <div class="g-item__cap">raised bar · full view</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERIORS - LOT 1 ADU -->
+<section class="pad" style="padding-top: 20px;">
+  <div class="wrap">
+    <div class="label">interiors · lot 1 adu</div>
+    <h2 class="h2">the <em>accessory dwelling</em>.</h2>
+    <div class="body-copy" style="margin-bottom: 32px;">
+      <p>Every Lot 1 home ships with an ADU — a fully realized secondary dwelling with its own kitchen, bath, and living space. Renderings developed for both the primary and alternate kitchen configurations so buyers could see their options.</p>
+    </div>
+    <div class="gallery">
+      <div class="g-item g-item--reg" data-full="LOT-1-ADU KITCHEN.png">
+        <img src="LOT-1-ADU KITCHEN.png" alt="ADU kitchen — primary configuration" loading="lazy">
+        <div class="g-item__cap">adu kitchen · primary</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="LOT-1 ADU OOPT KTICHEN.png">
+        <img src="LOT-1 ADU OOPT KTICHEN.png" alt="ADU kitchen — alternate configuration" loading="lazy">
+        <div class="g-item__cap">adu kitchen · alternate config</div>
+      </div>
+      <div class="g-item g-item--reg" data-full="LOT-1 ADU BED.png">
+        <img src="LOT-1 ADU BED.png" alt="ADU bedroom" loading="lazy">
+        <div class="g-item__cap">adu bedroom</div>
       </div>
     </div>
   </div>
@@ -617,18 +758,19 @@
   <div class="wrap">
     <div class="process__grid">
       <div class="process__col">
-        <h2>what i <em>handled</em></h2>
+        <div class="label">the work</div>
+        <h2 class="h2">what i <em>handled</em>.</h2>
       </div>
       <div class="process__col">
         <ul class="process__list">
           <li>architectural visualization</li>
-          <li>camera direction</li>
+          <li>camera direction + composition</li>
           <li>furniture + styling</li>
           <li>materials + finishes</li>
           <li>lighting</li>
           <li>environmental treatment</li>
-          <li>final image production</li>
-          <li>cinematic media</li>
+          <li>enhanced image production</li>
+          <li>cinematic walkthrough media</li>
         </ul>
       </div>
     </div>
@@ -664,6 +806,31 @@
     </div>
   </div>
 </footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" id="lightbox-close" aria-label="close">×</button>
+  <img id="lightbox-img" alt="">
+</div>
+
+<script>
+  // Click any .g-item or .model-card with data-full to open lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+  document.querySelectorAll('[data-full]').forEach(function (el) {
+    el.style.cursor = 'zoom-in';
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      lbImg.src = el.getAttribute('data-full');
+      lb.classList.add('on');
+    });
+  });
+  function closeLb() { lb.classList.remove('on'); lbImg.src = ''; }
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+  lbClose.addEventListener('click', closeLb);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+</script>
 
 </body>
 </html>
