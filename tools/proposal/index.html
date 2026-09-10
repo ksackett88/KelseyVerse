@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposal + Contract Builder — Kelseyverse Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230d0f1c'/><path d='M16 5C10 10 9 18 14 25Q16 27 18 25C23 18 22 10 16 5Z' fill='%2386c281'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Rock+Salt&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0d0f1c;
+    --ink-2: #151829;
+    --ink-3: #1e2238;
+    --ink-4: #090a14;
+    --cream: #f3ecde;
+    --cream-2: #e8dfc9;
+    --cream-dim: #c9bfa4;
+    --leaf: #86c281;
+    --leaf-dark: #5b9456;
+    --neon: #ff2d8a;
+    --neon-hot: #ff0f7a;
+    --f-display: 'Syne', sans-serif;
+    --f-hand: 'Rock Salt', cursive;
+    --f-body: 'Inter', sans-serif;
+    --f-mono: 'JetBrains Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: var(--f-body);
+    background: var(--ink-4);
+    color: var(--cream);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  /* ==== APP SHELL (SPLIT) ==== */
+  .app {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    height: 100vh;
+  }
+  .admin {
+    background: var(--ink-2);
+    border-right: 1px solid rgba(243,236,222,0.08);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .preview-pane {
+    background: #f3ecde;
+    color: var(--ink);
+    overflow-y: auto;
+    position: relative;
+  }
+  @media (max-width: 900px) {
+    body { overflow: auto; }
+    .app { grid-template-columns: 1fr; height: auto; }
+    .admin { border-right: none; border-bottom: 1px solid rgba(243,236,222,0.1); max-height: 60vh; }
+  }
+
+  /* ==== ADMIN PANEL ==== */
+  .admin__header {
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(243,236,222,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: var(--ink-2);
+    z-index: 10;
+  }
+  .admin__mark {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    text-transform: lowercase;
+  }
+  .admin__mark span { color: var(--leaf); }
+  .admin__mark small {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.55;
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  .admin__actions {
+    display: flex;
+    gap: 6px;
+  }
+  .admin__actions button {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    background: rgba(243,236,222,0.06);
+    border: 1px solid rgba(243,236,222,0.15);
+    border-radius: 999px;
+    color: var(--cream-2);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .admin__actions button:hover {
+    background: rgba(134,194,129,0.15);
+    border-color: var(--leaf);
+    color: var(--leaf);
+  }
+  .admin__actions button.danger:hover {
+    background: rgba(255,45,138,0.15);
+    border-color: var(--neon);
+    color: var(--neon);
+  }
+
+  .admin__body {
+    padding: 20px 24px 40px;
+    flex: 1;
+  }
+
+  .field-group {
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(243,236,222,0.06);
+  }
+  .field-group:last-child { border-bottom: none; }
+  .field-group__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .field-group__label::before {
+    content: "◆";
+    color: var(--leaf);
+    font-size: 9px;
+  }
+
+  label.field {
+    display: block;
+    margin-bottom: 12px;
+  }
+  label.field small {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.55;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  input[type="text"], input[type="email"], input[type="date"], input[type="number"],
+  textarea, select {
+    width: 100%;
+    padding: 9px 12px;
+    font-family: var(--f-body);
+    font-size: 13px;
+    background: rgba(243,236,222,0.04);
+    border: 1px solid rgba(243,236,222,0.12);
+    border-radius: 8px;
+    color: var(--cream);
+    transition: border-color 0.2s, background 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: rgba(134,194,129,0.55);
+    background: rgba(134,194,129,0.05);
+  }
+  textarea { resize: vertical; min-height: 70px; font-family: var(--f-body); }
+  select {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path d='M1 1l4 4 4-4' stroke='%2386c281' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  select option { background: var(--ink-2); color: var(--cream); }
+
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+
+  /* ==== REPEATER (for arrays) ==== */
+  .repeater {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .repeater__item {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .repeater__item input, .repeater__item textarea {
+    flex: 1;
+  }
+  .repeater__remove {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    background: rgba(255,45,138,0.08);
+    border: 1px solid rgba(255,45,138,0.25);
+    border-radius: 8px;
+    color: var(--neon);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .repeater__remove:hover { background: rgba(255,45,138,0.2); }
+  .repeater__add {
+    align-self: flex-start;
+    margin-top: 6px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    background: rgba(134,194,129,0.1);
+    border: 1px dashed rgba(134,194,129,0.35);
+    border-radius: 8px;
+    color: var(--leaf);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .repeater__add:hover { background: rgba(134,194,129,0.2); }
+
+  /* Line-item repeater is 3-col */
+  .line-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 90px 32px;
+    gap: 6px;
+    align-items: center;
+  }
+  .line-item input { padding: 8px 10px; font-size: 12px; }
+  .line-total-preview {
+    padding: 24px 24px 20px;
+    background: rgba(134,194,129,0.06);
+    border: 1px solid rgba(134,194,129,0.25);
+    border-radius: 12px;
+    margin-top: 16px;
+  }
+  .line-total-preview__row {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    padding: 6px 0;
+  }
+  .line-total-preview__row.total {
+    border-top: 1px solid rgba(134,194,129,0.35);
+    padding-top: 12px;
+    margin-top: 8px;
+    font-size: 15px;
+    font-family: var(--f-display);
+    font-weight: 700;
+    color: var(--leaf);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* ==== PREVIEW TOOLBAR ==== */
+  .toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(243,236,222,0.98);
+    border-bottom: 1px solid rgba(13,15,28,0.1);
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .toolbar__toggle {
+    display: inline-flex;
+    background: rgba(13,15,28,0.06);
+    border-radius: 999px;
+    padding: 3px;
+    border: 1px solid rgba(13,15,28,0.1);
+  }
+  .toolbar__toggle button {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    background: transparent;
+    border: none;
+    border-radius: 999px;
+    color: var(--ink);
+    opacity: 0.55;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .toolbar__toggle button.active {
+    background: var(--ink);
+    color: var(--cream);
+    opacity: 1;
+  }
+  .toolbar__print {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    background: var(--neon);
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    font-weight: 500;
+    box-shadow: 0 0 16px rgba(255,45,138,0.4);
+  }
+  .toolbar__print:hover { background: var(--neon-hot); transform: translateY(-1px); }
+  .toolbar__print svg { width: 12px; height: 12px; }
+
+  /* ==== PREVIEW CANVAS (client-facing) ==== */
+  .doc {
+    padding: 60px 60px 100px;
+    max-width: 820px;
+    margin: 0 auto;
+    font-family: var(--f-body);
+    color: var(--ink);
+    background: transparent;
+  }
+  .doc a { color: var(--leaf-dark); }
+  .doc__poster {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 48px 44px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc__poster::before {
+    content: "";
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,45,138,0.25), transparent 65%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+  .doc__poster::after {
+    content: "";
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(134,194,129,0.22), transparent 65%);
+    filter: blur(30px);
+    pointer-events: none;
+  }
+  .doc__poster-inner { position: relative; z-index: 1; }
+  .doc__eyebrow {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .doc__eyebrow::before {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+  }
+  .doc__doctype {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream-2);
+    opacity: 0.55;
+    margin-bottom: 8px;
+  }
+  .doc__title {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(30px, 4vw, 48px);
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    color: var(--cream);
+    margin: 0 0 24px;
+    text-transform: lowercase;
+  }
+  .doc__title em { font-style: normal; color: var(--leaf); }
+  .doc__meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(243,236,222,0.15);
+    margin-top: 20px;
+  }
+  .doc__meta-item h4 {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf);
+    margin: 0 0 4px;
+    font-weight: 500;
+  }
+  .doc__meta-item p {
+    font-family: var(--f-body);
+    font-size: 13px;
+    color: var(--cream);
+    margin: 0;
+  }
+
+  .doc__section {
+    margin: 40px 0;
+    page-break-inside: avoid;
+  }
+  .doc__section-label {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .doc__section-label::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+  }
+  .doc__section h2 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0 0 14px;
+    text-transform: lowercase;
+    line-height: 1.1;
+  }
+  .doc__section h2 em { font-style: normal; color: var(--leaf-dark); }
+  .doc__section p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink);
+    opacity: 0.85;
+    margin-bottom: 12px;
+  }
+  .doc__section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .doc__section ul li {
+    padding: 8px 0 8px 24px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    opacity: 0.85;
+    border-bottom: 1px solid rgba(13,15,28,0.06);
+  }
+  .doc__section ul li:last-child { border-bottom: none; }
+  .doc__section ul li::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: var(--leaf-dark);
+    font-size: 10px;
+  }
+
+  /* Pricing table */
+  .doc__pricing {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 14px;
+  }
+  .doc__pricing th, .doc__pricing td {
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid rgba(13,15,28,0.08);
+  }
+  .doc__pricing th {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf-dark);
+    font-weight: 500;
+    background: rgba(134,194,129,0.06);
+  }
+  .doc__pricing td.num, .doc__pricing th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .doc__pricing tfoot td {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--ink);
+    padding-top: 18px;
+    border-top: 2px solid var(--ink);
+    border-bottom: none;
+  }
+  .doc__pricing tfoot td.num { color: var(--leaf-dark); font-size: 22px; }
+
+  /* Timeline */
+  .doc__timeline {
+    list-style: none !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .doc__timeline li {
+    display: grid !important;
+    grid-template-columns: 140px 1fr !important;
+    gap: 20px !important;
+    padding: 14px 0 14px 0 !important;
+    align-items: baseline;
+  }
+  .doc__timeline li::before { display: none !important; }
+  .doc__timeline li .when {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--leaf-dark);
+    font-weight: 500;
+    padding-top: 2px;
+  }
+  .doc__timeline li .what {
+    font-size: 15px;
+    color: var(--ink);
+    opacity: 0.9;
+  }
+
+  /* Payment schedule */
+  .doc__payments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .doc__payment {
+    background: rgba(134,194,129,0.08);
+    border: 1px solid rgba(134,194,129,0.3);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+  .doc__payment h5 {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf-dark);
+    margin: 0 0 6px;
+    font-weight: 500;
+  }
+  .doc__payment .pct {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: 28px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .doc__payment .amt {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--leaf-dark);
+    letter-spacing: 0.05em;
+  }
+  .doc__payment .when {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--f-body);
+    font-size: 12px;
+    color: var(--ink);
+    opacity: 0.6;
+  }
+
+  /* Accept box (proposal) */
+  .doc__accept {
+    margin-top: 60px;
+    padding: 36px 40px;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .doc__accept::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 40% at 80% 30%, rgba(255,45,138,0.2), transparent 60%);
+    pointer-events: none;
+  }
+  .doc__accept-inner { position: relative; z-index: 1; }
+  .doc__accept h3 {
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin: 0 0 12px;
+    text-transform: lowercase;
+  }
+  .doc__accept h3 em { font-style: normal; color: var(--leaf); }
+  .doc__accept p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--cream-2);
+    opacity: 0.85;
+  }
+  .doc__accept a {
+    color: var(--leaf);
+    font-weight: 500;
+  }
+
+  /* Contract sig block */
+  .doc__signatures {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    page-break-inside: avoid;
+  }
+  .doc__sig {
+    border-top: 2px solid var(--ink);
+    padding-top: 10px;
+  }
+  .doc__sig h5 {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--leaf-dark);
+    margin: 0 0 6px;
+    font-weight: 500;
+  }
+  .doc__sig p {
+    font-family: var(--f-body);
+    font-size: 13px;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .doc__sig .line {
+    height: 32px;
+    border-bottom: 1px solid rgba(13,15,28,0.3);
+    margin-bottom: 6px;
+  }
+  .doc__sig-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.55;
+  }
+
+  .doc__foot {
+    margin-top: 80px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(13,15,28,0.1);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0.55;
+  }
+
+  /* ==== PRINT ==== */
+  @media print {
+    @page { margin: 0.5in; size: letter; }
+    body { background: white; overflow: visible; }
+    .app { display: block; height: auto; }
+    .admin, .toolbar { display: none !important; }
+    .preview-pane {
+      background: white;
+      overflow: visible;
+    }
+    .doc { padding: 0; max-width: none; }
+    .doc__section { page-break-inside: avoid; }
+    .doc__poster, .doc__accept {
+      /* Keep dark for print — brand statement */
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .doc__pricing th, .doc__payment {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ ADMIN PANEL ============ -->
+  <aside class="admin">
+    <header class="admin__header">
+      <div class="admin__mark">
+        kelsey<span>verse</span>
+        <small>proposal + contract builder</small>
+      </div>
+      <div class="admin__actions">
+        <button id="btn-sample">sample</button>
+        <button id="btn-reset" class="danger">reset</button>
+      </div>
+    </header>
+
+    <div class="admin__body">
+
+      <!-- META -->
+      <div class="field-group">
+        <div class="field-group__label">meta</div>
+        <div class="row-3">
+          <label class="field">
+            <small>number</small>
+            <input type="text" data-field="meta.proposalNum" placeholder="KV-2026-001">
+          </label>
+          <label class="field">
+            <small>date</small>
+            <input type="date" data-field="meta.date">
+          </label>
+          <label class="field">
+            <small>valid until</small>
+            <input type="date" data-field="meta.validUntil">
+          </label>
+        </div>
+      </div>
+
+      <!-- CLIENT -->
+      <div class="field-group">
+        <div class="field-group__label">client</div>
+        <label class="field">
+          <small>name</small>
+          <input type="text" data-field="client.name" placeholder="Jason Roth">
+        </label>
+        <label class="field">
+          <small>company</small>
+          <input type="text" data-field="client.company" placeholder="Raised Bar Development Group">
+        </label>
+        <label class="field">
+          <small>email</small>
+          <input type="email" data-field="client.email" placeholder="jason@raisedbar.com">
+        </label>
+      </div>
+
+      <!-- PROJECT -->
+      <div class="field-group">
+        <div class="field-group__label">project</div>
+        <label class="field">
+          <small>project name</small>
+          <input type="text" data-field="project.name" placeholder="Tailwater — Development Phase 2">
+        </label>
+        <label class="field">
+          <small>category</small>
+          <select data-field="project.category">
+            <option value="Architectural Visualization">Architectural Visualization</option>
+            <option value="Web Design + Development">Web Design + Development</option>
+            <option value="Custom Software">Custom Software</option>
+            <option value="Cinematic Media">Cinematic Media</option>
+            <option value="Combined Scope">Combined Scope</option>
+          </select>
+        </label>
+        <label class="field">
+          <small>overview (1-2 sentences)</small>
+          <textarea data-field="project.overview" placeholder="What we're doing and why."></textarea>
+        </label>
+      </div>
+
+      <!-- SCOPE -->
+      <div class="field-group">
+        <div class="field-group__label">scope of work</div>
+        <div class="repeater" data-repeater="scope"></div>
+        <button class="repeater__add" data-add="scope">+ add scope item</button>
+      </div>
+
+      <!-- DELIVERABLES -->
+      <div class="field-group">
+        <div class="field-group__label">deliverables</div>
+        <div class="repeater" data-repeater="deliverables"></div>
+        <button class="repeater__add" data-add="deliverables">+ add deliverable</button>
+      </div>
+
+      <!-- PRICING -->
+      <div class="field-group">
+        <div class="field-group__label">pricing (line items)</div>
+        <div class="repeater" data-repeater="lineItems"></div>
+        <button class="repeater__add" data-add="lineItems">+ add line item</button>
+        <div class="line-total-preview">
+          <div class="line-total-preview__row">
+            <span>subtotal</span>
+            <span id="subtotal-preview">$0</span>
+          </div>
+          <div class="line-total-preview__row total">
+            <span>total</span>
+            <span id="total-preview">$0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="field-group">
+        <div class="field-group__label">timeline</div>
+        <div class="repeater" data-repeater="timeline"></div>
+        <button class="repeater__add" data-add="timeline">+ add milestone</button>
+      </div>
+
+      <!-- PAYMENT TERMS -->
+      <div class="field-group">
+        <div class="field-group__label">payment schedule (%)</div>
+        <div class="row-3">
+          <label class="field">
+            <small>deposit</small>
+            <input type="number" min="0" max="100" data-field="paymentTerms.deposit">
+          </label>
+          <label class="field">
+            <small>milestone</small>
+            <input type="number" min="0" max="100" data-field="paymentTerms.milestone">
+          </label>
+          <label class="field">
+            <small>on delivery</small>
+            <input type="number" min="0" max="100" data-field="paymentTerms.delivery">
+          </label>
+        </div>
+        <label class="field">
+          <small>deposit trigger (when due)</small>
+          <input type="text" data-field="paymentTerms.depositWhen" placeholder="upon signing">
+        </label>
+        <label class="field">
+          <small>milestone trigger</small>
+          <input type="text" data-field="paymentTerms.milestoneWhen" placeholder="upon first draft delivery">
+        </label>
+        <label class="field">
+          <small>final trigger</small>
+          <input type="text" data-field="paymentTerms.deliveryWhen" placeholder="upon final delivery">
+        </label>
+      </div>
+
+      <!-- ASSUMPTIONS -->
+      <div class="field-group">
+        <div class="field-group__label">assumptions + exclusions</div>
+        <div class="repeater" data-repeater="assumptions"></div>
+        <button class="repeater__add" data-add="assumptions">+ add assumption</button>
+      </div>
+
+      <!-- CONTRACT-ONLY FIELDS -->
+      <div class="field-group">
+        <div class="field-group__label">contract terms</div>
+        <label class="field">
+          <small>revision rounds included</small>
+          <input type="number" min="0" data-field="contract.revisions">
+        </label>
+        <label class="field">
+          <small>cancellation policy</small>
+          <textarea data-field="contract.cancellation" placeholder="e.g., 50% kill fee if cancelled after project start"></textarea>
+        </label>
+        <label class="field">
+          <small>IP ownership</small>
+          <textarea data-field="contract.ipOwnership" placeholder="e.g., Client owns final deliverables upon full payment. Kelsey retains right to feature in portfolio."></textarea>
+        </label>
+        <label class="field">
+          <small>governing state</small>
+          <input type="text" data-field="contract.governingState" placeholder="Utah">
+        </label>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ============ PREVIEW PANE ============ -->
+  <main class="preview-pane">
+    <div class="toolbar">
+      <div class="toolbar__toggle">
+        <button data-view="proposal" class="active">proposal</button>
+        <button data-view="contract">contract</button>
+      </div>
+      <button class="toolbar__print" id="btn-print">
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 3v3M10 3v3M3 6h8v5H3zM4 11v2h6v-2"/></svg>
+        print / save as pdf
+      </button>
+    </div>
+    <div id="doc" class="doc"></div>
+  </main>
+
+</div>
+
+<script>
+  // ============ STATE ============
+  const DEFAULT_STATE = {
+    meta: { proposalNum: '', date: new Date().toISOString().slice(0,10), validUntil: '' },
+    client: { name: '', company: '', email: '' },
+    project: { name: '', category: 'Architectural Visualization', overview: '' },
+    scope: [''],
+    deliverables: [''],
+    lineItems: [{ description: '', qty: 1, unitPrice: 0 }],
+    timeline: [{ milestone: '', when: '' }],
+    paymentTerms: {
+      deposit: 50, milestone: 25, delivery: 25,
+      depositWhen: 'upon signing',
+      milestoneWhen: 'upon first draft delivery',
+      deliveryWhen: 'upon final delivery'
+    },
+    assumptions: [''],
+    contract: {
+      revisions: 2,
+      cancellation: 'Either party may terminate this agreement with 7 days written notice. Cancellation after project start requires payment for all work completed to date, plus a 50% kill fee on remaining scope.',
+      ipOwnership: 'Client receives full ownership of final delivered files upon final payment. Kelsey Sackett retains the right to feature the completed work in portfolio, case studies, and marketing materials.',
+      governingState: 'Utah'
+    }
+  };
+
+  const SAMPLE_STATE = {
+    meta: { proposalNum: 'KV-2026-002', date: new Date().toISOString().slice(0,10), validUntil: addDays(30) },
+    client: { name: 'Jason Roth', company: 'Raised Bar Development Group', email: 'jason@raisedbardev.com' },
+    project: {
+      name: 'Ridgeline Estates — Marketing Visualization Package',
+      category: 'Architectural Visualization',
+      overview: 'Full visualization scope for a new 5-home boutique development. Exteriors, interiors, and cinematic media to support the launch listing and buyer presentations.'
+    },
+    scope: [
+      'Kickoff + reference gather with architectural team',
+      'Camera direction + composition for all shots',
+      'Interior visualization: 12 rendered scenes across primary + secondary spaces',
+      'Exterior visualization: 3 hero angles + 2 detail shots per home',
+      'Furniture + interior styling, materials + finishes, lighting, environmental treatment',
+      '1 cinematic walkthrough (30-60 second) for launch page',
+      'Enhanced final image production for all deliverables'
+    ],
+    deliverables: [
+      '12 interior renderings (high-res, retouched)',
+      '25 exterior renderings (5 per home)',
+      '1 cinematic video (1080p MP4)',
+      'Web-ready + print-ready file versions'
+    ],
+    lineItems: [
+      { description: 'Interior visualization (12 scenes)', qty: 12, unitPrice: 450 },
+      { description: 'Exterior visualization (25 shots)', qty: 25, unitPrice: 275 },
+      { description: 'Cinematic walkthrough video', qty: 1, unitPrice: 2200 },
+      { description: 'Project management + creative direction', qty: 1, unitPrice: 800 }
+    ],
+    timeline: [
+      { milestone: 'Kickoff + reference gather', when: 'Week 1' },
+      { milestone: 'First draft renders (5 shots)', when: 'Week 3' },
+      { milestone: 'Full first pass on all shots', when: 'Week 5' },
+      { milestone: 'Revisions + enhancement', when: 'Week 7' },
+      { milestone: 'Cinematic delivery', when: 'Week 8' },
+      { milestone: 'Final delivery', when: 'Week 8' }
+    ],
+    paymentTerms: {
+      deposit: 40, milestone: 30, delivery: 30,
+      depositWhen: 'upon signing',
+      milestoneWhen: 'upon first-pass delivery (Week 5)',
+      deliveryWhen: 'upon final delivery'
+    },
+    assumptions: [
+      'Client provides architectural files (Revit, SketchUp, or DWG) at kickoff',
+      'Two rounds of revision per shot are included',
+      'Additional shots or revision rounds are quoted separately',
+      'Final files delivered via shared drive; source files remain with Kelsey'
+    ],
+    contract: DEFAULT_STATE.contract
+  };
+
+  function addDays(n) {
+    const d = new Date();
+    d.setDate(d.getDate() + n);
+    return d.toISOString().slice(0,10);
+  }
+
+  const STORAGE_KEY = 'kv-proposal-state-v1';
+
+  let state = load() || structuredClone(DEFAULT_STATE);
+  let view = 'proposal';
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function save() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  // ============ FIELD BINDING ============
+  function getVal(path) {
+    return path.split('.').reduce((o, k) => (o == null ? o : o[k]), state);
+  }
+  function setVal(path, val) {
+    const keys = path.split('.');
+    let o = state;
+    for (let i = 0; i < keys.length - 1; i++) o = o[keys[i]];
+    o[keys[keys.length - 1]] = val;
+  }
+
+  function bindFields() {
+    document.querySelectorAll('[data-field]').forEach(input => {
+      const path = input.dataset.field;
+      const val = getVal(path);
+      if (val !== undefined && val !== null) input.value = val;
+      input.addEventListener('input', () => {
+        let v = input.value;
+        if (input.type === 'number') v = parseFloat(v) || 0;
+        setVal(path, v);
+        save();
+        render();
+      });
+    });
+  }
+
+  // ============ REPEATERS ============
+  const REPEATER_SCHEMAS = {
+    scope: { type: 'string', placeholder: 'Scope item' },
+    deliverables: { type: 'string', placeholder: 'Deliverable' },
+    assumptions: { type: 'string', placeholder: 'Assumption / exclusion' },
+    lineItems: { type: 'lineItem' },
+    timeline: { type: 'milestone' }
+  };
+
+  function buildRepeaters() {
+    Object.keys(REPEATER_SCHEMAS).forEach(key => {
+      const el = document.querySelector(`[data-repeater="${key}"]`);
+      if (!el) return;
+      renderRepeater(el, key);
+    });
+    document.querySelectorAll('[data-add]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.add;
+        const schema = REPEATER_SCHEMAS[key];
+        let empty;
+        if (schema.type === 'string') empty = '';
+        else if (schema.type === 'lineItem') empty = { description: '', qty: 1, unitPrice: 0 };
+        else if (schema.type === 'milestone') empty = { milestone: '', when: '' };
+        state[key].push(empty);
+        save();
+        renderRepeater(document.querySelector(`[data-repeater="${key}"]`), key);
+        render();
+      });
+    });
+  }
+
+  function renderRepeater(el, key) {
+    const schema = REPEATER_SCHEMAS[key];
+    const items = state[key];
+    el.innerHTML = '';
+    items.forEach((item, i) => {
+      const row = document.createElement('div');
+      row.className = 'repeater__item';
+      if (schema.type === 'lineItem') row.classList.add('line-item');
+
+      if (schema.type === 'string') {
+        row.innerHTML = `
+          <textarea rows="1" placeholder="${schema.placeholder}"></textarea>
+          <button class="repeater__remove" title="Remove">×</button>
+        `;
+        const ta = row.querySelector('textarea');
+        ta.value = item;
+        ta.addEventListener('input', () => {
+          state[key][i] = ta.value;
+          save();
+          render();
+          autoGrow(ta);
+        });
+        autoGrow(ta);
+      } else if (schema.type === 'lineItem') {
+        row.innerHTML = `
+          <input type="text" placeholder="Description" data-k="description">
+          <input type="number" min="0" step="1" placeholder="Qty" data-k="qty">
+          <input type="number" min="0" step="10" placeholder="Unit $" data-k="unitPrice">
+          <button class="repeater__remove" title="Remove">×</button>
+        `;
+        ['description','qty','unitPrice'].forEach(k => {
+          const inp = row.querySelector(`[data-k="${k}"]`);
+          inp.value = item[k];
+          inp.addEventListener('input', () => {
+            state[key][i][k] = inp.type === 'number' ? (parseFloat(inp.value) || 0) : inp.value;
+            save();
+            renderTotalsPreview();
+            render();
+          });
+        });
+      } else if (schema.type === 'milestone') {
+        row.innerHTML = `
+          <input type="text" placeholder="When (Week 1, Jan 15)" data-k="when" style="max-width: 130px;">
+          <input type="text" placeholder="Milestone" data-k="milestone" style="flex: 1;">
+          <button class="repeater__remove" title="Remove">×</button>
+        `;
+        ['milestone','when'].forEach(k => {
+          const inp = row.querySelector(`[data-k="${k}"]`);
+          inp.value = item[k];
+          inp.addEventListener('input', () => {
+            state[key][i][k] = inp.value;
+            save();
+            render();
+          });
+        });
+      }
+
+      row.querySelector('.repeater__remove').addEventListener('click', () => {
+        state[key].splice(i, 1);
+        save();
+        renderRepeater(el, key);
+        renderTotalsPreview();
+        render();
+      });
+
+      el.appendChild(row);
+    });
+  }
+
+  function autoGrow(el) {
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight) + 'px';
+  }
+
+  // ============ TOTALS ============
+  function calcSubtotal() {
+    return state.lineItems.reduce((sum, li) => sum + (li.qty * li.unitPrice), 0);
+  }
+  function fmtCurrency(n) {
+    return '$' + n.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  }
+  function renderTotalsPreview() {
+    const sub = calcSubtotal();
+    document.getElementById('subtotal-preview').textContent = fmtCurrency(sub);
+    document.getElementById('total-preview').textContent = fmtCurrency(sub);
+  }
+
+  // ============ RENDER DOCUMENT ============
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+  function fmtDate(d) {
+    if (!d) return '—';
+    const dt = new Date(d + 'T00:00:00');
+    return dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  function render() {
+    renderTotalsPreview();
+    const total = calcSubtotal();
+    const doc = document.getElementById('doc');
+    if (view === 'proposal') {
+      doc.innerHTML = renderProposal(total);
+    } else {
+      doc.innerHTML = renderContract(total);
+    }
+  }
+
+  function renderProposal(total) {
+    const s = state;
+    const client = s.client.name || '[Client Name]';
+    const company = s.client.company;
+    const projectName = s.project.name || '[Project Name]';
+    const overview = s.project.overview || 'Project overview goes here.';
+
+    const scopeItems = s.scope.filter(x => x.trim()).map(x => `<li>${esc(x)}</li>`).join('') || '<li><em>Scope items go here.</em></li>';
+    const delivItems = s.deliverables.filter(x => x.trim()).map(x => `<li>${esc(x)}</li>`).join('') || '<li><em>Deliverables go here.</em></li>';
+    const assumeItems = s.assumptions.filter(x => x.trim()).map(x => `<li>${esc(x)}</li>`).join('') || '';
+    const timelineItems = s.timeline.filter(x => (x.milestone || '').trim()).map(x =>
+      `<li><span class="when">${esc(x.when)}</span><span class="what">${esc(x.milestone)}</span></li>`
+    ).join('') || '<li><em>Timeline goes here.</em></li>';
+
+    const pricingRows = s.lineItems.filter(x => (x.description || '').trim()).map(li => {
+      const lineTotal = li.qty * li.unitPrice;
+      return `<tr>
+        <td>${esc(li.description)}</td>
+        <td class="num">${li.qty}</td>
+        <td class="num">${fmtCurrency(li.unitPrice)}</td>
+        <td class="num">${fmtCurrency(lineTotal)}</td>
+      </tr>`;
+    }).join('');
+
+    const paymentCards = ['deposit','milestone','delivery'].map(key => {
+      const pct = s.paymentTerms[key] || 0;
+      const amt = total * pct / 100;
+      const whenKey = key + 'When';
+      const label = { deposit: 'Deposit', milestone: 'Milestone', delivery: 'Final' }[key];
+      return `<div class="doc__payment">
+        <h5>${label}</h5>
+        <div class="pct">${pct}%</div>
+        <div class="amt">${fmtCurrency(amt)}</div>
+        <span class="when">${esc(s.paymentTerms[whenKey] || '')}</span>
+      </div>`;
+    }).join('');
+
+    return `
+      <div class="doc__poster">
+        <div class="doc__poster-inner">
+          <span class="doc__eyebrow">◆ prepared for ${esc(client)}${company ? ' · ' + esc(company) : ''}</span>
+          <div class="doc__doctype">project proposal</div>
+          <h1 class="doc__title">${esc(projectName).replace(/([^ ]+)( [^ ]+)?$/, (_, last, tail) => `<em>${last}</em>${tail || ''}`)}</h1>
+          <div class="doc__meta">
+            <div class="doc__meta-item">
+              <h4>proposal no.</h4>
+              <p>${esc(s.meta.proposalNum) || '—'}</p>
+            </div>
+            <div class="doc__meta-item">
+              <h4>date issued</h4>
+              <p>${fmtDate(s.meta.date)}</p>
+            </div>
+            <div class="doc__meta-item">
+              <h4>category</h4>
+              <p>${esc(s.project.category)}</p>
+            </div>
+            <div class="doc__meta-item">
+              <h4>valid until</h4>
+              <p>${fmtDate(s.meta.validUntil)}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="doc__section">
+        <div class="doc__section-label">overview</div>
+        <p>${esc(overview)}</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">scope of work</div>
+        <ul>${scopeItems}</ul>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">deliverables</div>
+        <ul>${delivItems}</ul>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">investment</div>
+        <table class="doc__pricing">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="num">Qty</th>
+              <th class="num">Unit</th>
+              <th class="num">Total</th>
+            </tr>
+          </thead>
+          <tbody>${pricingRows || '<tr><td colspan="4"><em>No line items yet.</em></td></tr>'}</tbody>
+          <tfoot>
+            <tr><td colspan="3">Project Total</td><td class="num">${fmtCurrency(total)}</td></tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">timeline</div>
+        <ul class="doc__timeline">${timelineItems}</ul>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">payment schedule</div>
+        <div class="doc__payments">${paymentCards}</div>
+      </section>
+
+      ${assumeItems ? `
+      <section class="doc__section">
+        <div class="doc__section-label">assumptions + exclusions</div>
+        <ul>${assumeItems}</ul>
+      </section>
+      ` : ''}
+
+      <div class="doc__accept">
+        <div class="doc__accept-inner">
+          <h3>ready to <em>move forward?</em></h3>
+          <p>Reply to <a href="mailto:hello@kelseyverse.com">hello@kelseyverse.com</a> to accept this proposal. Once accepted, we'll send a full services agreement for signature and invoice the deposit.</p>
+        </div>
+      </div>
+
+      <div class="doc__foot">
+        <span>kelseyverse · prepared by kelsey sackett</span>
+        <span>kelseyverse.com</span>
+      </div>
+    `;
+  }
+
+  function renderContract(total) {
+    const s = state;
+    const client = s.client.name || '[Client Name]';
+    const company = s.client.company;
+    const projectName = s.project.name || '[Project Name]';
+
+    const scopeItems = s.scope.filter(x => x.trim()).map(x => `<li>${esc(x)}</li>`).join('') || '<li><em>Scope items go here.</em></li>';
+    const delivItems = s.deliverables.filter(x => x.trim()).map(x => `<li>${esc(x)}</li>`).join('') || '<li><em>Deliverables go here.</em></li>';
+    const assumeItems = s.assumptions.filter(x => x.trim()).map(x => `<li>${esc(x)}</li>`).join('') || '';
+    const timelineItems = s.timeline.filter(x => (x.milestone || '').trim()).map(x =>
+      `<li><span class="when">${esc(x.when)}</span><span class="what">${esc(x.milestone)}</span></li>`
+    ).join('') || '<li><em>Timeline goes here.</em></li>';
+
+    const pricingRows = s.lineItems.filter(x => (x.description || '').trim()).map(li => {
+      const lineTotal = li.qty * li.unitPrice;
+      return `<tr>
+        <td>${esc(li.description)}</td>
+        <td class="num">${li.qty}</td>
+        <td class="num">${fmtCurrency(li.unitPrice)}</td>
+        <td class="num">${fmtCurrency(lineTotal)}</td>
+      </tr>`;
+    }).join('');
+
+    const paymentCards = ['deposit','milestone','delivery'].map(key => {
+      const pct = s.paymentTerms[key] || 0;
+      const amt = total * pct / 100;
+      const whenKey = key + 'When';
+      const label = { deposit: 'Deposit', milestone: 'Milestone', delivery: 'Final' }[key];
+      return `<div class="doc__payment">
+        <h5>${label}</h5>
+        <div class="pct">${pct}%</div>
+        <div class="amt">${fmtCurrency(amt)}</div>
+        <span class="when">${esc(s.paymentTerms[whenKey] || '')}</span>
+      </div>`;
+    }).join('');
+
+    return `
+      <div class="doc__poster">
+        <div class="doc__poster-inner">
+          <span class="doc__eyebrow">◆ services agreement</span>
+          <div class="doc__doctype">contract</div>
+          <h1 class="doc__title">${esc(projectName).replace(/([^ ]+)( [^ ]+)?$/, (_, last, tail) => `<em>${last}</em>${tail || ''}`)}</h1>
+          <div class="doc__meta">
+            <div class="doc__meta-item">
+              <h4>agreement no.</h4>
+              <p>${esc(s.meta.proposalNum) || '—'}</p>
+            </div>
+            <div class="doc__meta-item">
+              <h4>effective date</h4>
+              <p>${fmtDate(s.meta.date)}</p>
+            </div>
+            <div class="doc__meta-item">
+              <h4>governing law</h4>
+              <p>State of ${esc(s.contract.governingState)}</p>
+            </div>
+            <div class="doc__meta-item">
+              <h4>category</h4>
+              <p>${esc(s.project.category)}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="doc__section">
+        <div class="doc__section-label">1 · parties</div>
+        <p>This Services Agreement ("<strong>Agreement</strong>") is entered into as of ${fmtDate(s.meta.date)} between <strong>Kelsey Sackett</strong>, doing business as <strong>Kelseyverse</strong> ("<strong>Provider</strong>"), and <strong>${esc(client)}</strong>${company ? `, of <strong>${esc(company)}</strong>` : ''} ("<strong>Client</strong>").</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">2 · scope of services</div>
+        <p>Provider agrees to perform the following services for Client:</p>
+        <ul>${scopeItems}</ul>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">3 · deliverables</div>
+        <ul>${delivItems}</ul>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">4 · compensation</div>
+        <table class="doc__pricing">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="num">Qty</th>
+              <th class="num">Unit</th>
+              <th class="num">Total</th>
+            </tr>
+          </thead>
+          <tbody>${pricingRows || '<tr><td colspan="4"><em>No line items.</em></td></tr>'}</tbody>
+          <tfoot>
+            <tr><td colspan="3">Total Contract Value</td><td class="num">${fmtCurrency(total)}</td></tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">5 · payment schedule</div>
+        <div class="doc__payments">${paymentCards}</div>
+        <p style="margin-top: 20px;">Invoices are due within 14 days of receipt. Late payments accrue interest at 1.5% per month.</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">6 · timeline</div>
+        <ul class="doc__timeline">${timelineItems}</ul>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">7 · revisions</div>
+        <p>${s.contract.revisions} round${s.contract.revisions == 1 ? '' : 's'} of revision per deliverable are included. Additional revisions are billable at Provider's then-current hourly rate.</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">8 · intellectual property</div>
+        <p>${esc(s.contract.ipOwnership)}</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">9 · client responsibilities</div>
+        <p>Client agrees to provide all source materials, references, feedback, and approvals in a timely manner. Delays in client-side responsiveness may extend the project timeline proportionally.</p>
+      </section>
+
+      ${assumeItems ? `
+      <section class="doc__section">
+        <div class="doc__section-label">10 · assumptions + exclusions</div>
+        <ul>${assumeItems}</ul>
+      </section>
+      ` : ''}
+
+      <section class="doc__section">
+        <div class="doc__section-label">${assumeItems ? '11' : '10'} · cancellation</div>
+        <p>${esc(s.contract.cancellation)}</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">${assumeItems ? '12' : '11'} · confidentiality</div>
+        <p>Both parties agree to keep confidential all non-public information exchanged in connection with this project. This obligation survives termination of the Agreement.</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">${assumeItems ? '13' : '12'} · warranties + limitations</div>
+        <p>Provider warrants that services will be performed in a professional manner consistent with industry standards. Provider's total liability under this Agreement shall not exceed the total fees paid by Client.</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">${assumeItems ? '14' : '13'} · governing law</div>
+        <p>This Agreement is governed by the laws of the State of ${esc(s.contract.governingState)}, without regard to conflict-of-law principles.</p>
+      </section>
+
+      <section class="doc__section">
+        <div class="doc__section-label">${assumeItems ? '15' : '14'} · entire agreement</div>
+        <p>This Agreement constitutes the entire understanding between the parties and supersedes all prior discussions, proposals, and agreements. Amendments must be in writing and signed by both parties.</p>
+      </section>
+
+      <div class="doc__signatures">
+        <div class="doc__sig">
+          <h5>Provider</h5>
+          <div class="line"></div>
+          <p>Kelsey Sackett<br>Kelseyverse</p>
+          <div class="doc__sig-meta">
+            <span>signature</span>
+            <span>date</span>
+          </div>
+        </div>
+        <div class="doc__sig">
+          <h5>Client</h5>
+          <div class="line"></div>
+          <p>${esc(client)}${company ? '<br>' + esc(company) : ''}</p>
+          <div class="doc__sig-meta">
+            <span>signature</span>
+            <span>date</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="doc__foot">
+        <span>kelseyverse · services agreement</span>
+        <span>kelseyverse.com · hello@kelseyverse.com</span>
+      </div>
+    `;
+  }
+
+  // ============ VIEW TOGGLE ============
+  document.querySelectorAll('.toolbar__toggle button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      view = btn.dataset.view;
+      document.querySelectorAll('.toolbar__toggle button').forEach(b => b.classList.toggle('active', b === btn));
+      render();
+    });
+  });
+
+  // ============ ACTIONS ============
+  document.getElementById('btn-print').addEventListener('click', () => window.print());
+  document.getElementById('btn-sample').addEventListener('click', () => {
+    state = structuredClone(SAMPLE_STATE);
+    save();
+    location.reload();
+  });
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    if (confirm('Clear all fields and start fresh?')) {
+      state = structuredClone(DEFAULT_STATE);
+      save();
+      location.reload();
+    }
+  });
+
+  // ============ BOOT ============
+  bindFields();
+  buildRepeaters();
+  render();
+</script>
+
+</body>
+</html>
